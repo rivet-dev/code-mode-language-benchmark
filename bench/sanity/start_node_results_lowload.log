@@ -1,0 +1,9 @@
+dash: {"medianMs":1.82,"p10Ms":1.5,"p90Ms":2.63,"loadBefore":7.23,"loadAfter":7.23}
+bash: {"medianMs":2.35,"p10Ms":2.16,"p90Ms":2.8,"loadBefore":7.23,"loadAfter":7.23}
+lua: {"medianMs":2.3,"p10Ms":1.99,"p90Ms":3.75,"loadBefore":7.23,"loadAfter":7.23}
+luajit: {"medianMs":2.76,"p10Ms":2.26,"p90Ms":4.05,"loadBefore":7.23,"loadAfter":7.23}
+python: {"medianMs":15.74,"p10Ms":14.52,"p90Ms":28.22,"loadBefore":7.23,"loadAfter":6.89}
+node: {"medianMs":34.91,"p10Ms":27.8,"p90Ms":47.09,"loadBefore":6.89,"loadAfter":6.89}
+deno: {"medianMs":41.12,"p10Ms":35.34,"p90Ms":45.72,"loadBefore":6.89,"loadAfter":6.89}
+bun: {"medianMs":36.35,"p10Ms":32.85,"p90Ms":39.33,"loadBefore":6.89,"loadAfter":7.46}
+bunConsoleIdle: {"medianMs":19.91,"p10Ms":17.11,"p90Ms":23.82,"loadBefore":7.46,"loadAfter":7.46}

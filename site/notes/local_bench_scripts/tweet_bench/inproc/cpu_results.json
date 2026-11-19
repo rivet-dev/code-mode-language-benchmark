@@ -1,0 +1,51 @@
+{
+  "measuredAt": "2026-11-19T18:22:21.147Z",
+  "loadAverage": [
+    5.62,
+    4.06,
+    5.26
+  ],
+  "node": "v22.23.1",
+  "v8IsolateSync": {
+    "wallUs": 5.05,
+    "cpuUs": 6.54,
+    "hostCpuUs": 6.54,
+    "otherCpuUs": 0
+  },
+  "v8IsolateAsync": {
+    "wallUs": 39.7,
+    "cpuUs": 44.86,
+    "hostCpuUs": 44.86,
+    "otherCpuUs": 0
+  },
+  "quickjsOwnModuleAsync": {
+    "wallUs": 30.22,
+    "cpuUs": 47.17,
+    "hostCpuUs": 47.17,
+    "otherCpuUs": 0
+  },
+  "nodePipe": {
+    "wallUs": 36.6,
+    "cpuUs": 53.18,
+    "hostCpuUs": 27.61,
+    "otherCpuUs": 25.57
+  },
+  "denoPipe": {
+    "wallUs": 71.78,
+    "cpuUs": 101.72,
+    "hostCpuUs": 23.3,
+    "otherCpuUs": 78.43
+  },
+  "bunPipe": {
+    "wallUs": 69.2,
+    "cpuUs": 175.32,
+    "hostCpuUs": 24.05,
+    "otherCpuUs": 151.27
+  },
+  "loopbackHttp": {
+    "wallUs": 167.19,
+    "cpuUs": 215.52,
+    "hostCpuUs": 135.71,
+    "otherCpuUs": 79.81
+  }
+}

@@ -1,0 +1,17 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling cc v1.11.2
+    Checking bench-common v0.1.0 (bench/rust-embedded/common)
+    Checking parking_lot v0.12.5
+   Compiling luau0-src v0.22.0+luau740
+   Compiling lua-src v551.0.2
+   Compiling luajit-src v210.7.5+63c8f1a
+   Compiling mlua-sys v0.13.0
+    Checking mlua v0.12.2
+    Checking bench-luau v0.1.0 (bench/rust-embedded/engines/luau)
+src/main.rs:31:20: warning: use of deprecated type alias `mlua::String`: use `mlua::LuaString` instead
+warning: `bench-luau` (bin "bench-luau") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 41.90s
+exit=0

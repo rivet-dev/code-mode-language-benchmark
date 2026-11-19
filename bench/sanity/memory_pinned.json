@@ -1,0 +1,304 @@
+{
+  "measuredAt": "2026-11-19T19:44:56.461Z",
+  "cgroup": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/app.slice/run-p1362299-i30694564.scope",
+  "cpusAllowed": "11",
+  "sandboxes": 20,
+  "rounds": 3,
+  "loadBefore": [
+    10.35,
+    10.84,
+    11.98
+  ],
+  "runtimes": {
+    "dash": {
+      "loadBefore": 10.35,
+      "bytesPerSandbox": 319283,
+      "bytesPerSandboxAt3s": 319693,
+      "statSumPerSandbox": 319693,
+      "ussMedian": 122880,
+      "rounds": [
+        {
+          "currentAt500ms": 319283,
+          "currentAt3s": 319693,
+          "statAnonPlusFilePlusKernel": 319693,
+          "ussMedian": 122880,
+          "composition": {
+            "anon": 211149,
+            "file": 0,
+            "kernel": 108544,
+            "kernel_stack": 16384,
+            "pagetables": 52634,
+            "slab": 30617,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 227942,
+          "currentAt3s": 140288,
+          "statAnonPlusFilePlusKernel": 231219,
+          "ussMedian": 122880,
+          "composition": {
+            "anon": 127590,
+            "file": 0,
+            "kernel": 103629,
+            "kernel_stack": 16384,
+            "pagetables": 47923,
+            "slab": 30307,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 320512,
+          "currentAt3s": 329523,
+          "statAnonPlusFilePlusKernel": 329319,
+          "ussMedian": 122880,
+          "composition": {
+            "anon": 225485,
+            "file": 0,
+            "kernel": 103834,
+            "kernel_stack": 16384,
+            "pagetables": 48128,
+            "slab": 30358,
+            "percpu": 800,
+            "sock": 0
+          }
+        }
+      ]
+    },
+    "lua": {
+      "loadBefore": 10.92,
+      "bytesPerSandbox": 269517,
+      "bytesPerSandboxAt3s": 269517,
+      "statSumPerSandbox": 269312,
+      "ussMedian": 159744,
+      "rounds": [
+        {
+          "currentAt500ms": 275866,
+          "currentAt3s": 275866,
+          "statAnonPlusFilePlusKernel": 275866,
+          "ussMedian": 159744,
+          "composition": {
+            "anon": 169165,
+            "file": 0,
+            "kernel": 106701,
+            "kernel_stack": 16384,
+            "pagetables": 47718,
+            "slab": 33555,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 268902,
+          "currentAt3s": 268902,
+          "statAnonPlusFilePlusKernel": 268902,
+          "ussMedian": 159744,
+          "composition": {
+            "anon": 161382,
+            "file": 0,
+            "kernel": 107520,
+            "kernel_stack": 16384,
+            "pagetables": 48538,
+            "slab": 33555,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 269517,
+          "currentAt3s": 269517,
+          "statAnonPlusFilePlusKernel": 269312,
+          "ussMedian": 159744,
+          "composition": {
+            "anon": 161587,
+            "file": 0,
+            "kernel": 107725,
+            "kernel_stack": 16384,
+            "pagetables": 48947,
+            "slab": 33419,
+            "percpu": 800,
+            "sock": 0
+          }
+        }
+      ]
+    },
+    "luajit": {
+      "loadBefore": 11.03,
+      "bytesPerSandbox": 301875,
+      "bytesPerSandboxAt3s": 301875,
+      "statSumPerSandbox": 301670,
+      "ussMedian": 188416,
+      "rounds": [
+        {
+          "currentAt500ms": 301056,
+          "currentAt3s": 301056,
+          "statAnonPlusFilePlusKernel": 301466,
+          "ussMedian": 188416,
+          "composition": {
+            "anon": 192512,
+            "file": 0,
+            "kernel": 108954,
+            "kernel_stack": 16384,
+            "pagetables": 49766,
+            "slab": 33544,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 301875,
+          "currentAt3s": 301875,
+          "statAnonPlusFilePlusKernel": 301670,
+          "ussMedian": 192512,
+          "composition": {
+            "anon": 194560,
+            "file": 0,
+            "kernel": 107110,
+            "kernel_stack": 16384,
+            "pagetables": 48538,
+            "slab": 33187,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 302899,
+          "currentAt3s": 302899,
+          "statAnonPlusFilePlusKernel": 302694,
+          "ussMedian": 188416,
+          "composition": {
+            "anon": 195584,
+            "file": 0,
+            "kernel": 107110,
+            "kernel_stack": 16384,
+            "pagetables": 48538,
+            "slab": 33187,
+            "percpu": 800,
+            "sock": 0
+          }
+        }
+      ]
+    },
+    "bash": {
+      "loadBefore": 9.54,
+      "bytesPerSandbox": 414310,
+      "bytesPerSandboxAt3s": 414515,
+      "statSumPerSandbox": 414106,
+      "ussMedian": 299008,
+      "rounds": [
+        {
+          "currentAt500ms": 396493,
+          "currentAt3s": 408576,
+          "statAnonPlusFilePlusKernel": 408371,
+          "ussMedian": 294912,
+          "composition": {
+            "anon": 293069,
+            "file": 0,
+            "kernel": 115302,
+            "kernel_stack": 16384,
+            "pagetables": 57344,
+            "slab": 32612,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 416154,
+          "currentAt3s": 416154,
+          "statAnonPlusFilePlusKernel": 415948,
+          "ussMedian": 299008,
+          "composition": {
+            "anon": 303718,
+            "file": 0,
+            "kernel": 112230,
+            "kernel_stack": 16384,
+            "pagetables": 54272,
+            "slab": 32619,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 414310,
+          "currentAt3s": 414515,
+          "statAnonPlusFilePlusKernel": 414106,
+          "ussMedian": 299008,
+          "composition": {
+            "anon": 301261,
+            "file": 0,
+            "kernel": 112845,
+            "kernel_stack": 16384,
+            "pagetables": 54886,
+            "slab": 32640,
+            "percpu": 800,
+            "sock": 0
+          }
+        }
+      ]
+    },
+    "python": {
+      "loadBefore": 8.57,
+      "bytesPerSandbox": 3544678,
+      "bytesPerSandboxAt3s": 3545088,
+      "statSumPerSandbox": 3545293,
+      "ussMedian": 3403776,
+      "rounds": [
+        {
+          "currentAt500ms": 3544678,
+          "currentAt3s": 3544678,
+          "statAnonPlusFilePlusKernel": 3544473,
+          "ussMedian": 3403776,
+          "composition": {
+            "anon": 3407462,
+            "file": 0,
+            "kernel": 137011,
+            "kernel_stack": 16384,
+            "pagetables": 73114,
+            "slab": 38533,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 3533824,
+          "currentAt3s": 3545088,
+          "statAnonPlusFilePlusKernel": 3545293,
+          "ussMedian": 3403776,
+          "composition": {
+            "anon": 3407258,
+            "file": 0,
+            "kernel": 138035,
+            "kernel_stack": 16384,
+            "pagetables": 74138,
+            "slab": 38492,
+            "percpu": 800,
+            "sock": 0
+          }
+        },
+        {
+          "currentAt500ms": 3560858,
+          "currentAt3s": 3560858,
+          "statAnonPlusFilePlusKernel": 3560858,
+          "ussMedian": 3403776,
+          "composition": {
+            "anon": 3420979,
+            "file": 2458,
+            "kernel": 137421,
+            "kernel_stack": 16384,
+            "pagetables": 73318,
+            "slab": 38622,
+            "percpu": 800,
+            "sock": 0
+          }
+        }
+      ]
+    }
+  },
+  "loadAfter": [
+    7.16,
+    9.95,
+    11.57
+  ]
+}

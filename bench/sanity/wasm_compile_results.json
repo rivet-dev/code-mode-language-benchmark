@@ -1,0 +1,1 @@
+{"loadBefore":7.75,"files":{"micropython.wasm":{"megabytes":0.45,"compileMs":[3.01,2.43,1.57]},"emscripten-module.wasm":{"megabytes":0.5,"compileMs":[2.31,1.92,1.94]}},"loadAfter":7.75}

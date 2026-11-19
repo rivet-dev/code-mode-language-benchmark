@@ -1,0 +1,21 @@
+[package]
+name = "bench-rune"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "bench-rune"
+path = "src/main.rs"
+
+[dependencies]
+bench-common = { path = "../../common" }
+rune = "=0.14.2"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+[workspace]

@@ -1,0 +1,11 @@
+[cranelift] compile 10.73 ms | wasm->host sync call 7.46 ns | host->wasm call 28.6 ns | spin(300M xorshift) 474.9 ms (x=1762986419)
+[cranelift+epoch] compile 7.32 ms | wasm->host sync call 8.67 ns | host->wasm call 29.4 ns | spin(300M xorshift) 541.3 ms (x=1762986419)
+[cranelift+fuel] compile 5.52 ms | wasm->host sync call 8.31 ns | host->wasm call 20.2 ns | spin(300M xorshift) 875.6 ms (x=1762986419)
+[winch] compile 10.79 ms | wasm->host sync call 8.73 ns | host->wasm call 36.8 ns | spin(300M xorshift) 790.8 ms (x=1762986419)
+[pulley] compile 12.60 ms | wasm->host sync call 235.09 ns | host->wasm call 202.4 ns | spin(300M xorshift) 15051.5 ms (x=1762986419)
+[cranelift on-demand] engine VmSize +0.0 GiB at creation | instantiate+drop 77.01 us | 10000 live instances: VmSize 4259846.3 KiB/inst, RSS 10.3 KiB/inst, RssAnon 10.3 KiB/inst
+[cranelift pooling] engine VmSize +40737.0 GiB at creation | instantiate+drop 6.23 us | 10000 live instances: VmSize 6.3 KiB/inst, RSS 10.3 KiB/inst, RssAnon 10.3 KiB/inst
+[pulley on-demand] engine VmSize +0.0 GiB at creation | instantiate+drop 44.17 us | 10000 live instances: VmSize 4194823.4 KiB/inst, RSS 15.5 KiB/inst, RssAnon 15.5 KiB/inst
+[pulley pooling] engine VmSize +40421.3 GiB at creation | instantiate+drop 7.58 us | 10000 live instances: VmSize 519.3 KiB/inst, RSS 15.5 KiB/inst, RssAnon 15.5 KiB/inst
+[async on-demand] wasm->host ready-future call 63.9 ns | host->wasm call_async 259 ns | suspend+resume per host call 587 ns | 10000 guests suspended in host call: VmSize 4261899.6 KiB/inst, RSS 11.6 KiB/inst, RssAnon 11.6 KiB/inst
+[async pooling] wasm->host ready-future call 73.6 ns | host->wasm call_async 257 ns | suspend+resume per host call 552 ns | 10000 guests suspended in host call: VmSize 6.6 KiB/inst, RSS 10.6 KiB/inst, RssAnon 10.6 KiB/inst

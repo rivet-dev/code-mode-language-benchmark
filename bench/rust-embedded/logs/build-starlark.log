@@ -1,0 +1,8 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling bench-common v0.1.0 (bench/rust-embedded/common)
+   Compiling bench-starlark v0.1.0 (bench/rust-embedded/engines/starlark)
+    Finished `release` profile [optimized] target(s) in 58.72s
+exit=0

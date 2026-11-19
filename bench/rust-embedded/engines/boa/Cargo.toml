@@ -1,0 +1,21 @@
+[package]
+name = "bench-boa"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "bench-boa"
+path = "src/main.rs"
+
+[dependencies]
+bench-common = { path = "../../common" }
+boa_engine = "=0.22.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+[workspace]

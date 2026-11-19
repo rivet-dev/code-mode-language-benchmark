@@ -1,0 +1,23 @@
+[package]
+name = "bench-monty"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "bench-monty"
+path = "src/main.rs"
+
+[dependencies]
+bench-common = { path = "../../common" }
+monty = "=1.6.0"
+monty-types = "=1.6.0"
+monty-alloc = "=1.6.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+[workspace]

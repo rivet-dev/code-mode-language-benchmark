@@ -1,0 +1,21 @@
+[package]
+name = "bench-roto"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "bench-roto"
+path = "src/main.rs"
+
+[dependencies]
+bench-common = { path = "../../common" }
+roto = "=0.13.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+[workspace]

@@ -1,0 +1,13 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling const-random-macro v0.1.16
+    Checking bench-common v0.1.0 (bench/rust-embedded/common)
+   Compiling rhai_codegen v3.3.0
+    Checking const-random v0.1.18
+    Checking ahash v0.8.12
+    Checking rhai v1.27.0
+    Checking bench-rhai v0.1.0 (bench/rust-embedded/engines/rhai)
+    Finished `release` profile [optimized] target(s) in 12.37s
+exit=0

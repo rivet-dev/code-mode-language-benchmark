@@ -1,0 +1,14 @@
+{
+  "luau": [
+    "Luau allocates GC objects from per-size-class pages, so a fresh mlua Luau state reports about 436 KB from Lua::used_memory(), of which about 182 KB is resident before our call function, limits, and sandbox are added (separate diagnostic, 1,000 states)."
+  ],
+  "boa": [
+    "boa_gc collects with stop-the-world mark and sweep: the median batch hides the pauses, so toolCallWallMeanUs and toolCallCpuUs are about twice toolCallWallUs, and the slowest 1,000-call batch averaged 626 us per call (one pause of roughly 0.6 s)."
+  ],
+  "steel": [
+    "memorySessions stopped at the 3 GiB growth budget (252 live sessions); startRuns is the at-least-40 slow-engine count."
+  ],
+  "roto": [
+    "The tool-call loop is compiled machine code making three direct native calls per iteration, so it measures Roto's FFI and native-call cost rather than an interpreter."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "key": "rune",
+  "language": "Rune",
+  "crate": "rune",
+  "version": "0.14.2",
+  "startUs": 2165.21,
+  "startRuns": 2000,
+  "memoryBytesPerSession": 2308198,
+  "memorySessions": 1000,
+  "memoryStoppedBy": "target",
+  "memoryExtraStackBytes": 0,
+  "toolCallWallUs": 0.6111,
+  "toolCallWallMeanUs": 0.6477,
+  "toolCallSlowestBatchUs": 1.624,
+  "toolCallCpuUs": 0.6472,
+  "toolCallMeasuredCalls": 1000000,
+  "toolCallWarmupCalls": 100000,
+  "toolCallBatches": 1000,
+  "toolCallBatchSize": 1000,
+  "callKind": "sync",
+  "limitsEnabled": "runtime::budget::with(1000000000 instructions) and alloc::limit::with(64MiB) around every Vm call; Context::with_default_modules (no fs/process/net modules)",
+  "notes": [
+    "Session = Context::with_default_modules() + module with call + RuntimeContext + compiled Unit + Vm; nothing shared across sessions, so start includes building the default-module context and compiling `pub fn main() { 1 + 1 }`.",
+    "Host fn is Module::function(\"call\", fn(&Object) -> VmResult<Object>); Rune objects key on heap-allocated rune::alloc::String, so each reply allocates three key strings (the guest's object literals do the same).",
+    "Tool-call guest is compiled into a second Unit in the same Context/RuntimeContext and run by its own Vm."
+  ],
+  "loadAverage": {
+    "before": [
+      15.85,
+      15.33,
+      13.6
+    ],
+    "after": [
+      13.94,
+      14.94,
+      13.49
+    ]
+  },
+  "runSeconds": 10.7
+}

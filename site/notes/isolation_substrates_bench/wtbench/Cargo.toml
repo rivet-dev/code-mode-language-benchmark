@@ -1,0 +1,12 @@
+[package]
+name = "wtbench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wasmtime = { version = "50", features = ["winch", "pulley"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "sync", "time"] }
+anyhow = "1"
+
+[profile.release]
+debug = false

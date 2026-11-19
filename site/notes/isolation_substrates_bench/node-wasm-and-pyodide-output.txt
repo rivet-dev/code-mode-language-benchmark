@@ -1,0 +1,17 @@
+# node wasm-vm.js (args: live instance count); host: Debian 13, kernel 6.12.116, AMD EPYC 7443P 48 vCPU VM, 2026-11-13
+{"node":"v22.23.1","v8":"12.4.254.21-node.56","flags":"--expose-gc","jspi_available":false,"instantiate_us":60.15,"live":2000,"failedAt":null,"per_instance_VmSize_MiB":7398.4,"per_instance_RSS_KiB":4.7,"per_instance_RssAnon_KiB":4.7,"total_VmSize_GiB":20001}
+{"node":"v22.23.1","v8":"12.4.254.21-node.56","flags":"--expose-gc","jspi_available":false,"instantiate_us":54.53,"live":13060,"failedAt":"13060: WebAssembly.Instance(): Out of memory: Cannot allocate Wasm memory for new instance","per_instance_VmSize_MiB":9802.5,"per_instance_RSS_KiB":5.2,"per_instance_RssAnon_KiB":5.2,"total_VmSize_GiB":130601}
+{"node":"v22.23.1","v8":"12.4.254.21-node.56","flags":"--expose-gc --disable-wasm-trap-handler","jspi_available":false,"instantiate_us":45.69,"live":2000,"failedAt":null,"per_instance_VmSize_MiB":3129.3,"per_instance_RSS_KiB":4.7,"per_instance_RssAnon_KiB":4.7,"total_VmSize_GiB":8001}
+{"node":"v24.18.0","v8":"13.6.233.17-node.50","flags":"--expose-gc","jspi_available":false,"instantiate_us":55.65,"live":2000,"failedAt":null,"per_instance_VmSize_MiB":8192,"per_instance_RSS_KiB":4.8,"per_instance_RssAnon_KiB":4.8,"total_VmSize_GiB":16001.3}
+{"node":"v24.18.0","v8":"13.6.233.17-node.50","flags":"--expose-gc","jspi_available":false,"instantiate_us":58.42,"live":16320,"failedAt":"16320: WebAssembly.Instance(): Out of memory: Cannot allocate Wasm memory for new instance","per_instance_VmSize_MiB":8192,"per_instance_RSS_KiB":5.8,"per_instance_RssAnon_KiB":5.8,"total_VmSize_GiB":130561.4}
+{"node":"v24.18.0","v8":"13.6.233.17-node.50","flags":"--expose-gc --disable-wasm-trap-handler","jspi_available":false,"instantiate_us":48.63,"live":2000,"failedAt":null,"per_instance_VmSize_MiB":3305.5,"per_instance_RSS_KiB":4.5,"per_instance_RssAnon_KiB":4.5,"total_VmSize_GiB":8001.3}
+# node 24.18.0 --experimental-wasm-jspi -p 'typeof WebAssembly.Suspending' => function
+# deno 2.5.2 (V8 14.0.365.5): typeof WebAssembly.Suspending => function ; bun 1.3.14: => function
+# NOTE: per_instance_VmSize for the 2000-instance runs is distorted by GC of 20,200 warm-up instances; use total_VmSize_GiB / live instead (Node 22: 10 GiB, Node 24: 8 GiB, no trap handler: 4 GiB).
+
+# node 24.18.0 pyo-measure.mjs (pyodide 0.29.5 from npm), 4 instances loaded sequentially in one process
+{"i":0,"version":"0.29.5","loadMs":1471,"firstRunMs":0.7,"linearMemMiB":20,"dRSS_MiB":116.5,"dAnon_MiB":106.1,"dVmSize_GiB":16.1}
+{"i":1,"version":"0.29.5","loadMs":1276.8,"firstRunMs":0.5,"linearMemMiB":20,"dRSS_MiB":38.4,"dAnon_MiB":38.1,"dVmSize_GiB":16.02}
+{"i":2,"version":"0.29.5","loadMs":1249.3,"firstRunMs":0.6,"linearMemMiB":20,"dRSS_MiB":46.8,"dAnon_MiB":46.8,"dVmSize_GiB":16.04}
+{"i":3,"version":"0.29.5","loadMs":1233.2,"firstRunMs":0.5,"linearMemMiB":20,"dRSS_MiB":46.5,"dAnon_MiB":46.5,"dVmSize_GiB":16.02}
+baseline before first load: RSS 48.5 MiB, RssAnon 9.2 MiB

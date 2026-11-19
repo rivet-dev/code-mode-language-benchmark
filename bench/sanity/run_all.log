@@ -1,0 +1,19 @@
+== toolcalls start load=7.26 at 11:41:05
+== toolcalls end load=7.81 at 11:41:48 exit=0
+== fork start load=7.81 at 11:41:48
+== fork end load=7.75 at 11:41:49 exit=0
+== v8_floor start load=7.75 at 11:41:49
+== v8_floor end load=7.75 at 11:41:50 exit=0
+== qjs_floor start load=7.75 at 11:41:50
+== qjs_floor end load=7.75 at 11:41:51 exit=0
+== wasm_compile start load=7.75 at 11:41:51
+== wasm_compile end load=7.75 at 11:41:51 exit=0
+== toolcalls_c start load=7.75 at 11:41:51
+== toolcalls_c end load=7.75 at 11:42:08 exit=0
+== bench_mjs start load=7.75 at 11:42:08
+== bench_mjs end load=8.73 at 11:42:22 exit=0
+== memory_unpinned start load=8.73 at 11:42:22
+== memory_unpinned end load=10.35 at 11:44:56 exit=0
+== memory_pinned start load=10.35 at 11:44:56
+== memory_pinned end load=7.16 at 11:46:28 exit=0
+ALL DONE load=7.16

@@ -1,0 +1,39 @@
+{
+  "key": "boa",
+  "language": "JavaScript",
+  "crate": "boa_engine",
+  "version": "0.22.0",
+  "startUs": 162.915,
+  "startRuns": 2000,
+  "memoryBytesPerSession": 318976,
+  "memorySessions": 1000,
+  "memoryStoppedBy": "target",
+  "memoryExtraStackBytes": 0,
+  "toolCallWallUs": 1.4311,
+  "toolCallWallMeanUs": 2.9248,
+  "toolCallSlowestBatchUs": 625.8791,
+  "toolCallCpuUs": 2.9223,
+  "toolCallMeasuredCalls": 1000000,
+  "toolCallWarmupCalls": 100000,
+  "toolCallBatches": 1000,
+  "toolCallBatchSize": 1000,
+  "callKind": "sync",
+  "limitsEnabled": "RuntimeLimits: loop_iteration_limit=1000000000, recursion_limit=512, stack_size_limit=10240; no memory limit API; Context::default has no I/O (no boa_runtime)",
+  "notes": [
+    "Session = Context::default() (full realm with intrinsics, default features float16/xsum/temporal) + runtime limits + global call.",
+    "Host fn is NativeFunction::from_fn_ptr registered with register_global_callable; reply built with ObjectInitializer and static js_string! keys."
+  ],
+  "loadAverage": {
+    "before": [
+      7.64,
+      11.46,
+      12.39
+    ],
+    "after": [
+      7.93,
+      11.4,
+      12.36
+    ]
+  },
+  "runSeconds": 5.4
+}

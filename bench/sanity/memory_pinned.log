@@ -1,0 +1,5 @@
+dash: {"loadBefore":10.35,"bytesPerSandbox":319283,"bytesPerSandboxAt3s":319693,"statSumPerSandbox":319693,"ussMedian":122880}
+lua: {"loadBefore":10.92,"bytesPerSandbox":269517,"bytesPerSandboxAt3s":269517,"statSumPerSandbox":269312,"ussMedian":159744}
+luajit: {"loadBefore":11.03,"bytesPerSandbox":301875,"bytesPerSandboxAt3s":301875,"statSumPerSandbox":301670,"ussMedian":188416}
+bash: {"loadBefore":9.54,"bytesPerSandbox":414310,"bytesPerSandboxAt3s":414515,"statSumPerSandbox":414106,"ussMedian":299008}
+python: {"loadBefore":8.57,"bytesPerSandbox":3544678,"bytesPerSandboxAt3s":3545088,"statSumPerSandbox":3545293,"ussMedian":3403776}

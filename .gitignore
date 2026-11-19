@@ -1,0 +1,7 @@
+node_modules/
+target/
+*.wasm
+bench/suite/lua55_bench
+bench/suite/luajit_bench
+bench/sanity/start_c
+bench/sanity/toolcall_c

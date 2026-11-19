@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Embedded sandbox charts</title>
+<style>
+  :root {
+    --bg: #f4f3f0;
+    --card: #ffffff;
+    --ink: #18181b;
+    --muted: #5f616a;
+    --line: #dddcd7;
+    --link: #1f63b8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141416;
+      --card: #1d1d21;
+      --ink: #ececef;
+      --muted: #a4a6ae;
+      --line: #34343a;
+      --link: #7fb2f0;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #141416;
+    --card: #1d1d21;
+    --ink: #ececef;
+    --muted: #a4a6ae;
+    --line: #34343a;
+    --link: #7fb2f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { margin: 0 0 6px; font-size: 28px; }
+  p { margin: 0 0 12px; color: var(--muted); }
+  a { color: var(--link); }
+
+  figure {
+    margin: 28px 0 0;
+    padding: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  figure img { display: block; width: 100%; height: auto; border-radius: 6px; }
+  figcaption { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Embedded sandbox charts, every runtime</h1>
+  <p>Drafts with every language and method, to cut down. Each compares scripting runtimes embedded in one host process against the same languages run as separate processes. With all rows they are taller than 4:3; a cut-down set fits 4:3 again.</p>
+  <p>Definitions: <strong>start</strong> runs until the host reads the sandbox's answer to 1 + 1; <strong>memory</strong> is an idle sandbox after that answer; a <strong>tool call</strong> is an already-running sandbox calling the host, which answers at once.</p>
+  <p>Source page: <a href="charts.html">charts.html</a> (data in <a href="data.json">data.json</a>). Probe scripts and raw results: <a href="../notes/local_bench_scripts/tweet_bench/">notes/local_bench_scripts/tweet_bench</a>. Full plan: <a href="../">benchmark report</a>.</p>
+
+  <figure>
+    <img src="scatter.png" alt="Scripting for code mode: a log-log scatter of base memory per invocation against time to first response, with runtime logos as the points. Embedded Lua and LuaJIT sit alone in the lighter-and-faster corner; Node, Bun, Deno and CPython processes sit to the upper right; Pyodide from a snapshot is heaviest.">
+    <figcaption><strong>2D: memory vs time to first response, 3900 × 2600 (3:2) for X</strong><a href="scatter.png" download>Download PNG</a></figcaption>
+  </figure>
+
+  <figure>
+    <img src="combined.png" alt="Scripting for code mode, linear scale: memory per sandbox (cut at 1.5 MiB), time to first response (cut at 10 ms), and tool call round trip (cut at 150 µs), embedded runtimes in orange and separate processes in pine, with runtime logos along the bottom and broken bars labeled with their values.">
+    <figcaption><strong>Combined, linear scale, 4000 × 2000 for X</strong><a href="combined.png" download>Download PNG</a></figcaption>
+  </figure>
+
+  <figure>
+    <img src="1-memory.png" alt="Bar chart: memory each new sandbox adds, for embedded Lua, LuaJIT, QuickJS, MicroPython, V8 and Pyodide, and for dash, Lua, LuaJIT, forked CPython, bash, CPython, Node.js, Bun and Deno processes.">
+    <figcaption><strong>1. Memory</strong><a href="1-memory.png" download>Download PNG</a></figcaption>
+  </figure>
+
+  <figure>
+    <img src="2-start.png" alt="Bar chart: time from start to first response for the same embedded runtimes and processes, with Pyodide past the axis.">
+    <figcaption><strong>2. Start to first response</strong><a href="2-start.png" download>Download PNG</a></figcaption>
+  </figure>
+
+  <figure>
+    <img src="3-tool-call.png" alt="Bar chart: tool call round trip in a running sandbox, embedded runtimes against processes over stdio pipes.">
+    <figcaption><strong>3. Tool call round trip</strong><a href="3-tool-call.png" download>Download PNG</a></figcaption>
+  </figure>
+
+  <figure>
+    <img src="4-tool-cpu.png" alt="Bar chart: CPU per tool call, summed over the host and any sandbox process.">
+    <figcaption><strong>4. CPU per tool call</strong><a href="4-tool-cpu.png" download>Download PNG</a></figcaption>
+  </figure>
+</main>
+</body>
+</html>

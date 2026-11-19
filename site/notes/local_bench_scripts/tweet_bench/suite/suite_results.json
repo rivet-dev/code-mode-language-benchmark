@@ -1,0 +1,125 @@
+{
+  "measuredAt": "2026-11-19T18:45:28.519Z",
+  "loadAverageBefore": [
+    14.14,
+    11.68,
+    9.6
+  ],
+  "runtimes": {
+    "node": {
+      "startMs": 33.2,
+      "memory": {
+        "ussBytes": 7585792,
+        "pssBytes": 9339904
+      },
+      "toolCall": {
+        "wallUs": 39.9,
+        "cpuUs": 48.28,
+        "hostCpuUs": 23.28,
+        "sandboxCpuUs": 25
+      }
+    },
+    "deno": {
+      "startMs": 47.26,
+      "memory": {
+        "ussBytes": 13778944,
+        "pssBytes": 16423936
+      },
+      "toolCall": {
+        "wallUs": 115.78,
+        "cpuUs": 148.99,
+        "hostCpuUs": 38.19,
+        "sandboxCpuUs": 110.8
+      }
+    },
+    "bun": {
+      "startMs": 54.51,
+      "memory": {
+        "ussBytes": 9437184,
+        "pssBytes": 10971136
+      },
+      "toolCall": {
+        "wallUs": 222.39,
+        "cpuUs": 376.19,
+        "hostCpuUs": 58.59,
+        "sandboxCpuUs": 317.6
+      }
+    },
+    "python": {
+      "startMs": 23.92,
+      "memory": {
+        "ussBytes": 3403776,
+        "pssBytes": 3600384
+      },
+      "toolCall": {
+        "wallUs": 61.28,
+        "cpuUs": 69.84,
+        "hostCpuUs": 35.44,
+        "sandboxCpuUs": 34.4
+      }
+    },
+    "lua": {
+      "startMs": 4.03,
+      "memory": {
+        "ussBytes": 159744,
+        "pssBytes": 185344
+      },
+      "toolCall": {
+        "wallUs": 36.38,
+        "cpuUs": 42.52,
+        "hostCpuUs": 27.92,
+        "sandboxCpuUs": 14.6
+      }
+    },
+    "luajit": {
+      "startMs": 4.99,
+      "memory": {
+        "ussBytes": 188416,
+        "pssBytes": 233472
+      },
+      "toolCall": {
+        "wallUs": 39.6,
+        "cpuUs": 44.94,
+        "hostCpuUs": 30.34,
+        "sandboxCpuUs": 14.6
+      }
+    },
+    "bash": {
+      "startMs": 5.11,
+      "memory": {
+        "ussBytes": 294912,
+        "pssBytes": 338944
+      },
+      "toolCall": {
+        "wallUs": 118.6,
+        "cpuUs": 129.84,
+        "hostCpuUs": 41.64,
+        "sandboxCpuUs": 88.2
+      }
+    },
+    "dash": {
+      "startMs": 3.66,
+      "memory": {
+        "ussBytes": 122880,
+        "pssBytes": 136192
+      },
+      "toolCall": {
+        "wallUs": 87.93,
+        "cpuUs": 95.11,
+        "hostCpuUs": 42.11,
+        "sandboxCpuUs": 53
+      }
+    }
+  },
+  "bashCommandPerCall": {
+    "trueBinary": {
+      "wallUs": 2366.57,
+      "cpuUs": 2471
+    }
+  },
+  "loadAverageAfter": [
+    24.51,
+    14.92,
+    10.85
+  ]
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+# GitHub latest releases (tag + date), and latest commit date on default branch
+for r in denoland/rusty_v8 denoland/deno_core denoland/deno cloudflare/workerd laverdet/isolated-vm quickjs-ng/quickjs DelSkayn/rquickjs justjake/quickjs-emscripten bytecodealliance/javy awslabs/llrt saghul/txiki.js boa-dev/boa trynova/nova kiesel-js/kiesel facebook/hermes jerryscript-project/jerryscript svaarala/duktape cesanta/elk Samsung/escargot dop251/goja robertkrimen/otto grafana/sobek oracle/graaljs bytecodealliance/StarlingMonkey bytecodealliance/ComponentizeJS wasmerio/winterjs CanadaHonk/porffor engine262/engine262 tryandromeda/andromeda Hans-Halverson/brimstone endojs/endo LavaMoat/LavaMoat patriksimek/vm2 Moddable-OpenSource/moddable lynx-family/primjs andrewmd5/hako sebastianwessel/quickjs hyperlight-dev/hyperlight-js hyperlight-dev/hyperlight supabase/edge-runtime get-convex/convex-backend nodejs/amaro oxc-project/oxc swc-project/swc evanw/esbuild alangpierce/sucrase bloomberg/ts-blank-space nyariv/SandboxJS NeilFraser/JS-Interpreter bellard/quickjs bellard/mquickjs oven-sh/bun nodejs/node microsoft/typescript-go Agoric/agoric-sdk cloudflare/agents tc39/proposal-shadowrealm facebook/static-hermes riza-io/riza; do
+  rel=$(gh api "repos/$r/releases?per_page=1" --jq '.[0] | "\(.tag_name) \(.published_at[0:10])"' 2>/dev/null)
+  meta=$(gh api "repos/$r" --jq '"pushed=\(.pushed_at[0:10]) archived=\(.archived) stars=\(.stargazers_count) license=\(.license.spdx_id // "?")"' 2>/dev/null)
+  echo "$r | rel: ${rel:-none} | $meta"
+done

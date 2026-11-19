@@ -1,0 +1,408 @@
+{
+  "file": "combined.png",
+  "title": "Scripting for code mode",
+  "panels": [
+    {
+      "key": "memory",
+      "title": "Memory per sandbox",
+      "hint": "Lower is better",
+      "linear": {
+        "max": 1572864,
+        "ticks": [
+          [
+            0,
+            "0"
+          ],
+          [
+            524288,
+            "0.5 MiB"
+          ],
+          [
+            1048576,
+            "1 MiB"
+          ],
+          [
+            1572864,
+            "1.5 MiB"
+          ]
+        ]
+      },
+      "unit": "bytes",
+      "min": 10000,
+      "max": 100000000,
+      "ticks": [
+        [
+          10000,
+          "10 KB"
+        ],
+        [
+          100000,
+          "100 KB"
+        ],
+        [
+          1000000,
+          "1 MB"
+        ],
+        [
+          10000000,
+          "10 MB"
+        ],
+        [
+          100000000,
+          "100 MB"
+        ]
+      ]
+    },
+    {
+      "key": "start",
+      "title": "Time to first response",
+      "hint": "Lower is better",
+      "linear": {
+        "max": 10000,
+        "ticks": [
+          [
+            0,
+            "0"
+          ],
+          [
+            2000,
+            "2 ms"
+          ],
+          [
+            4000,
+            "4 ms"
+          ],
+          [
+            6000,
+            "6 ms"
+          ],
+          [
+            8000,
+            "8 ms"
+          ],
+          [
+            10000,
+            "10 ms"
+          ]
+        ]
+      },
+      "unit": "µs",
+      "min": 10,
+      "max": 10000000,
+      "ticks": [
+        [
+          10,
+          "10 µs"
+        ],
+        [
+          100,
+          "100 µs"
+        ],
+        [
+          1000,
+          "1 ms"
+        ],
+        [
+          10000,
+          "10 ms"
+        ],
+        [
+          100000,
+          "100 ms"
+        ],
+        [
+          1000000,
+          "1 s"
+        ],
+        [
+          10000000,
+          "10 s"
+        ]
+      ]
+    },
+    {
+      "key": "toolCall",
+      "title": "Tool call round trip",
+      "hint": "Lower is better",
+      "linear": {
+        "max": 150,
+        "ticks": [
+          [
+            0,
+            "0"
+          ],
+          [
+            50,
+            "50 µs"
+          ],
+          [
+            100,
+            "100 µs"
+          ],
+          [
+            150,
+            "150 µs"
+          ]
+        ]
+      },
+      "unit": "µs",
+      "min": 0.1,
+      "max": 1000,
+      "ticks": [
+        [
+          0.1,
+          "0.1 µs"
+        ],
+        [
+          1,
+          "1 µs"
+        ],
+        [
+          10,
+          "10 µs"
+        ],
+        [
+          100,
+          "100 µs"
+        ],
+        [
+          1000,
+          "1 ms"
+        ]
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "key": "lua-state",
+      "group": "embedded",
+      "name": "Lua",
+      "logo": "lua",
+      "memory": {
+        "value": 16581,
+        "label": "16 KiB"
+      },
+      "start": {
+        "value": 12.673,
+        "label": "13 µs"
+      },
+      "toolCall": {
+        "value": 0.4154,
+        "label": "0.42 µs"
+      }
+    },
+    {
+      "key": "luajit-state",
+      "group": "embedded",
+      "name": "LuaJIT",
+      "logo": "luajit",
+      "memory": {
+        "value": 36922,
+        "label": "36 KiB"
+      },
+      "start": {
+        "value": 29.155,
+        "label": "29 µs"
+      },
+      "toolCall": {
+        "value": 0.3148,
+        "label": "0.31 µs"
+      }
+    },
+    {
+      "key": "quickjs",
+      "group": "embedded",
+      "name": "QuickJS",
+      "logo": "quickjs",
+      "memory": {
+        "value": 258785,
+        "label": "253 KiB"
+      },
+      "start": {
+        "value": 1240,
+        "label": "1.2 ms"
+      },
+      "toolCall": {
+        "value": 30.22,
+        "label": "30 µs"
+      }
+    },
+    {
+      "key": "v8",
+      "group": "embedded",
+      "name": "V8",
+      "logo": "v8",
+      "memory": {
+        "value": 1159987,
+        "label": "1.1 MiB"
+      },
+      "start": {
+        "value": 1440,
+        "label": "1.4 ms"
+      },
+      "toolCall": {
+        "value": 7.69,
+        "label": "7.7 µs"
+      }
+    },
+    {
+      "key": "micropython",
+      "group": "embedded",
+      "name": "µPython",
+      "logo": "micropython",
+      "memory": {
+        "value": 305971,
+        "label": "299 KiB"
+      },
+      "start": {
+        "value": 4340,
+        "label": "4.3 ms"
+      },
+      "toolCall": {
+        "value": 58.98,
+        "label": "59 µs"
+      }
+    },
+    {
+      "key": "pyodide",
+      "group": "embedded",
+      "name": "Pyodide snapshot",
+      "logo": "pyodide",
+      "memory": {
+        "value": 52131840,
+        "label": "50 MiB"
+      },
+      "start": {
+        "value": 149460,
+        "label": "149 ms"
+      },
+      "toolCall": {
+        "value": 86.96,
+        "label": "87 µs"
+      }
+    },
+    {
+      "key": "dash",
+      "group": "process",
+      "name": "dash",
+      "logo": "dash",
+      "memory": {
+        "value": 228762,
+        "label": "223 KiB"
+      },
+      "start": {
+        "value": 3660,
+        "label": "3.7 ms"
+      },
+      "toolCall": {
+        "value": 87.93,
+        "label": "88 µs"
+      }
+    },
+    {
+      "key": "bash",
+      "group": "process",
+      "name": "bash",
+      "logo": "bash",
+      "memory": {
+        "value": 403866,
+        "label": "394 KiB"
+      },
+      "start": {
+        "value": 5110,
+        "label": "5.1 ms"
+      },
+      "toolCall": {
+        "value": 118.6,
+        "label": "119 µs"
+      }
+    },
+    {
+      "key": "cpython-fork",
+      "group": "process",
+      "name": "CPython\nfork",
+      "logo": "cpython",
+      "memory": {
+        "value": 425779,
+        "label": "416 KiB"
+      },
+      "start": {
+        "value": 1457,
+        "label": "1.5 ms"
+      },
+      "toolCall": null
+    },
+    {
+      "key": "cpython",
+      "group": "process",
+      "name": "CPython",
+      "logo": "cpython",
+      "memory": {
+        "value": 3548774,
+        "label": "3.4 MiB"
+      },
+      "start": {
+        "value": 23920,
+        "label": "24 ms"
+      },
+      "toolCall": {
+        "value": 61.28,
+        "label": "61 µs"
+      }
+    },
+    {
+      "key": "node",
+      "group": "process",
+      "name": "Node",
+      "logo": "nodejs",
+      "memory": {
+        "value": 8369357,
+        "label": "8.0 MiB"
+      },
+      "start": {
+        "value": 33200,
+        "label": "33 ms"
+      },
+      "toolCall": {
+        "value": 39.9,
+        "label": "40 µs"
+      }
+    },
+    {
+      "key": "bun",
+      "group": "process",
+      "name": "Bun",
+      "logo": "bun",
+      "memory": {
+        "value": 10312909,
+        "label": "9.8 MiB"
+      },
+      "start": {
+        "value": 54510,
+        "label": "55 ms"
+      },
+      "toolCall": {
+        "value": 222.39,
+        "label": "222 µs"
+      }
+    },
+    {
+      "key": "deno",
+      "group": "process",
+      "name": "Deno",
+      "logo": "deno",
+      "memory": {
+        "value": 15072461,
+        "label": "14 MiB"
+      },
+      "start": {
+        "value": 47260,
+        "label": "47 ms"
+      },
+      "toolCall": {
+        "value": 115.78,
+        "label": "116 µs"
+      }
+    }
+  ]
+}

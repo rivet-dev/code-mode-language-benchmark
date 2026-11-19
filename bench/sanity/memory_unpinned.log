@@ -1,0 +1,8 @@
+dash: {"loadBefore":8.73,"bytesPerSandbox":305971,"bytesPerSandboxAt3s":315392,"statSumPerSandbox":319693,"ussMedian":122880}
+lua: {"loadBefore":9.28,"bytesPerSandbox":280371,"bytesPerSandboxAt3s":270131,"statSumPerSandbox":270131,"ussMedian":163840}
+luajit: {"loadBefore":9.51,"bytesPerSandbox":311501,"bytesPerSandboxAt3s":303718,"statSumPerSandbox":301465,"ussMedian":192512}
+bash: {"loadBefore":9.1,"bytesPerSandbox":425165,"bytesPerSandboxAt3s":411853,"statSumPerSandbox":410215,"ussMedian":294912}
+python: {"loadBefore":8.23,"bytesPerSandbox":3549594,"bytesPerSandboxAt3s":3549389,"statSumPerSandbox":3548160,"ussMedian":3403776}
+node: {"loadBefore":8.75,"bytesPerSandbox":8363213,"bytesPerSandboxAt3s":8356659,"statSumPerSandbox":8356864,"ussMedian":7589888}
+bun: {"loadBefore":9.36,"bytesPerSandbox":10378650,"bytesPerSandboxAt3s":10337280,"statSumPerSandbox":10177127,"ussMedian":9519104}
+deno: {"loadBefore":9.7,"bytesPerSandbox":15040512,"bytesPerSandboxAt3s":15039078,"statSumPerSandbox":15038874,"ussMedian":13770752}

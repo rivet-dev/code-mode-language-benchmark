@@ -1,0 +1,10 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling rquickjs-sys v0.14.0
+    Checking bench-common v0.1.0 (bench/rust-embedded/common)
+    Checking rquickjs-core v0.14.0
+    Checking rquickjs v0.14.0
+    Checking bench-quickjs v0.1.0 (bench/rust-embedded/engines/quickjs)
+    Finished `release` profile [optimized] target(s) in 36.37s
+exit=0

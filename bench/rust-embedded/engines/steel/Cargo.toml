@@ -1,0 +1,22 @@
+[package]
+name = "bench-steel"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "bench-steel"
+path = "src/main.rs"
+
+[dependencies]
+bench-common = { path = "../../common" }
+steel-core = { version = "=0.8.3", features = ["sandbox"] }
+im-rc = "15.1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+
+[workspace]

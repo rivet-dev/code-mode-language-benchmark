@@ -1,0 +1,8 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling bench-common v0.1.0 (bench/rust-embedded/common)
+   Compiling bench-quickjs v0.1.0 (bench/rust-embedded/engines/quickjs)
+    Finished `release` profile [optimized] target(s) in 6.39s
+exit=0

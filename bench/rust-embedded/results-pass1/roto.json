@@ -1,0 +1,40 @@
+{
+  "key": "roto",
+  "language": "Roto",
+  "crate": "roto",
+  "version": "0.13.0",
+  "startUs": 340.398,
+  "startRuns": 2000,
+  "memoryBytesPerSession": 257118,
+  "memorySessions": 1000,
+  "memoryStoppedBy": "target",
+  "memoryExtraStackBytes": 0,
+  "toolCallWallUs": 0.0521,
+  "toolCallWallMeanUs": 0.0529,
+  "toolCallSlowestBatchUs": 0.3152,
+  "toolCallCpuUs": 0.0526,
+  "toolCallMeasuredCalls": 1000000,
+  "toolCallWarmupCalls": 100000,
+  "toolCallBatches": 1000,
+  "toolCallBatchSize": 1000,
+  "callKind": "sync",
+  "limitsEnabled": "none available: Roto has no instruction, time, or memory limit API; it is sandboxed by construction (only registered Rust functions and types are reachable, no I/O in the standard library)",
+  "notes": [
+    "Roto is statically typed and JIT-compiled with Cranelift, so `1 + 1` means compiling `fn main() -> i64 { 1 + 1 }` to machine code: session = Runtime::from_lib(our library) + compile + call.",
+    "Roto has no maps, and its records cannot be passed to Rust functions, so the call argument is the closest structure: registered Rust types built by host constructors, call(Call.new(id, \"lookup\", Args.new(\"hello from the sandbox\"))). That is three native calls per tool call (two constructors plus call); the reply is a registered Reply type read through native accessor methods (reply.id()).",
+    "Roto has no exceptions, so the guest counts id mismatches and the host asserts zero."
+  ],
+  "loadAverage": {
+    "before": [
+      13.94,
+      14.94,
+      13.49
+    ],
+    "after": [
+      13.23,
+      14.78,
+      13.44
+    ]
+  },
+  "runSeconds": 1.6
+}

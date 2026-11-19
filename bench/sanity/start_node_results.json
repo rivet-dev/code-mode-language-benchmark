@@ -1,0 +1,105 @@
+{
+  "measuredAt": "2026-11-19T19:35:19.174Z",
+  "firstLine": {
+    "dash": {
+      "medianMs": 2.03,
+      "p10Ms": 1.68,
+      "p90Ms": 2.48,
+      "loadBefore": 9.02,
+      "loadAfter": 9.02
+    },
+    "bash": {
+      "medianMs": 2.62,
+      "p10Ms": 2.18,
+      "p90Ms": 3.52,
+      "loadBefore": 9.02,
+      "loadAfter": 9.42
+    },
+    "lua": {
+      "medianMs": 2.24,
+      "p10Ms": 2.06,
+      "p90Ms": 2.79,
+      "loadBefore": 9.42,
+      "loadAfter": 9.42
+    },
+    "luajit": {
+      "medianMs": 2.48,
+      "p10Ms": 2.09,
+      "p90Ms": 3.46,
+      "loadBefore": 9.42,
+      "loadAfter": 9.42
+    },
+    "python": {
+      "medianMs": 15.85,
+      "p10Ms": 14.05,
+      "p90Ms": 19,
+      "loadBefore": 9.42,
+      "loadAfter": 9.42
+    },
+    "node": {
+      "medianMs": 39.6,
+      "p10Ms": 34.36,
+      "p90Ms": 50.11,
+      "loadBefore": 9.42,
+      "loadAfter": 9.42
+    },
+    "deno": {
+      "medianMs": 43.63,
+      "p10Ms": 38.04,
+      "p90Ms": 52.78,
+      "loadBefore": 9.42,
+      "loadAfter": 9.7
+    },
+    "bun": {
+      "medianMs": 34.69,
+      "p10Ms": 31.47,
+      "p90Ms": 41.5,
+      "loadBefore": 9.7,
+      "loadAfter": 9.7
+    },
+    "bunConsoleIdle": {
+      "medianMs": 18.74,
+      "p10Ms": 16.79,
+      "p90Ms": 22.61,
+      "loadBefore": 9.7,
+      "loadAfter": 9.7
+    },
+    "bunEvalPrint": {
+      "medianMs": 18.76,
+      "p10Ms": 16.34,
+      "p90Ms": 21.63,
+      "loadBefore": 9.7,
+      "loadAfter": 9.7
+    },
+    "nodeEvalPrint": {
+      "medianMs": 32.88,
+      "p10Ms": 29.73,
+      "p90Ms": 40.3,
+      "loadBefore": 9.7,
+      "loadAfter": 9.73
+    }
+  },
+  "spawnToExit": {
+    "bunEmpty": {
+      "medianMs": 23.56,
+      "p10Ms": 21.27,
+      "p90Ms": 27.77,
+      "loadBefore": 9.73,
+      "loadAfter": 9.73
+    },
+    "nodeEmpty": {
+      "medianMs": 31.82,
+      "p10Ms": 28.46,
+      "p90Ms": 37.24,
+      "loadBefore": 9.73,
+      "loadAfter": 9.73
+    },
+    "denoEmpty": {
+      "medianMs": 52.92,
+      "p10Ms": 47.56,
+      "p90Ms": 61.67,
+      "loadBefore": 9.73,
+      "loadAfter": 10.55
+    }
+  }
+}
