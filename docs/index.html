@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Scripting Runtimes</title>
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --fg: #1d1c1a;
+    --muted: #6b6760;
+    --line: #e4e0d8;
+    --accent: #b4532a;
+    --code-bg: #f1eee8;
+    --row-alt: #f6f4ef;
+    --viz-b: #2a78d6;
+    --viz-bc: #eb6834;
+    --viz-a: #1baf7a;
+    --viz-ref: #898781;
+    --viz-ink-2: #52514e;
+    --viz-axis: #c9c4b9;
+    --viz-hover: rgba(11, 11, 11, 0.045);
+    --viz-tip-bg: #ffffff;
+    --viz-tip-ring: rgba(11, 11, 11, 0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161514;
+      --fg: #e9e6e1;
+      --muted: #a29d94;
+      --line: #34312d;
+      --accent: #e08a5f;
+      --code-bg: #24221f;
+      --row-alt: #1d1c1a;
+      --viz-b: #3987e5;
+      --viz-bc: #d95926;
+      --viz-a: #199e70;
+      --viz-ref: #898781;
+      --viz-ink-2: #c3c2b7;
+      --viz-axis: #45413c;
+      --viz-hover: rgba(255, 255, 255, 0.05);
+      --viz-tip-bg: #24221f;
+      --viz-tip-ring: rgba(255, 255, 255, 0.12);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161514;
+    --fg: #e9e6e1;
+    --muted: #a29d94;
+    --line: #34312d;
+    --accent: #e08a5f;
+    --code-bg: #24221f;
+    --row-alt: #1d1c1a;
+    --viz-b: #3987e5;
+    --viz-bc: #d95926;
+    --viz-a: #199e70;
+    --viz-ref: #898781;
+    --viz-ink-2: #c3c2b7;
+    --viz-axis: #45413c;
+    --viz-hover: rgba(255, 255, 255, 0.05);
+    --viz-tip-bg: #24221f;
+    --viz-tip-ring: rgba(255, 255, 255, 0.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .layout { display: flex; gap: 40px; max-width: 1280px; margin: 0 auto; padding: 32px 16px 96px; }
+  nav#toc { flex: 0 0 240px; position: sticky; top: 24px; align-self: flex-start; max-height: calc(100vh - 48px); overflow-y: auto; font-size: 13px; }
+  nav#toc a { display: block; color: var(--muted); text-decoration: none; padding: 3px 0; }
+  nav#toc a.h3 { padding-left: 12px; }
+  nav#toc a:hover { color: var(--accent); }
+  main { flex: 1 1 auto; min-width: 0; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; }
+  h2 { font-size: 22px; margin: 48px 0 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+  h3 { font-size: 18px; margin: 32px 0 8px; }
+  a { color: var(--accent); }
+  code { font: 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre { background: var(--code-bg); padding: 14px 16px; border-radius: 8px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  blockquote { margin: 16px 0; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
+  .table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { position: sticky; top: 0; background: var(--code-bg); font-weight: 600; white-space: nowrap; }
+  tr:nth-child(even) td { background: var(--row-alt); }
+  #status { color: var(--muted); }
+
+  /* Memory-per-session chart */
+  figure.viz { position: relative; margin: 28px 0 12px; padding: 20px 20px 14px; border: 1px solid var(--line); border-radius: 12px; }
+  .viz-title { font-size: 18px; font-weight: 600; line-height: 1.35; margin: 0 0 4px; }
+  .viz-sub { font-size: 14px; line-height: 1.5; color: var(--muted); margin: 0 0 14px; }
+  .viz-legend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 0 0 8px; padding: 0; list-style: none; font-size: 13px; }
+  .viz-legend li { display: inline-flex; align-items: center; gap: 7px; }
+  .viz-legend svg { flex: none; }
+  .viz-plot { position: relative; }
+  .viz-plot svg { display: block; overflow: visible; }
+  .viz-plot text { font-family: inherit; }
+  .viz-label { font-size: 13px; fill: var(--fg); }
+  .viz-value { font-size: 12px; fill: var(--viz-ink-2); }
+  .viz-tick { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+  .viz-axis-title { font-size: 12px; fill: var(--muted); }
+  .viz-grid { stroke: var(--line); stroke-width: 1; shape-rendering: crispEdges; }
+  .viz-baseline { stroke: var(--viz-axis); stroke-width: 1; shape-rendering: crispEdges; }
+  .viz-hit { fill: transparent; }
+  .viz-row { outline: none; }
+  .viz-row:hover .viz-hit, .viz-row.is-active .viz-hit { fill: var(--viz-hover); }
+  .viz-row:focus-visible .viz-hit { stroke: var(--accent); stroke-width: 1.5; }
+  .mk { stroke: var(--bg); stroke-width: 4; paint-order: stroke; }
+  .mk-b { fill: var(--viz-b); }
+  .mk-bc { fill: var(--viz-bc); }
+  .mk-a { fill: var(--viz-a); }
+  .mk-ref { fill: var(--bg); stroke: var(--viz-ref); stroke-width: 2; paint-order: normal; }
+  .viz-note { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 10px 0 0; }
+  .viz-tip { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; width: max-content; max-width: min(320px, calc(100% - 16px)); padding: 10px 12px; border-radius: 8px; background: var(--viz-tip-bg); box-shadow: 0 0 0 1px var(--viz-tip-ring), 0 8px 24px rgba(0, 0, 0, 0.14); font-size: 12.5px; line-height: 1.45; opacity: 0; visibility: hidden; transition: opacity 80ms; }
+  .viz-tip.is-visible { opacity: 1; visibility: visible; }
+  .viz-tip-value { font-size: 15px; font-weight: 600; color: var(--fg); }
+  .viz-tip-name { display: flex; align-items: center; gap: 7px; color: var(--viz-ink-2); margin: 2px 0 8px; }
+  .viz-tip-key { width: 14px; height: 2px; border-radius: 1px; flex: none; }
+  .key-b { background: var(--viz-b); }
+  .key-bc { background: var(--viz-bc); }
+  .key-a { background: var(--viz-a); }
+  .key-ref { background: var(--viz-ref); }
+  .viz-tip dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; }
+  .viz-tip dt { color: var(--muted); }
+  .viz-tip dd { margin: 0; color: var(--fg); }
+  .viz-tip-note { margin-top: 8px; color: var(--muted); }
+  details.viz-data { margin-top: 12px; }
+  details.viz-data summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+  details.viz-data .table-wrap { margin: 10px 0 4px; }
+  details.viz-data table { font-size: 13px; }
+
+  @media (max-width: 900px) {
+    .layout { display: block; }
+    nav#toc { display: none; }
+  }
+  @media (max-width: 600px) {
+    figure.viz { padding: 16px 12px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav id="toc"></nav>
+  <main id="content"><p id="status">Loading report…</p></main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+  // Per-session memory from the report's "Local probes" table (2026-11-13) plus the
+  // agentOS figure from the internal August 2026 note. Bytes drive the axis; `shown`
+  // keeps the unit the report used.
+  const MIB = 1048576;
+  const GIB = 1073741824;
+
+  const VIZ_GROUPS = {
+    b: { label: "Group B: safe to embed in-process", shape: "circle" },
+    bc: { label: "B-conditional: in-process only when hardened", shape: "diamond" },
+    a: { label: "Group A: needs OS isolation", shape: "square" },
+    ref: { label: "agentOS as shipped", shape: "ring" },
+  };
+
+  const SESSION_MEMORY = [
+    {
+      name: "Lua 5.5 state, safe libraries", group: "b", bytes: 16e3, shown: "16 KB",
+      create: "23.6 µs", pending: "1,119 B per coroutine",
+      note: "PUC Lua 5.5.1; 5.0 KB of that is the bare heap.",
+      probe: "luamem.c", href: "notes/local_bench_scripts/luam/luamem.c",
+    },
+    {
+      name: "QuickJS in Wasm, own module per session", group: "b", bytes: 259e3, shown: "259 KB",
+      create: "1.24 ms", pending: "about 576 B",
+      note: "quickjs-emscripten 0.32 on Node 22, sync build instantiated from Wasm compiled once; an asyncify module compiled per session costs 491 KB and 28.7 ms. Runtimes added to one shared module cost only 94 KB, but they share its linear memory, so they are not a boundary between scripts.",
+      probe: "inproc.mjs", href: "../benches/javascript/inproc.mjs",
+    },
+    {
+      name: "PocketPy 2.2 VM", group: "bc", bytes: 0.72e6, shown: "0.72 MB",
+      create: "2.1 ms", pending: "not measured",
+      note: "C interpreter with no memory cap; at most 16 VMs per process.",
+      probe: "pk_main.c", href: "notes/local_bench_scripts/scripts/pk_main.c",
+    },
+    {
+      name: "MicroPython 1.29 in Wasm", group: "bc", bytes: 0.78e6, shown: "0.78 MB",
+      create: "7.8 ms (43 ms first)", pending: "1,000 gathered calls in 177 ms",
+      note: "One instance per JS realm; js FFI and no interrupts.",
+      probe: "micropython_bench.mjs", href: "notes/local_bench_scripts/scripts/micropython_bench.mjs",
+    },
+    {
+      name: "V8 isolate + context (isolated-vm)", group: "b", bytes: 1.15e6, shown: "1.15 MB",
+      create: "3.1 ms", pending: "about 782 B",
+      note: "isolated-vm 6.2 on Node 22. The isolate is Group B; the isolated-vm binding itself is B-conditional after its August 2026 escape.",
+      probe: "ivm_measure.js", href: "notes/local_bench_scripts/scripts/ivm_measure.js",
+    },
+    {
+      name: "CPython 3.13 process", group: "a", bytes: 2.8 * MIB, shown: "2.8 MiB",
+      create: "16.3 ms", pending: "over IPC",
+      note: "Private memory. Another 5.6 MiB of shareable text is paid once per host.",
+      probe: "measure.py", href: "notes/isolation_substrates_bench/measure.py",
+    },
+    {
+      name: "CPython 3.14 fork from warm zygote", group: "a", bytes: 3.45e6, shown: "3.45 MB",
+      create: "about 4 ms fork", pending: "over IPC",
+      note: "USS; 7.2 MB PSS. The zygote preloads numpy, pandas and matplotlib with gc.freeze().",
+      probe: "native_bench.py", href: "notes/local_bench_scripts/scripts/native_bench.py",
+    },
+    {
+      name: "Bun 1.3 process", group: "a", bytes: 7.2 * MIB, shown: "7.2 MiB",
+      create: "36.2 ms", pending: "over IPC",
+      note: "Private memory. Another 25.3 MiB of shareable text is paid once per host.",
+      probe: "measure.py", href: "notes/isolation_substrates_bench/measure.py",
+    },
+    {
+      name: "CPython 3.15 on WASI (Wasmtime)", group: "b", bytes: 7.8e6, shown: "7.8 MB",
+      create: "126 ms with stdlib imports; 56 ms precompiled", pending: "Wasm imports only",
+      note: "Wasmtime 50, in process, no pre-initialization.",
+      probe: "wasi_bench.py", href: "notes/local_bench_scripts/scripts/wasi_bench.py",
+    },
+    {
+      name: "Node 24 process", group: "a", bytes: 7.9 * MIB, shown: "7.9 MiB",
+      create: "46.8 ms", pending: "over IPC",
+      note: "Private memory. Another 36.1 MiB of shareable text is paid once per host.",
+      probe: "measure.py", href: "notes/isolation_substrates_bench/measure.py",
+    },
+    {
+      name: "Monty 1.6, native worker", group: "bc", bytes: 9.5e6, shown: "9.5 MB",
+      create: "0.63 to 1.4 ms checkout", pending: "1,000 gathered 100 ms calls in 161 ms",
+      note: "RSS, including shared binary pages; the vendor cites about 2 MB per worker.",
+      probe: "monty_bench.mjs", href: "notes/local_bench_scripts/scripts/monty_bench.mjs",
+    },
+    {
+      name: "Deno 2.5 process", group: "a", bytes: 14.1 * MIB, shown: "14.1 MiB",
+      create: "65.9 ms", pending: "over IPC",
+      note: "Private memory. Another 44.4 MiB of shareable text is paid once per host.",
+      probe: "measure.py", href: "notes/isolation_substrates_bench/measure.py",
+    },
+    {
+      name: "Monty 1.6, Wasm worker", group: "bc", bytes: 38e6, shown: "38 MB",
+      create: "about 130 ms", pending: "1,000 gathered calls in 233 ms",
+      note: "One worker thread per session.",
+      probe: "monty_bench.mjs", href: "notes/local_bench_scripts/scripts/monty_bench.mjs",
+    },
+    {
+      name: "Pyodide 314, shared isolate", group: "bc", bytes: 41e6, shown: "41–51 MB",
+      create: "1.3 to 1.85 s; 146 to 183 ms from a snapshot", pending: "1,000 gathered calls added 0 to 0.4 MB",
+      note: "41 MB on Node 22, 42.8 MB on Node 26, 48 to 51 MB when restored from a 30 MB snapshot. Guests share one JS realm, so this counts as a boundary only with the JS bridge removed.",
+      probe: "pyodide_bench.mjs", href: "notes/local_bench_scripts/scripts/pyodide_bench.mjs",
+    },
+    {
+      name: "agentOS as shipped", group: "ref", bytes: 48e6, shown: "about 48 MB",
+      create: "90 ms; first hello 330 ms", pending: "not measured",
+      note: "Node process at 88 MB RSS against about 40 MB for plain Node, with one javascript.execute runtime. Internal note, August 2026; part of this is fixed cost a second session may share.",
+      probe: "internal note", href: "",
+    },
+    {
+      name: "Pyodide 314, worker per session", group: "bc", bytes: 70.9e6, shown: "71–78 MB",
+      create: "about 1.5 s", pending: "as in the shared isolate",
+      note: "One worker_thread each: 70.9 MB on Node 22, 77.7 MB on Node 26.",
+      probe: "pyodide_workers.mjs", href: "notes/local_bench_scripts/scripts/pyodide_workers.mjs",
+    },
+  ].sort((first, second) => first.bytes - second.bytes);
+
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  function svgElement(tag, attributes, parent) {
+    const element = document.createElementNS(SVG_NS, tag);
+    for (const [name, value] of Object.entries(attributes)) element.setAttribute(name, value);
+    if (parent) parent.appendChild(element);
+    return element;
+  }
+
+  function drawMarker(parent, group, cx, cy) {
+    const shape = VIZ_GROUPS[group].shape;
+    const className = "mk mk-" + group;
+
+    if (shape === "circle" || shape === "ring") {
+      return svgElement("circle", { cx, cy, r: 5, class: className }, parent);
+    }
+    if (shape === "square") {
+      return svgElement("rect", { x: cx - 4.5, y: cy - 4.5, width: 9, height: 9, rx: 1.5, class: className }, parent);
+    }
+
+    const reach = 6.25;
+    const path = `M${cx} ${cy - reach}L${cx + reach} ${cy}L${cx} ${cy + reach}L${cx - reach} ${cy}Z`;
+    return svgElement("path", { d: path, class: className }, parent);
+  }
+
+  /** Idle sessions that fit in 1 GiB at this fixed cost, rounded to two significant digits. */
+  function sessionsPerGiB(row) {
+    if (row.group === "ref") return "not meaningful from one session";
+
+    const sessions = GIB / row.bytes;
+    const digits = Math.floor(Math.log10(sessions)) + 1;
+    const step = digits > 2 ? 10 ** (digits - 2) : 1;
+    const rounded = Math.round(sessions / step) * step;
+    return "about " + rounded.toLocaleString("en-US") + " (upper bound)";
+  }
+
+  function buildSessionFigure() {
+    const figure = document.createElement("figure");
+    figure.className = "viz";
+    figure.id = "session-memory";
+    figure.innerHTML = `
+      <div class="viz-title">An idle session costs 16 KB in Lua and up to 78 MB in Pyodide</div>
+      <p class="viz-sub">Memory one session adds while it waits, a spread of about 5,000×, on a log scale. Each row gives every script its own process, isolate, Wasm instance or VM. Color and shape mark the isolation group.</p>
+      <ul class="viz-legend"></ul>
+      <div class="viz-plot"></div>
+      <div class="viz-tip" role="tooltip"></div>
+      <p class="viz-note">Local probes on 2026-11-13 (the QuickJS row on 2026-11-19), mostly single runs on a loaded shared host, so read them as ratios; agentOS comes from an internal August 2026 note. Processes show private memory without shared binary pages, while Monty's native worker shows RSS. Hover, tap or tab to a row for create time, pending-call cost and sessions per GiB.</p>
+      <details class="viz-data">
+        <summary>Show the data as a table</summary>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Runtime</th><th>Group</th><th>Memory per session</th><th>Create or start</th><th>Pending tool call</th><th>Idle sessions per GiB</th><th>Probe</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+      </details>`;
+
+    // Legend: the same marker shapes as the plot, so identity never rests on color alone.
+    const legend = figure.querySelector(".viz-legend");
+    for (const [group, info] of Object.entries(VIZ_GROUPS)) {
+      const item = document.createElement("li");
+      const swatch = svgElement("svg", { width: 16, height: 16, viewBox: "0 0 16 16", "aria-hidden": "true" });
+      drawMarker(swatch, group, 8, 8);
+      const text = document.createElement("span");
+      text.textContent = info.label;
+      item.append(swatch, text);
+      legend.appendChild(item);
+    }
+
+    const body = figure.querySelector("tbody");
+    for (const row of SESSION_MEMORY) {
+      const tableRow = document.createElement("tr");
+      const cells = [row.name, VIZ_GROUPS[row.group].label, row.shown, row.create, row.pending, sessionsPerGiB(row)];
+      for (const value of cells) {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        tableRow.appendChild(cell);
+      }
+      const probeCell = document.createElement("td");
+      if (row.href) {
+        const link = document.createElement("a");
+        link.href = row.href;
+        link.textContent = row.probe;
+        probeCell.appendChild(link);
+      } else {
+        probeCell.textContent = row.probe;
+      }
+      tableRow.appendChild(probeCell);
+      body.appendChild(tableRow);
+    }
+
+    return figure;
+  }
+
+  function fillTip(tip, row) {
+    tip.replaceChildren();
+
+    const value = document.createElement("div");
+    value.className = "viz-tip-value";
+    value.textContent = row.shown + " per session";
+
+    const name = document.createElement("div");
+    name.className = "viz-tip-name";
+    const key = document.createElement("span");
+    key.className = "viz-tip-key key-" + row.group;
+    const nameText = document.createElement("span");
+    nameText.textContent = row.name;
+    name.append(key, nameText);
+
+    const details = document.createElement("dl");
+    const entries = [
+      ["Group", VIZ_GROUPS[row.group].label],
+      ["Create", row.create],
+      ["Pending call", row.pending],
+      ["Per GiB idle", sessionsPerGiB(row)],
+      ["Probe", row.probe],
+    ];
+    for (const [term, detail] of entries) {
+      const termElement = document.createElement("dt");
+      termElement.textContent = term;
+      const detailElement = document.createElement("dd");
+      detailElement.textContent = detail;
+      details.append(termElement, detailElement);
+    }
+
+    const note = document.createElement("div");
+    note.className = "viz-tip-note";
+    note.textContent = row.note;
+
+    tip.append(value, name, details, note);
+  }
+
+  /** Places the tooltip beside a point given in client coordinates, kept inside the figure. */
+  function placeTip(figure, tip, clientX, clientY) {
+    const frame = figure.getBoundingClientRect();
+    const size = tip.getBoundingClientRect();
+    const gap = 14;
+
+    let left = clientX - frame.left + gap;
+    if (left + size.width > frame.width - 8) left = clientX - frame.left - size.width - gap;
+    left = Math.max(8, left);
+
+    let top = clientY - frame.top + gap;
+    if (top + size.height > frame.height - 8) top = clientY - frame.top - size.height - gap;
+    top = Math.max(8, top);
+
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+
+  function drawSessionChart(figure) {
+    const plot = figure.querySelector(".viz-plot");
+    const tip = figure.querySelector(".viz-tip");
+    const width = Math.floor(plot.clientWidth);
+    if (!width) return;
+
+    // Size the label and value columns from the real text so nothing clips.
+    const family = getComputedStyle(document.body).fontFamily;
+    const measure = document.createElement("canvas").getContext("2d");
+    measure.font = "13px " + family;
+    const labelWidth = Math.ceil(Math.max(...SESSION_MEMORY.map((row) => measure.measureText(row.name).width)));
+    measure.font = "12px " + family;
+    const valueWidth = Math.ceil(Math.max(...SESSION_MEMORY.map((row) => measure.measureText(row.shown).width)));
+
+    // Narrow screens put each label above its row instead of beside it.
+    const stacked = width < 560 || labelWidth + 24 > width * 0.45;
+    const left = stacked ? 8 : labelWidth + 24;
+    const right = width - valueWidth - 18;
+    const rowHeight = stacked ? 46 : 30;
+    const trackOffset = stacked ? 31 : rowHeight / 2;
+    const top = 4;
+    const rowsBottom = top + SESSION_MEMORY.length * rowHeight;
+    const height = rowsBottom + 46;
+
+    const minExponent = 4;
+    const maxExponent = 8;
+    const scaleX = (bytes) => left + ((Math.log10(bytes) - minExponent) / (maxExponent - minExponent)) * (right - left);
+
+    const svg = svgElement("svg", {
+      width,
+      height,
+      viewBox: `0 0 ${width} ${height}`,
+      role: "group",
+      "aria-label": `Dot plot of memory per idle session for ${SESSION_MEMORY.length} runtimes, log scale from 10 KB to 100 MB`,
+    });
+
+    // Decade gridlines and tick labels.
+    const ticks = [[1e4, "10 KB"], [1e5, "100 KB"], [1e6, "1 MB"], [1e7, "10 MB"], [1e8, "100 MB"]];
+    const axis = svgElement("g", { "aria-hidden": "true" }, svg);
+    ticks.forEach(([bytes, text], index) => {
+      const tickX = Math.round(scaleX(bytes)) + 0.5;
+      svgElement("line", { x1: tickX, x2: tickX, y1: top, y2: rowsBottom, class: "viz-grid" }, axis);
+      const anchor = index === 0 && left < 30 ? "start" : "middle";
+      const label = svgElement("text", { x: tickX, y: rowsBottom + 18, "text-anchor": anchor, class: "viz-tick" }, axis);
+      label.textContent = text;
+    });
+    svgElement("line", { x1: left, x2: right, y1: rowsBottom + 0.5, y2: rowsBottom + 0.5, class: "viz-baseline" }, axis);
+    const axisTitle = svgElement("text", { x: (left + right) / 2, y: rowsBottom + 39, "text-anchor": "middle", class: "viz-axis-title" }, axis);
+    axisTitle.textContent = "Memory per idle session (log scale)";
+
+    let activeRow = null;
+    let activeGroup = null;
+
+    const showTip = (row, group, clientX, clientY) => {
+      if (activeRow !== row) {
+        activeGroup?.classList.remove("is-active");
+        activeRow = row;
+        activeGroup = group;
+        group.classList.add("is-active");
+        fillTip(tip, row);
+      }
+      tip.classList.add("is-visible");
+      placeTip(figure, tip, clientX, clientY);
+    };
+
+    const hideTip = () => {
+      tip.classList.remove("is-visible");
+      activeGroup?.classList.remove("is-active");
+      activeRow = null;
+      activeGroup = null;
+    };
+
+    SESSION_MEMORY.forEach((row, index) => {
+      const rowTop = top + index * rowHeight;
+      const cy = rowTop + trackOffset;
+      const markerX = scaleX(row.bytes);
+
+      const group = svgElement("g", {
+        class: "viz-row",
+        tabindex: "0",
+        role: "img",
+        "aria-label": `${row.name}: ${row.shown} per session, ${VIZ_GROUPS[row.group].label}`,
+      }, svg);
+      svgElement("rect", { x: 0, y: rowTop, width, height: rowHeight, rx: 6, class: "viz-hit" }, group);
+
+      const labelAttributes = stacked
+        ? { x: left, y: rowTop + 15, class: "viz-label" }
+        : { x: left - 16, y: cy, dy: "0.35em", "text-anchor": "end", class: "viz-label" };
+      const label = svgElement("text", labelAttributes, group);
+      label.textContent = row.name;
+
+      drawMarker(group, row.group, markerX, cy);
+
+      const value = svgElement("text", { x: markerX + 11, y: cy, dy: "0.35em", class: "viz-value" }, group);
+      value.textContent = row.shown;
+
+      group.addEventListener("pointermove", (event) => showTip(row, group, event.clientX, event.clientY));
+      group.addEventListener("pointerdown", (event) => showTip(row, group, event.clientX, event.clientY));
+      group.addEventListener("pointerleave", (event) => {
+        if (event.pointerType !== "touch") hideTip();
+      });
+      group.addEventListener("focus", () => {
+        const frame = svg.getBoundingClientRect();
+        showTip(row, group, frame.left + markerX, frame.top + cy);
+      });
+      group.addEventListener("blur", hideTip);
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") hideTip();
+      });
+    });
+
+    hideTip();
+    figure.hideTip = hideTip;
+    plot.replaceChildren(svg);
+  }
+
+  function startSessionChart(figure) {
+    const plot = figure.querySelector(".viz-plot");
+    let drawnWidth = 0;
+
+    const redraw = () => {
+      const width = Math.floor(plot.clientWidth);
+      if (!width || width === drawnWidth) return;
+      drawnWidth = width;
+      drawSessionChart(figure);
+    };
+
+    redraw();
+    new ResizeObserver(redraw).observe(plot);
+
+    // A tap outside the plot dismisses a touch tooltip.
+    document.addEventListener("pointerdown", (event) => {
+      if (!plot.contains(event.target) && figure.hideTip) figure.hideTip();
+    });
+  }
+
+  function insertSessionChart(content, toc) {
+    const figure = buildSessionFigure();
+
+    // Place the chart right after the report's opening paragraph.
+    const title = content.querySelector("h1");
+    let anchor = title ? title.nextElementSibling : null;
+    while (anchor && anchor.tagName !== "P") anchor = anchor.nextElementSibling;
+    if (anchor) {
+      anchor.after(figure);
+    } else {
+      content.prepend(figure);
+    }
+
+    const link = document.createElement("a");
+    link.href = "#session-memory";
+    link.textContent = "Chart: memory per session";
+    link.className = "h2";
+    toc.prepend(link);
+
+    startSessionChart(figure);
+  }
+
+  async function render() {
+    const content = document.getElementById("content");
+    let markdown;
+    try {
+      const response = await fetch("report.md", { cache: "no-store" });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      markdown = await response.text();
+    } catch (error) {
+      content.innerHTML = '<p id="status">The report is not ready yet. Reload in a few minutes.</p>';
+      return;
+    }
+
+    content.innerHTML = marked.parse(markdown);
+
+    // Wrap tables so wide ones scroll inside their box instead of the page.
+    for (const table of content.querySelectorAll("table")) {
+      const wrap = document.createElement("div");
+      wrap.className = "table-wrap";
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    }
+
+    // Build the table of contents from h2 and h3 headings.
+    const toc = document.getElementById("toc");
+    const headings = content.querySelectorAll("h2, h3");
+    headings.forEach((heading, index) => {
+      if (!heading.id) heading.id = "s" + index;
+      const link = document.createElement("a");
+      link.href = "#" + heading.id;
+      link.textContent = heading.textContent;
+      link.className = heading.tagName.toLowerCase();
+      toc.appendChild(link);
+    });
+
+    const title = content.querySelector("h1");
+    if (title) document.title = title.textContent;
+
+    insertSessionChart(content, toc);
+
+    // The report renders after the page loads, so the browser has already given up on a #fragment.
+    if (location.hash) {
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target) target.scrollIntoView();
+    }
+  }
+  render();
+</script>
+</body>
+</html>

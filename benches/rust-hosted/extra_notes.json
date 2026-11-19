@@ -1,0 +1,14 @@
+{
+  "luau": [
+    "Luau allocates GC objects from per-size-class pages, so a fresh mlua Luau state reports about 436 KB from Lua::used_memory(), of which about 182 KB is resident before our call function, limits, and sandbox are added (separate diagnostic in diag/luau-mem, 1,000 states)."
+  ],
+  "boa": [
+    "boa_gc collects with stop-the-world mark and sweep: the median batch hides the pauses, so the mean and the CPU per call run well above the median, and the slowest batch includes a pause."
+  ],
+  "steel": [
+    "A Steel session deep-clones its bootstrap kernel and compiles its prelude, so sessions are large and slow to create: the memory phase stops at its growth budget well before 1,000 sessions, and the start phase runs only as many creates as fit its time budget."
+  ],
+  "roto": [
+    "The tool-call loop is compiled machine code making three direct native calls per iteration, so it measures Roto's FFI and native-call cost rather than an interpreter."
+  ]
+}

@@ -1,7 +1,18 @@
+# Dependencies and build output.
 node_modules/
 target/
+*.so
 *.wasm
-bench/suite/lua55_bench
-bench/suite/luajit_bench
-bench/sanity/start_c
-bench/sanity/toolcall_c
+__pycache__/
+
+# Built binaries and downloaded sources.
+benches/lua/build/
+docs/notes/sanity/start_c
+docs/notes/sanity/toolcall_c
+docs/notes/local_bench_scripts/luam/m55
+docs/notes/local_bench_scripts/luam/mjit
+
+# Generated data.
+benches/common/compute/data/orders.json
+charts/src/combined.json
+benches/fluency/gen-cwd/

@@ -1,8 +1,0 @@
-node: {"bytesPerSandbox":8369357,"rounds":[8453530,8369357,8365261],"lastRoundComposition":{"anon":7505101,"file":0,"kernel":849101,"kernel_stack":114688,"pagetables":500531,"slab":121703,"sock":0}}
-deno: {"bytesPerSandbox":15072461,"rounds":[15081062,15072461,14822195],"lastRoundComposition":{"anon":13565338,"file":0,"kernel":1258291,"kernel_stack":327680,"pagetables":707994,"slab":212084,"sock":0}}
-bun: {"bytesPerSandbox":10312909,"rounds":[10362470,10296320,10312909],"lastRoundComposition":{"anon":9480192,"file":0,"kernel":688128,"kernel_stack":174490,"pagetables":367821,"slab":134596,"sock":0}}
-python: {"bytesPerSandbox":3548774,"rounds":[3546726,3548774,3566592],"lastRoundComposition":{"anon":3434086,"file":0,"kernel":137216,"kernel_stack":16384,"pagetables":73523,"slab":38123,"sock":0}}
-lua: {"bytesPerSandbox":271974,"rounds":[301466,271770,271974],"lastRoundComposition":{"anon":26010,"file":0,"kernel":-819,"kernel_stack":0,"pagetables":-819,"slab":-6,"sock":0}}
-luajit: {"bytesPerSandbox":295731,"rounds":[315802,295526,295731],"lastRoundComposition":{"anon":819,"file":0,"kernel":-410,"kernel_stack":0,"pagetables":-1229,"slab":-128,"sock":0}}
-bash: {"bytesPerSandbox":403866,"rounds":[420659,402227,403866],"lastRoundComposition":{"anon":299008,"file":0,"kernel":111616,"kernel_stack":16384,"pagetables":55706,"slab":29748,"sock":0}}
-dash: {"bytesPerSandbox":228762,"rounds":[228762,217293,229990],"lastRoundComposition":{"anon":3482,"file":0,"kernel":819,"kernel_stack":0,"pagetables":819,"slab":-244,"sock":0}}

@@ -1,7 +1,0 @@
-SAMPLES 507.4500,521.9650,494.0480,532.7350,468.2430,487.6500,493.2230
-SAME true
-RESULT {"topCustomers":[{"revenue":23140.37,"customer":"c126"},{"revenue":21737.48,"customer":"c361"},{"revenue":21544.78,"customer":"c307"},{"revenue":21542.62,"customer":"c260"},{"revenue":21465.25,"customer":"c257"}],"revenueByRegion":{"us-east":822674.04,"sa-east":826458.86,"us-west":797888.16,"eu-west":821307.16,"eu-north":840181.53,"af-south":854765.17,"ap-east":830277.77,"ap-south":808284.79},"ordersWithMoreThan3Items":3611}
-
---- stderr ---
-
---- status 0 

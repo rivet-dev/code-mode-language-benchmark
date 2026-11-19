@@ -1,0 +1,25 @@
+{
+  "name": "code-mode-language-benchmark",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Compares scripting runtimes for LLM code mode: memory, start time, tool call round trip and compute.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "bench": "node scripts/run_all.mjs",
+    "readme": "node scripts/update_readme.mjs",
+    "charts": "node scripts/render_charts.mjs"
+  },
+  "dependencies": {
+    "@jitl/quickjs-wasmfile-release-sync": "0.32.0",
+    "@micropython/micropython-webassembly-pyscript": "1.29.0-6",
+    "isolated-vm": "6.2.0",
+    "pyodide": "314.0.8",
+    "quickjs-emscripten": "0.32.0"
+  },
+  "allowScripts": {
+    "isolated-vm@6.2.0": true
+  }
+}
