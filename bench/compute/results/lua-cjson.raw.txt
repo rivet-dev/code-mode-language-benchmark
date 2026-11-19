@@ -1,0 +1,7 @@
+SAMPLES 74.7090,70.5050,53.2140,57.2550,81.2240,46.1480,61.7150
+SAME true
+RESULT {"revenueByRegion":{"af-south":854765.17,"us-east":822674.04,"eu-north":840181.53,"eu-west":821307.16,"ap-south":808284.79,"ap-east":830277.77,"us-west":797888.16,"sa-east":826458.86},"topCustomers":[{"customer":"c126","revenue":23140.37},{"customer":"c361","revenue":21737.48},{"customer":"c307","revenue":21544.78},{"customer":"c260","revenue":21542.62},{"customer":"c257","revenue":21465.25}],"ordersWithMoreThan3Items":3611}
+
+--- stderr ---
+
+--- status 0 

@@ -1,0 +1,38 @@
+{
+ "id": "t01_fanout",
+ "text": "Find the total quantity of each SKU across all warehouses. Print one line per SKU whose total is at least 50, formatted as `<sku> <total>`, sorted by total descending, then by SKU ascending for ties.\n\nExample of the format (made-up values):\n```\nrod-8 120\nbracket-2 50\n```",
+ "tools": [
+  [
+   "list_warehouses",
+   [],
+   "str[]",
+   "IDs of all warehouses."
+  ],
+  [
+   "get_inventory",
+   [
+    [
+     "warehouse_id",
+     "str"
+    ]
+   ],
+   "StockItem[]",
+   "Stock records held in one warehouse. A warehouse may hold no stock."
+  ]
+ ],
+ "types": {
+  "StockItem": [
+   [
+    "sku",
+    "str",
+    ""
+   ],
+   [
+    "qty",
+    "int",
+    ""
+   ]
+  ]
+ },
+ "expected": "bolt-m4 75\nnut-m4 75\nwasher-10 65\ngear-12t 50\nhinge-50 50\nspring-s 50"
+}

@@ -1,0 +1,14 @@
+{
+ "id": "t09_parse",
+ "text": "Parse the log. Each non-empty line is `<timestamp> <LEVEL> <component>: <message>`, optionally followed by a space and `{key=value key=value ...}` at the end of the line. Timestamps, levels and component names contain no spaces; messages contain no braces; keys and values contain no spaces, braces or `=`. Ignore empty lines. For each component with at least one ERROR line, print `<component> errors=<number of ERROR lines> codes=<distinct values of the code key on its ERROR lines, sorted, joined with commas>`, sorted by component. Then print `slowest <component> <took>` for the line (any level) with the largest `took` value, where took looks like `342ms`.",
+ "tools": [
+  [
+   "read_log",
+   [],
+   "str",
+   "The raw log text: lines separated by newline characters, ending with a newline."
+  ]
+ ],
+ "types": {},
+ "expected": "checkout errors=3 codes=ADDR-2,PAY-4021\ninventory errors=2 codes=INV-17\nsearch errors=2 codes=SRCH-5\nslowest inventory 1450ms"
+}

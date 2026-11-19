@@ -1,0 +1,59 @@
+{
+ "id": "t05_report",
+ "text": "Fetch invoice `INV-2041` and print it in exactly this layout. Line 1: `Invoice <id> for <customer>`. Then one line per invoice line: the description left-aligned and padded with spaces to 14 characters, the quantity right-aligned in 3 characters, one space, then the line total (quantity \u00d7 unit price) in dollars with exactly 2 decimals, right-aligned in 9 characters. Then three summary lines, each with the label left-aligned and padded to 18 characters followed by the amount in dollars with exactly 2 decimals right-aligned in 9 characters: `Subtotal` (sum of line totals), `Tax` (subtotal \u00d7 tax_bp / 10000, rounded to the nearest cent) and `Total` (subtotal + tax).\n\nExample of the layout (made-up values):\n```\nInvoice INV-1 for Example Co\nPen             2      2.50\nPaper pack     10     45.00\nSubtotal              47.50\nTax                    2.38\nTotal                 49.88\n```",
+ "tools": [
+  [
+   "get_invoice",
+   [
+    [
+     "invoice_id",
+     "str"
+    ]
+   ],
+   "Invoice",
+   "Fetches one invoice. Fails with code NOT_FOUND for an unknown id."
+  ]
+ ],
+ "types": {
+  "InvoiceLine": [
+   [
+    "description",
+    "str",
+    ""
+   ],
+   [
+    "quantity",
+    "int",
+    ""
+   ],
+   [
+    "unit_price_cents",
+    "int",
+    ""
+   ]
+  ],
+  "Invoice": [
+   [
+    "id",
+    "str",
+    ""
+   ],
+   [
+    "customer",
+    "str",
+    ""
+   ],
+   [
+    "tax_bp",
+    "int",
+    "tax rate in basis points: 825 means 8.25%"
+   ],
+   [
+    "lines",
+    "InvoiceLine[]",
+    ""
+   ]
+  ]
+ },
+ "expected": "Invoice INV-2041 for Northwind Traders\nWidget          3     13.50\nGadget Pro      1    129.99\nCable 2m        4     31.96\nService fee     1     25.00\nSubtotal             200.45\nTax                   16.54\nTotal                216.99"
+}

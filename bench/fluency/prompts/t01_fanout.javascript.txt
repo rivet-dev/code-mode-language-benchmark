@@ -1,0 +1,31 @@
+Write a JavaScript (Node.js 22) script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+Find the total quantity of each SKU across all warehouses. Print one line per SKU whose total is at least 50, formatted as `<sku> <total>`, sorted by total descending, then by SKU ascending for ties.
+
+Example of the format (made-up values):
+```
+rod-8 120
+bracket-2 50
+```
+
+## Tools
+The script runs as an ES module with Node.js 22 (`node script.mjs`), so top-level `await` works; only built-in Node modules are available. The tools are async functions on a global object named `tools` (no import needed); each returns a Promise. Results are plain JavaScript values decoded from JSON. If a call fails, its Promise rejects with a `ToolError` (a global `Error` subclass) that has string properties `code` and `message`.
+
+```ts
+type StockItem = {
+  sku: string;
+  qty: number; // integer
+};
+
+/** IDs of all warehouses. */
+tools.list_warehouses(): Promise<string[]>;
+
+/** Stock records held in one warehouse. A warehouse may hold no stock. */
+tools.get_inventory(warehouse_id: string): Promise<StockItem[]>;
+```
+
+## Output
+Print the final answer to stdout (for example with `console.log`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

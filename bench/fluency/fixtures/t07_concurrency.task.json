@@ -1,0 +1,43 @@
+{
+ "id": "t07_concurrency",
+ "text": "Probe every host returned by `list_hosts`. If the language can run calls concurrently, run the probes concurrently with at most 3 in flight at any moment; otherwise run them one at a time. Then print the hosts whose status is not 200, one per line as `<host> <status>`, sorted by host name, followed by a final line `healthy=<number of hosts with status 200> max_latency=<largest latency_ms among hosts with status 200>`.",
+ "tools": [
+  [
+   "list_hosts",
+   [],
+   "str[]",
+   "Names of all hosts."
+  ],
+  [
+   "probe",
+   [
+    [
+     "host",
+     "str"
+    ]
+   ],
+   "ProbeResult",
+   "Checks one host; takes about 0.3 seconds. The service allows at most 3 probe calls in flight at once: a probe call made while 3 are already in flight fails with code RATE_LIMITED, and after that every later probe call also fails with RATE_LIMITED."
+  ]
+ ],
+ "types": {
+  "ProbeResult": [
+   [
+    "host",
+    "str",
+    ""
+   ],
+   [
+    "status",
+    "int",
+    ""
+   ],
+   [
+    "latency_ms",
+    "int",
+    ""
+   ]
+  ]
+ },
+ "expected": "queue-1 429\nweb-3 503\nweb-6 500\nhealthy=9 max_latency=340"
+}

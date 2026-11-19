@@ -1,0 +1,81 @@
+{
+  "entries": [
+    {
+      "key": "lua-cjson",
+      "label": "Lua + lua-cjson",
+      "group": "process",
+      "host": "separate process, loop timed inside with os.clock()",
+      "version": "Lua 5.5.1",
+      "medianMs": 61.715,
+      "p90Ms": 81.224,
+      "runs": 7,
+      "warmupRuns": 2,
+      "resultChecksumOk": true,
+      "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+      "allRunsIdentical": true,
+      "loadAverage": {
+        "start": [
+          3.42,
+          3.99,
+          5.49
+        ],
+        "end": [
+          3.42,
+          3.99,
+          5.49
+        ]
+      },
+      "samplesMs": [
+        74.709,
+        70.505,
+        53.214,
+        57.255,
+        81.224,
+        46.148,
+        61.715
+      ],
+      "notes": [
+        "Interpreter only. JSON via vendored pure-Lua rxi/json.lua (MIT). Timed with os.clock(), which is process CPU time: standard Lua has no sub-second wall clock."
+      ]
+    },
+    {
+      "key": "luajit-cjson",
+      "label": "LuaJIT + lua-cjson",
+      "group": "process",
+      "host": "separate process, loop timed inside with os.clock()",
+      "version": "LuaJIT 2.1.1794214635",
+      "medianMs": 37.769,
+      "p90Ms": 48.167,
+      "runs": 7,
+      "warmupRuns": 2,
+      "resultChecksumOk": true,
+      "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+      "allRunsIdentical": true,
+      "loadAverage": {
+        "start": [
+          3.42,
+          3.99,
+          5.49
+        ],
+        "end": [
+          3.42,
+          3.99,
+          5.49
+        ]
+      },
+      "samplesMs": [
+        37.186,
+        35.293,
+        37.769,
+        39.629,
+        39.212,
+        30.987,
+        48.167
+      ],
+      "notes": [
+        "JIT on (default). JSON via vendored pure-Lua rxi/json.lua (MIT). Timed with os.clock(), process CPU time."
+      ]
+    }
+  ],
+  "notApplicable": []
+}

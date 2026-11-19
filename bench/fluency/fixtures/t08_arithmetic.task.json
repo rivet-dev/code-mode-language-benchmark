@@ -1,0 +1,55 @@
+{
+ "id": "t08_arithmetic",
+ "text": "Convert every expense to EUR: divide its amount by the rate of its currency; amounts in EUR need no conversion. For each category, sorted by category name, print `<category> <total in EUR with exactly 2 decimals>`. Then print `TOTAL <sum of all expenses in EUR with exactly 2 decimals>` and `MAX <id of the expense with the largest EUR amount> <that EUR amount with exactly 2 decimals>`. Sum the unrounded converted amounts and round only when printing.",
+ "tools": [
+  [
+   "get_rates",
+   [],
+   "Rates",
+   "Current exchange rates."
+  ],
+  [
+   "list_expenses",
+   [],
+   "Expense[]",
+   "All expenses."
+  ]
+ ],
+ "types": {
+  "Rates": [
+   [
+    "base",
+    "str",
+    "always \"EUR\""
+   ],
+   [
+    "rates",
+    "map<float>",
+    "units of each currency per 1 EUR; EUR itself is not listed"
+   ]
+  ],
+  "Expense": [
+   [
+    "id",
+    "str",
+    ""
+   ],
+   [
+    "category",
+    "str",
+    ""
+   ],
+   [
+    "amount",
+    "float",
+    "in the expense's currency"
+   ],
+   [
+    "currency",
+    "str",
+    "ISO code, e.g. \"USD\""
+   ]
+  ]
+ },
+ "expected": "lodging 562.09\nmeals 92.40\nsoftware 168.73\ntravel 574.68\nTOTAL 1397.91\nMAX e1 387.47"
+}

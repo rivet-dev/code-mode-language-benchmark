@@ -1,0 +1,73 @@
+{
+ "inventory": {
+  "wh-ams": [
+   {
+    "sku": "bolt-m4",
+    "qty": 40
+   },
+   {
+    "sku": "nut-m4",
+    "qty": 25
+   },
+   {
+    "sku": "washer-10",
+    "qty": 60
+   },
+   {
+    "sku": "gear-12t",
+    "qty": 7
+   }
+  ],
+  "wh-bos": [
+   {
+    "sku": "bolt-m4",
+    "qty": 15
+   },
+   {
+    "sku": "spring-s",
+    "qty": 33
+   },
+   {
+    "sku": "nut-m4",
+    "qty": 25
+   },
+   {
+    "sku": "hinge-50",
+    "qty": 12
+   }
+  ],
+  "wh-cdg": [],
+  "wh-den": [
+   {
+    "sku": "washer-10",
+    "qty": 5
+   },
+   {
+    "sku": "gear-12t",
+    "qty": 43
+   },
+   {
+    "sku": "spring-s",
+    "qty": 17
+   },
+   {
+    "sku": "clip-3",
+    "qty": 49
+   }
+  ],
+  "wh-edi": [
+   {
+    "sku": "bolt-m4",
+    "qty": 20
+   },
+   {
+    "sku": "hinge-50",
+    "qty": 38
+   },
+   {
+    "sku": "nut-m4",
+    "qty": 25
+   }
+  ]
+ }
+}

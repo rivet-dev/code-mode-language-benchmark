@@ -1,0 +1,6 @@
+bolt-m4 75
+nut-m4 75
+washer-10 65
+gear-12t 50
+hinge-50 50
+spring-s 50

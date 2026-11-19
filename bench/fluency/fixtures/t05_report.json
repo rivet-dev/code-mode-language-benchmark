@@ -1,0 +1,29 @@
+{
+ "invoice": {
+  "id": "INV-2041",
+  "customer": "Northwind Traders",
+  "tax_bp": 825,
+  "lines": [
+   {
+    "description": "Widget",
+    "quantity": 3,
+    "unit_price_cents": 450
+   },
+   {
+    "description": "Gadget Pro",
+    "quantity": 1,
+    "unit_price_cents": 12999
+   },
+   {
+    "description": "Cable 2m",
+    "quantity": 4,
+    "unit_price_cents": 799
+   },
+   {
+    "description": "Service fee",
+    "quantity": 1,
+    "unit_price_cents": 2500
+   }
+  ]
+ }
+}

@@ -95,10 +95,12 @@
   .single .header h1 { font-size: 60px; }
   .single .legend { font-size: 22px; }
   .single .legend .swatch { width: 20px; height: 20px; }
-  .single .panels { left: 60px; right: 60px; top: 186px; bottom: 44px; }
-  .single .panel h2 { font-size: 46px; }
-  .single .panel .hint { font-size: 18px; margin-top: 10px; }
-  .single .plot { top: 112px; }
+  /* Single cards drop the primary header: the chart title leads, with the legend under it. */
+  .single .panels { left: 60px; right: 60px; top: 44px; bottom: 44px; }
+  .single .panel h2 { font-size: 64px; }
+  .single .panel .hint { font-size: 19px; margin-top: 12px; }
+  .single .panel .legend { justify-content: center; margin: 18px 0 0; font-size: 22px; }
+  .single .plot { top: 214px; }
 
   .logo-slot { position: absolute; transform: translateX(-50%); display: flex; justify-content: center; }
   .logo { width: 44px; height: 44px; object-fit: contain; }
@@ -278,8 +280,7 @@
     }
   }
 
-  function buildHeader(title) {
-    const header = element("div", "header");
+  function buildLegend() {
     const legend = element("ul", "legend");
     for (const group of ["embedded", "process"]) {
       const item = element("li");
@@ -288,11 +289,22 @@
       item.append(swatch, GROUP_LABELS[group]);
       legend.append(item);
     }
-    header.append(element("h1", "", title), legend);
+    return legend;
+  }
+
+  function buildHeader(title) {
+    const header = element("div", "header");
+    header.append(element("h1", "", title), buildLegend());
     return header;
   }
 
-  const SINGLE_FILES = { memory: "metric-memory.png", start: "metric-start.png", toolCall: "metric-tool-call.png" };
+  const SINGLE_FILES = {
+    memory: "metric-memory.png",
+    start: "metric-start.png",
+    toolCall: "metric-tool-call.png",
+    density: "metric-density.png",
+    compute: "metric-compute.png",
+  };
 
   /** Builds a 3:2 card with one metric across the full width. */
   function buildSingleFigure(data, panelSpec, mode, iconFiles) {
@@ -302,11 +314,13 @@
 
     const panels = element("div", "panels");
     const panel = element("section", "panel");
-    panel.append(element("h2", "", panelSpec.title), element("p", "hint", `${panelSpec.hint} · ${mode.scaleLabel}`), element("div", "plot"));
+    panel.append(element("h2", "", panelSpec.title), element("p", "hint", `${panelSpec.hint} · ${mode.scaleLabel}`), buildLegend(), element("div", "plot"));
     panels.append(panel);
-    figure.append(buildHeader(data.title), panels);
+    figure.append(panels);
     document.getElementById("sheet").append(figure);
-    separateLabels(drawPanel(panelSpec, data.columns, panel, iconFiles, mode.key));
+    // Columns with no entry for this metric were not measured for it, so they are left out.
+    const columns = data.columns.filter((column) => column[panelSpec.key] !== undefined);
+    separateLabels(drawPanel(panelSpec, columns, panel, iconFiles, mode.key));
   }
 
   function buildFigure(data, mode, iconFiles) {
@@ -340,7 +354,9 @@
     const only = new URLSearchParams(location.search).get("only");
     for (const mode of MODES) {
       if (only !== "single") buildFigure(data, mode, iconFiles);
-      if (only !== "combined") for (const panelSpec of data.panels) buildSingleFigure(data, panelSpec, mode, iconFiles);
+      if (only !== "combined") {
+        for (const panelSpec of [...data.panels, ...(data.extraPanels || [])]) buildSingleFigure(data, panelSpec, mode, iconFiles);
+      }
     }
 
     // Wait until every logo has loaded or fallen back to a monogram, for at most five seconds.

@@ -1,0 +1,58 @@
+{
+ "open": [
+  "T-9",
+  "T-4",
+  "T-12",
+  "T-7"
+ ],
+ "tasks": {
+  "T-1": [
+   "Platform",
+   null
+  ],
+  "T-2": [
+   "Billing",
+   "T-1"
+  ],
+  "T-3": [
+   "Invoices",
+   "T-2"
+  ],
+  "T-4": [
+   "Fix rounding",
+   "T-3"
+  ],
+  "T-5": [
+   "Search",
+   "T-1"
+  ],
+  "T-6": [
+   "Indexing",
+   "T-5"
+  ],
+  "T-7": [
+   "Reindex nightly",
+   "T-6"
+  ],
+  "T-8": [
+   "Mobile",
+   null
+  ],
+  "T-9": [
+   "Login screen",
+   "T-8"
+  ],
+  "T-10": [
+   "Payments",
+   "T-2"
+  ],
+  "T-11": [
+   "Refunds",
+   "T-10"
+  ],
+  "T-12": [
+   "Partial refunds",
+   "T-11"
+  ]
+ }
+}

@@ -1,0 +1,4 @@
+checkout errors=3 codes=ADDR-2,PAY-4021
+inventory errors=2 codes=INV-17
+search errors=2 codes=SRCH-5
+slowest inventory 1450ms

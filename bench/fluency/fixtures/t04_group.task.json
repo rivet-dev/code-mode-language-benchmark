@@ -1,0 +1,42 @@
+{
+ "id": "t04_group",
+ "text": "Consider only employees who are active and were hired on or after 2021-01-01. Group them by department. Print one line per department that has at least one such employee, sorted by the number of employees descending, then by department name ascending:\n`<dept> count=<n> avg_salary=<average salary rounded down to an integer> names=<their names sorted alphabetically, joined with commas>`\n\nExample of the format (made-up values):\n```\nlegal count=2 avg_salary=70500 names=ann,bo\n```",
+ "tools": [
+  [
+   "list_employees",
+   [],
+   "Employee[]",
+   "All employee records, in no particular order."
+  ]
+ ],
+ "types": {
+  "Employee": [
+   [
+    "name",
+    "str",
+    ""
+   ],
+   [
+    "dept",
+    "str",
+    ""
+   ],
+   [
+    "salary",
+    "int",
+    ""
+   ],
+   [
+    "active",
+    "bool",
+    ""
+   ],
+   [
+    "hired",
+    "str",
+    "date, YYYY-MM-DD"
+   ]
+  ]
+ },
+ "expected": "marketing count=4 avg_salary=65875 names=hal,ivy,pat,quinn\nengineering count=3 avg_salary=112666 names=ana,dev,max\nsales count=3 avg_salary=68166 names=eli,fay,nia\nsupport count=1 avg_salary=53000 names=lee"
+}

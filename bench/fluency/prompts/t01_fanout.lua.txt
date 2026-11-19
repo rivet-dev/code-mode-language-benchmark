@@ -1,0 +1,33 @@
+Write a Lua 5.5 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+Find the total quantity of each SKU across all warehouses. Print one line per SKU whose total is at least 50, formatted as `<sku> <total>`, sorted by total descending, then by SKU ascending for ties.
+
+Example of the format (made-up values):
+```
+rod-8 120
+bracket-2 50
+```
+
+## Tools
+The script runs with Lua 5.5 and the standard libraries only. The tools are synchronous functions in a global table named `tools`, set up by a prelude before the script starts (no `require` needed). Results are Lua values decoded from JSON: objects become tables with string keys, arrays become sequences starting at index 1, and JSON null becomes nil (the field is absent). If a call fails, the function raises an error whose value is a table with string fields `code` and `message`; catch it with `pcall`.
+
+```lua
+---@class StockItem
+---@field sku string
+---@field qty integer
+
+---IDs of all warehouses.
+---@return string[]
+function tools.list_warehouses() end
+
+---Stock records held in one warehouse. A warehouse may hold no stock.
+---@param warehouse_id string
+---@return StockItem[]
+function tools.get_inventory(warehouse_id) end
+```
+
+## Output
+Print the final answer to stdout (for example with `print` or `io.write`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

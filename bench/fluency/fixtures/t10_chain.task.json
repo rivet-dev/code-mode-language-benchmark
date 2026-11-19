@@ -1,0 +1,43 @@
+{
+ "id": "t10_chain",
+ "text": "For each task ID returned by `list_open_tasks`, in that order, build its breadcrumb by following parent_id links up to the root task (one whose parent_id is {null}). Print one line per open task: `<id>: <titles from the root down to the task, joined with ' > '>`. Each task may be fetched with `get_task` at most once per run, so reuse results you already have.",
+ "tools": [
+  [
+   "list_open_tasks",
+   [],
+   "str[]",
+   "IDs of the open tasks."
+  ],
+  [
+   "get_task",
+   [
+    [
+     "task_id",
+     "str"
+    ]
+   ],
+   "Task",
+   "Fetches one task. Fetching the same task a second time in a run fails with code DUPLICATE_REQUEST."
+  ]
+ ],
+ "types": {
+  "Task": [
+   [
+    "id",
+    "str",
+    ""
+   ],
+   [
+    "title",
+    "str",
+    ""
+   ],
+   [
+    "parent_id",
+    "str|null",
+    "{null} for a root task"
+   ]
+  ]
+ },
+ "expected": "T-9: Mobile > Login screen\nT-4: Platform > Billing > Invoices > Fix rounding\nT-12: Platform > Billing > Payments > Refunds > Partial refunds\nT-7: Platform > Search > Indexing > Reindex nightly"
+}

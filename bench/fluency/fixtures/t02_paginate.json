@@ -1,0 +1,99 @@
+{
+ "pages": [
+  {
+   "events": [
+    {
+     "id": 1,
+     "user": "alice",
+     "action": "login"
+    },
+    {
+     "id": 2,
+     "user": "bob",
+     "action": "login"
+    },
+    {
+     "id": 3,
+     "user": "alice",
+     "action": "delete"
+    },
+    {
+     "id": 4,
+     "user": "chen",
+     "action": "view"
+    }
+   ],
+   "next": "p1-xq7"
+  },
+  {
+   "events": [
+    {
+     "id": 5,
+     "user": "bob",
+     "action": "delete"
+    },
+    {
+     "id": 6,
+     "user": "alice",
+     "action": "view"
+    },
+    {
+     "id": 7,
+     "user": "dana",
+     "action": "login"
+    }
+   ],
+   "next": "p2-mt3"
+  },
+  {
+   "events": [],
+   "next": "p3-ka9"
+  },
+  {
+   "events": [
+    {
+     "id": 8,
+     "user": "chen",
+     "action": "delete"
+    },
+    {
+     "id": 9,
+     "user": "alice",
+     "action": "delete"
+    },
+    {
+     "id": 10,
+     "user": "eve",
+     "action": "login"
+    },
+    {
+     "id": 11,
+     "user": "bob",
+     "action": "edit"
+    }
+   ],
+   "next": "p4-zr2"
+  },
+  {
+   "events": [
+    {
+     "id": 12,
+     "user": "dana",
+     "action": "delete"
+    },
+    {
+     "id": 13,
+     "user": "alice",
+     "action": "logout"
+    }
+   ],
+   "next": null
+  }
+ ],
+ "cursors": {
+  "p1-xq7": 1,
+  "p2-mt3": 2,
+  "p3-ka9": 3,
+  "p4-zr2": 4
+ }
+}

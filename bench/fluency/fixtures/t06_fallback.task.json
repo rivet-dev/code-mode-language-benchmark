@@ -1,0 +1,83 @@
+{
+ "id": "t06_fallback",
+ "text": "For each user ID returned by `list_user_ids`, in that order, look the user up with `get_profile`. If that call fails with code NOT_FOUND, look the user up with `get_legacy_profile` instead: the display name is `<first> <last>` and the email is `mail`, or `-` when mail is {null}. If `get_profile` fails with any other code, do not fall back. Print one line per user: `<id> | <display name> | <email> | <source>` where source is `primary` or `legacy`, or `<id> | unresolved | <code of the last error>` when the user could not be resolved. Finish with a line `resolved=<n> unresolved=<m>`.",
+ "tools": [
+  [
+   "list_user_ids",
+   [],
+   "str[]",
+   "IDs of the users to resolve."
+  ],
+  [
+   "get_profile",
+   [
+    [
+     "user_id",
+     "str"
+    ]
+   ],
+   "Profile",
+   "Looks a user up in the primary directory. Fails with code NOT_FOUND if the user is not there, or with another code (for example PERMISSION_DENIED)."
+  ],
+  [
+   "get_legacy_profile",
+   [
+    [
+     "user_id",
+     "str"
+    ]
+   ],
+   "LegacyProfile",
+   "Looks a user up in the legacy directory. Fails with code NOT_FOUND if the user is not there."
+  ]
+ ],
+ "types": {
+  "Profile": [
+   [
+    "id",
+    "str",
+    ""
+   ],
+   [
+    "display_name",
+    "str",
+    ""
+   ],
+   [
+    "email",
+    "str",
+    ""
+   ]
+  ],
+  "Name": [
+   [
+    "first",
+    "str",
+    ""
+   ],
+   [
+    "last",
+    "str",
+    ""
+   ]
+  ],
+  "LegacyProfile": [
+   [
+    "uid",
+    "str",
+    ""
+   ],
+   [
+    "name",
+    "Name",
+    ""
+   ],
+   [
+    "mail",
+    "str|null",
+    ""
+   ]
+  ]
+ },
+ "expected": "u-101 | Ada Park | ada@example.com | primary\nu-102 | Ben Ortiz | bortiz@legacy.example | legacy\nu-103 | unresolved | PERMISSION_DENIED\nu-104 | unresolved | NOT_FOUND\nu-105 | Dee Shah | - | legacy\nu-106 | Eun Cho | eun@example.com | primary\nresolved=4 unresolved=2"
+}

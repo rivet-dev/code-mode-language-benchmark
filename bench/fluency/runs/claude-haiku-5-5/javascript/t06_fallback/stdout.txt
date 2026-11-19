@@ -1,0 +1,7 @@
+u-101 | Ada Park | ada@example.com | primary
+u-102 | Ben Ortiz | bortiz@legacy.example | legacy
+u-103 | unresolved | PERMISSION_DENIED
+u-104 | unresolved | NOT_FOUND
+u-105 | Dee Shah | - | legacy
+u-106 | Eun Cho | eun@example.com | primary
+resolved=4 unresolved=2

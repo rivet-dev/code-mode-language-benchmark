@@ -1,0 +1,50 @@
+{
+  "seed": 20261119,
+  "records": 20000,
+  "bytes": 3122785,
+  "sha256": "1ea0852b4e5f526fefbd38c731561b844f1552aee7214946ac0c51fc4dccf48e",
+  "itemWeights": [
+    0.45,
+    0.25,
+    0.12,
+    0.08,
+    0.06,
+    0.04
+  ],
+  "expected": {
+    "revenueByRegion": {
+      "af-south": 85476517,
+      "ap-east": 83027777,
+      "ap-south": 80828479,
+      "eu-north": 84018153,
+      "eu-west": 82130716,
+      "sa-east": 82645886,
+      "us-east": 82267404,
+      "us-west": 79788816
+    },
+    "topCustomers": [
+      [
+        "c126",
+        2314037
+      ],
+      [
+        "c361",
+        2173748
+      ],
+      [
+        "c307",
+        2154478
+      ],
+      [
+        "c260",
+        2154262
+      ],
+      [
+        "c257",
+        2146525
+      ]
+    ],
+    "ordersWithMoreThan3Items": 3611
+  },
+  "expectedChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158"
+}

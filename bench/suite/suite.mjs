@@ -97,6 +97,7 @@ async function measureToolCalls(command, args) {
 	const child = spawn(command, [...args, String(CALLS), String(WARMUP), String(BATCH)], { stdio: ["pipe", "pipe", "inherit"] });
 	child.stdout.setEncoding("utf8");
 	const marks = [];
+	const callTimes = [];
 	let buffered = "";
 
 	await new Promise((resolve, reject) => {
@@ -113,6 +114,8 @@ async function measureToolCalls(command, args) {
 				} else if (line === "done") {
 					resolve();
 				} else {
+					// Time every call in the measured window for a true per-call median.
+					if (marks.length > 0) callTimes.push(process.hrtime.bigint());
 					const call = JSON.parse(line);
 					child.stdin.write(JSON.stringify({ id: call.id, ok: true, value: call.args.s.length }) + "\n");
 				}
@@ -129,7 +132,9 @@ async function measureToolCalls(command, args) {
 	const last = marks[marks.length - 1];
 	const hostCpuUs = (last.hostCpu - first.hostCpu) / CALLS;
 	const sandboxCpuUs = (last.sandboxCpu - first.sandboxCpu) / CALLS;
-	return { wallUs: round(median(batchMeansUs)), cpuUs: round(hostCpuUs + sandboxCpuUs), hostCpuUs: round(hostCpuUs), sandboxCpuUs: round(sandboxCpuUs) };
+	const perCallUs = [];
+	for (let index = 1; index < callTimes.length; index++) perCallUs.push(Number(callTimes[index] - callTimes[index - 1]) / 1e3);
+	return { wallUs: round(median(perCallUs)), batchWallUs: round(median(batchMeansUs)), cpuUs: round(hostCpuUs + sandboxCpuUs), hostCpuUs: round(hostCpuUs), sandboxCpuUs: round(sandboxCpuUs) };
 }
 
 /** Parses one line of bash's `times` output ("0m0.012s 0m0.034s") into microseconds. */

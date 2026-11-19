@@ -1,0 +1,8 @@
+Invoice INV-2041 for Northwind Traders
+Widget          3     13.50
+Gadget Pro      1    129.99
+Cable 2m        4     31.96
+Service fee     1     25.00
+Subtotal             200.45
+Tax                   16.54
+Total                216.99

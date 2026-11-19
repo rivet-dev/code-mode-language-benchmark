@@ -1,0 +1,49 @@
+{
+ "id": "t02_paginate",
+ "text": "Read the entire audit log. Print the total number of events on the first line. Then, for every user with at least one `delete` action, print a line `<user> <number of delete actions>`, sorted by that number descending, then by user ascending.",
+ "tools": [
+  [
+   "list_events",
+   [
+    [
+     "cursor",
+     "str|null=null"
+    ]
+   ],
+   "EventPage",
+   "Returns one page of the audit log, oldest first. Omit the cursor for the first page; pass the previous page's next_cursor to get the next page. A page may contain zero events even when more pages follow. Fails with code INVALID_ARGUMENT for an unknown cursor."
+  ]
+ ],
+ "types": {
+  "Event": [
+   [
+    "id",
+    "int",
+    ""
+   ],
+   [
+    "user",
+    "str",
+    ""
+   ],
+   [
+    "action",
+    "str",
+    ""
+   ]
+  ],
+  "EventPage": [
+   [
+    "events",
+    "Event[]",
+    ""
+   ],
+   [
+    "next_cursor",
+    "str|null",
+    "{null} on the last page"
+   ]
+  ]
+ },
+ "expected": "13\nalice 2\nbob 1\nchen 1\ndana 1"
+}

@@ -91,7 +91,7 @@ const charts = [
 			startRow("embedded", "Pyodide from a snapshot", ["pyodide"], python.pyodide.snapshotStartMs),
 			startRow("embedded", "Pyodide", ["pyodide"], python.pyodide.startMs),
 		]).concat(byValue([
-			startRow("process", "CPython, forked from a warm parent", ["cpython"], fork.startMs),
+			startRow("process", "CPython, forked from a warm parent", ["cpython"], forkMemory.startMs),
 			startRow("process", "dash", ["dash"], processes.dash.startMs),
 			startRow("process", "Lua", ["lua"], processes.lua.startMs),
 			startRow("process", "LuaJIT", ["luajit"], processes.luajit.startMs),
@@ -186,12 +186,22 @@ function compactUs(us) {
 	return us < 10 ? `${us.toFixed(1)} µs` : `${Math.round(us)} µs`;
 }
 
+/** Formats a count of sandboxes compactly: 65k, 4.1k, 925. */
+function compactCount(count) {
+	if (count >= 10000) return `${Math.round(count / 1000)}k`;
+	if (count >= 1000) return `${(count / 1000).toFixed(1)}k`;
+	return String(Math.round(count));
+}
+
+const GIB = 1024 * 1024 * 1024;
+
 const column = (key, group, name, logo, memoryBytes, startMs, toolCallUs) => ({
 	key,
 	group,
 	name,
 	logo,
 	memory: { value: memoryBytes, label: compactBytes(memoryBytes) },
+	density: { value: GIB / memoryBytes, label: compactCount(GIB / memoryBytes) },
 	start: { value: startMs * 1e3, label: compactMs(startMs) },
 	toolCall: toolCallUs === null ? null : { value: toolCallUs, label: compactUs(toolCallUs) },
 });
@@ -204,22 +214,60 @@ const combined = {
 		{ key: "start", title: "Time to first response", hint: "Lower is better", linear: { max: 1e4, ticks: [[0, "0"], [2e3, "2 ms"], [4e3, "4 ms"], [6e3, "6 ms"], [8e3, "8 ms"], [1e4, "10 ms"]] }, unit: "µs", min: 10, max: 1e7, ticks: [[10, "10 µs"], [100, "100 µs"], [1e3, "1 ms"], [1e4, "10 ms"], [1e5, "100 ms"], [1e6, "1 s"], [1e7, "10 s"]] },
 		{ key: "toolCall", title: "Tool call round trip", hint: "Lower is better", linear: { max: 150, ticks: [[0, "0"], [50, "50 µs"], [100, "100 µs"], [150, "150 µs"]] }, unit: "µs", min: 0.1, max: 1e3, ticks: [[0.1, "0.1 µs"], [1, "1 µs"], [10, "10 µs"], [100, "100 µs"], [1e3, "1 ms"]] },
 	],
+	// Single-chart metrics derived from the measured ones; the combined image keeps three panels.
+	extraPanels: [
+		{ key: "density", title: "Instances per GiB", hint: "Higher is better", linear: { max: 5000, ticks: [[0, "0"], [1000, "1k"], [2000, "2k"], [3000, "3k"], [4000, "4k"], [5000, "5k"]] }, unit: "count", min: 10, max: 1e5, ticks: [[10, "10"], [100, "100"], [1e3, "1k"], [1e4, "10k"], [1e5, "100k"]] },
+	],
 	columns: [
 		column("lua-state", "embedded", "Lua", "lua", lua.memoryBytesPerState, lua.startUs / 1e3, lua.toolCallWallUs),
 		column("luajit-state", "embedded", "LuaJIT", "luajit", luajit.memoryBytesPerState, luajit.startUs / 1e3, luajit.toolCallWallUs),
 		column("quickjs", "embedded", "QuickJS (Wasm)", "quickjs", isolates.quickjsOwnModule.memoryBytesPerSession, isolates.quickjsOwnModule.createMs, callCosts.quickjsOwnModuleAsync.wallUs),
-		column("v8", "embedded", "V8", "v8", isolates.v8Isolate.memoryBytesPerSession, isolates.v8Isolate.createMs, opBinding.v8IsolateOpStyle.wallUs),
+		column("v8", "embedded", "V8 (isolated-vm)", "v8", isolates.v8Isolate.memoryBytesPerSession, isolates.v8Isolate.createMs, opBinding.v8IsolateOpStyle.wallUs),
 		column("micropython", "embedded", "µPython (Wasm)", "micropython", python.micropython.memoryBytesPerInstance, python.micropython.startMs, python.micropython.toolCall.wallUs),
 		column("pyodide", "embedded", "Pyodide snapshot", "pyodide", pyodideSnapshot.memoryBytesPerInstance, pyodideSnapshot.startMs, pyodideSnapshot.toolCall.wallUs),
 		column("dash", "process", "dash", "dash", processMemory.dash.bytesPerSandbox, processes.dash.startMs, processes.dash.toolCall.wallUs),
 		column("bash", "process", "bash", "bash", processMemory.bash.bytesPerSandbox, processes.bash.startMs, processes.bash.toolCall.wallUs),
-		column("cpython-fork", "process", "CPython\nfork", "cpython", forkMemory.cgroupBytesPerChild, fork.startMs, null),
+		column("cpython-fork", "process", "CPython\nfork", "cpython", forkMemory.cgroupBytesPerChild, forkMemory.startMs, null),
 		column("cpython", "process", "CPython", "cpython", processMemory.python.bytesPerSandbox, processes.python.startMs, processes.python.toolCall.wallUs),
 		column("node", "process", "Node", "nodejs", processMemory.node.bytesPerSandbox, processes.node.startMs, processes.node.toolCall.wallUs),
 		column("bun", "process", "Bun", "bun", processMemory.bun.bytesPerSandbox, processes.bun.startMs, processes.bun.toolCall.wallUs),
 		column("deno", "process", "Deno", "deno", processMemory.deno.bytesPerSandbox, processes.deno.startMs, processes.deno.toolCall.wallUs),
 	],
 };
+
+// Compute speed: one realistic data task. Lua and LuaJIT ran from their CLIs with the same
+// interpreter and script an embedded state would use; the task takes 100+ ms, so the host does
+// not matter. bash, dash and the CPython fork (same engine as CPython) are left out.
+const computeResults = load("../compute-bench/results.json");
+const computeByKey = new Map(computeResults.entries.map((entry) => [entry.key, entry]));
+// Lua and LuaJIT parse with lua-cjson, a C extension, like every other runtime's native parser.
+for (const entry of load("../compute-bench/results/run-lua-cjson-luajit-cjson.json").entries) computeByKey.set(entry.key, entry);
+const COMPUTE_SOURCE = {
+	"lua-state": "lua-cjson",
+	"luajit-state": "luajit-cjson",
+	quickjs: "quickjs",
+	v8: "v8",
+	micropython: "micropython",
+	pyodide: "pyodide",
+	cpython: "cpython",
+	node: "node",
+	bun: "bun",
+	deno: "deno",
+};
+for (const entry of combined.columns) {
+	const source = computeByKey.get(COMPUTE_SOURCE[entry.key]);
+	if (source && source.resultChecksumOk) entry.compute = { value: source.medianMs, label: compactMs(source.medianMs) };
+}
+combined.extraPanels.push({
+	key: "compute",
+	title: "Parse and aggregate 3 MB of JSON",
+	hint: "Lower is better",
+	linear: { max: 300, ticks: [[0, "0"], [50, "50 ms"], [100, "100 ms"], [150, "150 ms"], [200, "200 ms"], [250, "250 ms"], [300, "300 ms"]] },
+	unit: "ms",
+	min: 1,
+	max: 1e3,
+	ticks: [[1, "1 ms"], [10, "10 ms"], [100, "100 ms"], [1e3, "1 s"]],
+});
 
 const combinedPath = path.join(path.dirname(outputPath), "combined.json");
 fs.writeFileSync(combinedPath, JSON.stringify(combined, null, 2));

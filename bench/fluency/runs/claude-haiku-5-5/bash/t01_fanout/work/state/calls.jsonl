@@ -1,0 +1,6 @@
+{"t": 1795122406.1997094, "tool": "list_warehouses", "args": []}
+{"t": 1795122406.228357, "tool": "get_inventory", "args": ["wh-ams"]}
+{"t": 1795122406.2581248, "tool": "get_inventory", "args": ["wh-bos"]}
+{"t": 1795122406.2885962, "tool": "get_inventory", "args": ["wh-cdg"]}
+{"t": 1795122406.3200822, "tool": "get_inventory", "args": ["wh-den"]}
+{"t": 1795122406.3516843, "tool": "get_inventory", "args": ["wh-edi"]}

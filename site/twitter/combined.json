@@ -172,6 +172,126 @@
       ]
     }
   ],
+  "extraPanels": [
+    {
+      "key": "density",
+      "title": "Instances per GiB",
+      "hint": "Higher is better",
+      "linear": {
+        "max": 5000,
+        "ticks": [
+          [
+            0,
+            "0"
+          ],
+          [
+            1000,
+            "1k"
+          ],
+          [
+            2000,
+            "2k"
+          ],
+          [
+            3000,
+            "3k"
+          ],
+          [
+            4000,
+            "4k"
+          ],
+          [
+            5000,
+            "5k"
+          ]
+        ]
+      },
+      "unit": "count",
+      "min": 10,
+      "max": 100000,
+      "ticks": [
+        [
+          10,
+          "10"
+        ],
+        [
+          100,
+          "100"
+        ],
+        [
+          1000,
+          "1k"
+        ],
+        [
+          10000,
+          "10k"
+        ],
+        [
+          100000,
+          "100k"
+        ]
+      ]
+    },
+    {
+      "key": "compute",
+      "title": "Parse and aggregate 3 MB of JSON",
+      "hint": "Lower is better",
+      "linear": {
+        "max": 300,
+        "ticks": [
+          [
+            0,
+            "0"
+          ],
+          [
+            50,
+            "50 ms"
+          ],
+          [
+            100,
+            "100 ms"
+          ],
+          [
+            150,
+            "150 ms"
+          ],
+          [
+            200,
+            "200 ms"
+          ],
+          [
+            250,
+            "250 ms"
+          ],
+          [
+            300,
+            "300 ms"
+          ]
+        ]
+      },
+      "unit": "ms",
+      "min": 1,
+      "max": 1000,
+      "ticks": [
+        [
+          1,
+          "1 ms"
+        ],
+        [
+          10,
+          "10 ms"
+        ],
+        [
+          100,
+          "100 ms"
+        ],
+        [
+          1000,
+          "1 s"
+        ]
+      ]
+    }
+  ],
   "columns": [
     {
       "key": "lua-state",
@@ -182,6 +302,10 @@
         "value": 16581,
         "label": "16 KiB"
       },
+      "density": {
+        "value": 64757.36228213015,
+        "label": "65k"
+      },
       "start": {
         "value": 12.673,
         "label": "13 µs"
@@ -189,6 +313,10 @@
       "toolCall": {
         "value": 0.4154,
         "label": "0.42 µs"
+      },
+      "compute": {
+        "value": 61.715,
+        "label": "62 ms"
       }
     },
     {
@@ -200,6 +328,10 @@
         "value": 36922,
         "label": "36 KiB"
       },
+      "density": {
+        "value": 29081.355939548237,
+        "label": "29k"
+      },
       "start": {
         "value": 29.155,
         "label": "29 µs"
@@ -207,6 +339,10 @@
       "toolCall": {
         "value": 0.3148,
         "label": "0.31 µs"
+      },
+      "compute": {
+        "value": 37.769,
+        "label": "38 ms"
       }
     },
     {
@@ -218,6 +354,10 @@
         "value": 258785,
         "label": "253 KiB"
       },
+      "density": {
+        "value": 4149.165616245145,
+        "label": "4.1k"
+      },
       "start": {
         "value": 1240,
         "label": "1.2 ms"
@@ -225,16 +365,24 @@
       "toolCall": {
         "value": 30.22,
         "label": "30 µs"
+      },
+      "compute": {
+        "value": 134.18,
+        "label": "134 ms"
       }
     },
     {
       "key": "v8",
       "group": "embedded",
-      "name": "V8",
+      "name": "V8 (isolated-vm)",
       "logo": "v8",
       "memory": {
         "value": 1159987,
         "label": "1.1 MiB"
+      },
+      "density": {
+        "value": 925.6498771106917,
+        "label": "926"
       },
       "start": {
         "value": 1440,
@@ -243,6 +391,10 @@
       "toolCall": {
         "value": 7.69,
         "label": "7.7 µs"
+      },
+      "compute": {
+        "value": 24.723,
+        "label": "25 ms"
       }
     },
     {
@@ -254,6 +406,10 @@
         "value": 305971,
         "label": "299 KiB"
       },
+      "density": {
+        "value": 3509.292789185903,
+        "label": "3.5k"
+      },
       "start": {
         "value": 4340,
         "label": "4.3 ms"
@@ -261,6 +417,10 @@
       "toolCall": {
         "value": 58.98,
         "label": "59 µs"
+      },
+      "compute": {
+        "value": 254.594,
+        "label": "255 ms"
       }
     },
     {
@@ -272,6 +432,10 @@
         "value": 52131840,
         "label": "50 MiB"
       },
+      "density": {
+        "value": 20.596660773914753,
+        "label": "21"
+      },
       "start": {
         "value": 149460,
         "label": "149 ms"
@@ -279,6 +443,10 @@
       "toolCall": {
         "value": 86.96,
         "label": "87 µs"
+      },
+      "compute": {
+        "value": 119.921,
+        "label": "120 ms"
       }
     },
     {
@@ -290,13 +458,17 @@
         "value": 228762,
         "label": "223 KiB"
       },
+      "density": {
+        "value": 4693.707101703954,
+        "label": "4.7k"
+      },
       "start": {
-        "value": 3660,
-        "label": "3.7 ms"
+        "value": 2280,
+        "label": "2.3 ms"
       },
       "toolCall": {
-        "value": 87.93,
-        "label": "88 µs"
+        "value": 54.85,
+        "label": "55 µs"
       }
     },
     {
@@ -308,13 +480,17 @@
         "value": 403866,
         "label": "394 KiB"
       },
+      "density": {
+        "value": 2658.65862439522,
+        "label": "2.7k"
+      },
       "start": {
-        "value": 5110,
-        "label": "5.1 ms"
+        "value": 3330,
+        "label": "3.3 ms"
       },
       "toolCall": {
-        "value": 118.6,
-        "label": "119 µs"
+        "value": 75.61,
+        "label": "76 µs"
       }
     },
     {
@@ -326,9 +502,13 @@
         "value": 425779,
         "label": "416 KiB"
       },
+      "density": {
+        "value": 2521.8289863990476,
+        "label": "2.5k"
+      },
       "start": {
-        "value": 1457,
-        "label": "1.5 ms"
+        "value": 783,
+        "label": "783 µs"
       },
       "toolCall": null
     },
@@ -341,13 +521,21 @@
         "value": 3548774,
         "label": "3.4 MiB"
       },
+      "density": {
+        "value": 302.56697777880476,
+        "label": "303"
+      },
       "start": {
-        "value": 23920,
-        "label": "24 ms"
+        "value": 16910,
+        "label": "17 ms"
       },
       "toolCall": {
-        "value": 61.28,
-        "label": "61 µs"
+        "value": 33.19,
+        "label": "33 µs"
+      },
+      "compute": {
+        "value": 71.791,
+        "label": "72 ms"
       }
     },
     {
@@ -359,13 +547,21 @@
         "value": 8369357,
         "label": "8.0 MiB"
       },
+      "density": {
+        "value": 128.29442261812943,
+        "label": "128"
+      },
       "start": {
-        "value": 33200,
+        "value": 33250,
         "label": "33 ms"
       },
       "toolCall": {
-        "value": 39.9,
-        "label": "40 µs"
+        "value": 31.82,
+        "label": "32 µs"
+      },
+      "compute": {
+        "value": 23.354,
+        "label": "23 ms"
       }
     },
     {
@@ -377,13 +573,21 @@
         "value": 10312909,
         "label": "9.8 MiB"
       },
+      "density": {
+        "value": 104.11628998180824,
+        "label": "104"
+      },
       "start": {
-        "value": 54510,
-        "label": "55 ms"
+        "value": 20610,
+        "label": "21 ms"
       },
       "toolCall": {
-        "value": 222.39,
-        "label": "222 µs"
+        "value": 48.68,
+        "label": "49 µs"
+      },
+      "compute": {
+        "value": 19.26,
+        "label": "19 ms"
       }
     },
     {
@@ -395,13 +599,21 @@
         "value": 15072461,
         "label": "14 MiB"
       },
+      "density": {
+        "value": 71.23865332940653,
+        "label": "71"
+      },
       "start": {
-        "value": 47260,
-        "label": "47 ms"
+        "value": 38090,
+        "label": "38 ms"
       },
       "toolCall": {
-        "value": 115.78,
-        "label": "116 µs"
+        "value": 52.82,
+        "label": "53 µs"
+      },
+      "compute": {
+        "value": 27.469,
+        "label": "27 ms"
       }
     }
   ]

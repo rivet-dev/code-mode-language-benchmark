@@ -1,0 +1,4 @@
+marketing count=4 avg_salary=65875 names=hal,ivy,pat,quinn
+engineering count=3 avg_salary=112666 names=ana,dev,max
+sales count=3 avg_salary=68166 names=eli,fay,nia
+support count=1 avg_salary=53000 names=lee

@@ -1,0 +1,42 @@
+Write a Lua 5.5 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+For each user ID returned by `list_user_ids`, in that order, look the user up with `get_profile`. If that call fails with code NOT_FOUND, look the user up with `get_legacy_profile` instead: the display name is `<first> <last>` and the email is `mail`, or `-` when mail is nil. If `get_profile` fails with any other code, do not fall back. Print one line per user: `<id> | <display name> | <email> | <source>` where source is `primary` or `legacy`, or `<id> | unresolved | <code of the last error>` when the user could not be resolved. Finish with a line `resolved=<n> unresolved=<m>`.
+
+## Tools
+The script runs with Lua 5.5 and the standard libraries only. The tools are synchronous functions in a global table named `tools`, set up by a prelude before the script starts (no `require` needed). Results are Lua values decoded from JSON: objects become tables with string keys, arrays become sequences starting at index 1, and JSON null becomes nil (the field is absent). If a call fails, the function raises an error whose value is a table with string fields `code` and `message`; catch it with `pcall`.
+
+```lua
+---@class Profile
+---@field id string
+---@field display_name string
+---@field email string
+
+---@class Name
+---@field first string
+---@field last string
+
+---@class LegacyProfile
+---@field uid string
+---@field name Name
+---@field mail string|nil
+
+---IDs of the users to resolve.
+---@return string[]
+function tools.list_user_ids() end
+
+---Looks a user up in the primary directory. Fails with code NOT_FOUND if the user is not there, or with another code (for example PERMISSION_DENIED).
+---@param user_id string
+---@return Profile
+function tools.get_profile(user_id) end
+
+---Looks a user up in the legacy directory. Fails with code NOT_FOUND if the user is not there.
+---@param user_id string
+---@return LegacyProfile
+function tools.get_legacy_profile(user_id) end
+```
+
+## Output
+Print the final answer to stdout (for example with `print` or `io.write`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

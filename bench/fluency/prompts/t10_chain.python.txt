@@ -1,0 +1,25 @@
+Write a Python 3.15 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+For each task ID returned by `list_open_tasks`, in that order, build its breadcrumb by following parent_id links up to the root task (one whose parent_id is None). Print one line per open task: `<id>: <titles from the root down to the task, joined with ' > '>`. Each task may be fetched with `get_task` at most once per run, so reuse results you already have.
+
+## Tools
+The script runs as `python3 script.py` with Python 3.15 and the standard library only. The tools are synchronous functions in a module named `tools`, which is already on the import path (`import tools`). Results are plain Python values decoded from JSON. If a call fails, the function raises `tools.ToolError`, an `Exception` subclass with string attributes `code` and `message`.
+
+```python
+class Task(TypedDict):
+    id: str
+    title: str
+    parent_id: str | None  # None for a root task
+
+def list_open_tasks() -> list[str]:
+    """IDs of the open tasks."""
+
+def get_task(task_id: str) -> Task:
+    """Fetches one task. Fetching the same task a second time in a run fails with code DUPLICATE_REQUEST."""
+```
+
+## Output
+Print the final answer to stdout (for example with `print`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

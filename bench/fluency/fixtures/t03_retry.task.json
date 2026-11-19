@@ -1,0 +1,32 @@
+{
+ "id": "t03_retry",
+ "text": "Fetch the metrics `cpu`, `mem`, `disk`, `net` and `gpu`. A call that fails with code UNAVAILABLE is transient and may succeed if repeated: retry it immediately, making at most 4 attempts in total for that metric. Any other error code is permanent: do not retry it. Print one line per metric in the order listed above: `<name> ok <value> attempts=<n>` if it succeeded, or `<name> failed <code> attempts=<n>` if it did not, where n is the number of calls made for that metric. Finish with a line `total=<sum of the values of the metrics that succeeded>`.",
+ "tools": [
+  [
+   "fetch_metric",
+   [
+    [
+     "name",
+     "str"
+    ]
+   ],
+   "MetricValue",
+   "Reads the current value of a named metric. Fails with code UNAVAILABLE (transient) or NOT_FOUND (permanent)."
+  ]
+ ],
+ "types": {
+  "MetricValue": [
+   [
+    "name",
+    "str",
+    ""
+   ],
+   [
+    "value",
+    "int",
+    ""
+   ]
+  ]
+ },
+ "expected": "cpu ok 37 attempts=1\nmem ok 512 attempts=3\ndisk failed UNAVAILABLE attempts=4\nnet failed NOT_FOUND attempts=1\ngpu ok 88 attempts=4\ntotal=637"
+}

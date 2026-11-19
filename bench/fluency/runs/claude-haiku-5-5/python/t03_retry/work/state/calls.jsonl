@@ -1,0 +1,13 @@
+{"t": 1795122406.4001427, "tool": "fetch_metric", "args": ["cpu"]}
+{"t": 1795122406.4286394, "tool": "fetch_metric", "args": ["mem"]}
+{"t": 1795122406.4542272, "tool": "fetch_metric", "args": ["mem"]}
+{"t": 1795122406.4804666, "tool": "fetch_metric", "args": ["mem"]}
+{"t": 1795122406.5044892, "tool": "fetch_metric", "args": ["disk"]}
+{"t": 1795122406.5284734, "tool": "fetch_metric", "args": ["disk"]}
+{"t": 1795122406.5532727, "tool": "fetch_metric", "args": ["disk"]}
+{"t": 1795122406.5790632, "tool": "fetch_metric", "args": ["disk"]}
+{"t": 1795122406.6045935, "tool": "fetch_metric", "args": ["net"]}
+{"t": 1795122406.6304324, "tool": "fetch_metric", "args": ["gpu"]}
+{"t": 1795122406.6556742, "tool": "fetch_metric", "args": ["gpu"]}
+{"t": 1795122406.6805193, "tool": "fetch_metric", "args": ["gpu"]}
+{"t": 1795122406.705212, "tool": "fetch_metric", "args": ["gpu"]}

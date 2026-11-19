@@ -1,0 +1,6 @@
+lodging 562.09
+meals 92.40
+software 168.73
+travel 574.68
+TOTAL 1397.91
+MAX e1 387.47

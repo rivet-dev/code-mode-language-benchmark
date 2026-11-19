@@ -1,0 +1,31 @@
+Write a Lua 5.5 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+Consider only employees who are active and were hired on or after 2021-01-01. Group them by department. Print one line per department that has at least one such employee, sorted by the number of employees descending, then by department name ascending:
+`<dept> count=<n> avg_salary=<average salary rounded down to an integer> names=<their names sorted alphabetically, joined with commas>`
+
+Example of the format (made-up values):
+```
+legal count=2 avg_salary=70500 names=ann,bo
+```
+
+## Tools
+The script runs with Lua 5.5 and the standard libraries only. The tools are synchronous functions in a global table named `tools`, set up by a prelude before the script starts (no `require` needed). Results are Lua values decoded from JSON: objects become tables with string keys, arrays become sequences starting at index 1, and JSON null becomes nil (the field is absent). If a call fails, the function raises an error whose value is a table with string fields `code` and `message`; catch it with `pcall`.
+
+```lua
+---@class Employee
+---@field name string
+---@field dept string
+---@field salary integer
+---@field active boolean
+---@field hired string date, YYYY-MM-DD
+
+---All employee records, in no particular order.
+---@return Employee[]
+function tools.list_employees() end
+```
+
+## Output
+Print the final answer to stdout (for example with `print` or `io.write`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

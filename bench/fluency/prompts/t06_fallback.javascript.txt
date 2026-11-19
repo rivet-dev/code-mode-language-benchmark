@@ -1,0 +1,40 @@
+Write a JavaScript (Node.js 22) script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+For each user ID returned by `list_user_ids`, in that order, look the user up with `get_profile`. If that call fails with code NOT_FOUND, look the user up with `get_legacy_profile` instead: the display name is `<first> <last>` and the email is `mail`, or `-` when mail is null. If `get_profile` fails with any other code, do not fall back. Print one line per user: `<id> | <display name> | <email> | <source>` where source is `primary` or `legacy`, or `<id> | unresolved | <code of the last error>` when the user could not be resolved. Finish with a line `resolved=<n> unresolved=<m>`.
+
+## Tools
+The script runs as an ES module with Node.js 22 (`node script.mjs`), so top-level `await` works; only built-in Node modules are available. The tools are async functions on a global object named `tools` (no import needed); each returns a Promise. Results are plain JavaScript values decoded from JSON. If a call fails, its Promise rejects with a `ToolError` (a global `Error` subclass) that has string properties `code` and `message`.
+
+```ts
+type Profile = {
+  id: string;
+  display_name: string;
+  email: string;
+};
+
+type Name = {
+  first: string;
+  last: string;
+};
+
+type LegacyProfile = {
+  uid: string;
+  name: Name;
+  mail: string | null;
+};
+
+/** IDs of the users to resolve. */
+tools.list_user_ids(): Promise<string[]>;
+
+/** Looks a user up in the primary directory. Fails with code NOT_FOUND if the user is not there, or with another code (for example PERMISSION_DENIED). */
+tools.get_profile(user_id: string): Promise<Profile>;
+
+/** Looks a user up in the legacy directory. Fails with code NOT_FOUND if the user is not there. */
+tools.get_legacy_profile(user_id: string): Promise<LegacyProfile>;
+```
+
+## Output
+Print the final answer to stdout (for example with `console.log`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

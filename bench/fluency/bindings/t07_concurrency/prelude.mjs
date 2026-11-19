@@ -1,0 +1,9 @@
+import { execFile } from 'node:child_process';
+class ToolError extends Error { constructor(code, message) { super(message); this.name = 'ToolError'; this.code = code; } }
+const call = (name, args) => new Promise((res, rej) => execFile("/home/linuxbrew/.linuxbrew/opt/python@3.15/bin/python3.15", ['-I', '-S', "bench/fluency/toolhost.py", 'envelope', name, JSON.stringify(args.map(a => a === undefined ? null : a))], (err, out) => {
+  if (err && !out) return rej(err); const e = JSON.parse(out); e.ok ? res(e.value) : rej(new ToolError(e.error.code, e.error.message)); }));
+globalThis.ToolError = ToolError;
+globalThis.tools = {
+  list_hosts: (...a) => call('list_hosts', a),
+  probe: (...a) => call('probe', a),
+};

@@ -1,0 +1,24 @@
+{
+ "metrics": {
+  "cpu": [
+   37
+  ],
+  "mem": [
+   "UNAVAILABLE",
+   "UNAVAILABLE",
+   512
+  ],
+  "disk": [
+   "UNAVAILABLE"
+  ],
+  "net": [
+   "NOT_FOUND"
+  ],
+  "gpu": [
+   "UNAVAILABLE",
+   "UNAVAILABLE",
+   "UNAVAILABLE",
+   88
+  ]
+ }
+}

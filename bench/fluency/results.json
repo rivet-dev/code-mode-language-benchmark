@@ -1,0 +1,121 @@
+{
+ "measuredAt": "2026-11-19T21:06:50+00:00",
+ "models": [
+  "claude-haiku-5-5"
+ ],
+ "entries": [
+  {
+   "language": "python",
+   "model": "claude-haiku-5-5",
+   "samples": 10,
+   "successes": 10,
+   "rate": 1.0,
+   "wilsonLow": 0.7225,
+   "wilsonHigh": 1.0,
+   "failureCounts": {
+    "syntax_error": 0,
+    "runtime_error": 0,
+    "wrong_answer": 0,
+    "timeout": 0,
+    "no_code_block": 0
+   },
+   "perTask": {
+    "t01_fanout": "success",
+    "t02_paginate": "success",
+    "t03_retry": "success",
+    "t04_group": "success",
+    "t05_report": "success",
+    "t06_fallback": "success",
+    "t07_concurrency": "success",
+    "t08_arithmetic": "success",
+    "t09_parse": "success",
+    "t10_chain": "success"
+   }
+  },
+  {
+   "language": "javascript",
+   "model": "claude-haiku-5-5",
+   "samples": 10,
+   "successes": 10,
+   "rate": 1.0,
+   "wilsonLow": 0.7225,
+   "wilsonHigh": 1.0,
+   "failureCounts": {
+    "syntax_error": 0,
+    "runtime_error": 0,
+    "wrong_answer": 0,
+    "timeout": 0,
+    "no_code_block": 0
+   },
+   "perTask": {
+    "t01_fanout": "success",
+    "t02_paginate": "success",
+    "t03_retry": "success",
+    "t04_group": "success",
+    "t05_report": "success",
+    "t06_fallback": "success",
+    "t07_concurrency": "success",
+    "t08_arithmetic": "success",
+    "t09_parse": "success",
+    "t10_chain": "success"
+   }
+  },
+  {
+   "language": "lua",
+   "model": "claude-haiku-5-5",
+   "samples": 10,
+   "successes": 10,
+   "rate": 1.0,
+   "wilsonLow": 0.7225,
+   "wilsonHigh": 1.0,
+   "failureCounts": {
+    "syntax_error": 0,
+    "runtime_error": 0,
+    "wrong_answer": 0,
+    "timeout": 0,
+    "no_code_block": 0
+   },
+   "perTask": {
+    "t01_fanout": "success",
+    "t02_paginate": "success",
+    "t03_retry": "success",
+    "t04_group": "success",
+    "t05_report": "success",
+    "t06_fallback": "success",
+    "t07_concurrency": "success",
+    "t08_arithmetic": "success",
+    "t09_parse": "success",
+    "t10_chain": "success"
+   }
+  },
+  {
+   "language": "bash",
+   "model": "claude-haiku-5-5",
+   "samples": 10,
+   "successes": 10,
+   "rate": 1.0,
+   "wilsonLow": 0.7225,
+   "wilsonHigh": 1.0,
+   "failureCounts": {
+    "syntax_error": 0,
+    "runtime_error": 0,
+    "wrong_answer": 0,
+    "timeout": 0,
+    "no_code_block": 0
+   },
+   "perTask": {
+    "t01_fanout": "success",
+    "t02_paginate": "success",
+    "t03_retry": "success",
+    "t04_group": "success",
+    "t05_report": "success",
+    "t06_fallback": "success",
+    "t07_concurrency": "success",
+    "t08_arithmetic": "success",
+    "t09_parse": "success",
+    "t10_chain": "success"
+   }
+  }
+ ],
+ "notes": "Small sample: 1 model (claude-haiku-5-5), 10 tasks x 1 sample = 10 generations per language, 40 total (scope cut from the planned 240 by a hard deadline). All 40 scripts passed, so this is a ceiling effect: the run cannot rank the languages. Wilson 95% intervals at 10/10 are [0.72, 1.00] for every language, so true rates anywhere from about 72% to 100% are consistent with the data. Each generation ran via `claude -p` with --tools \"\", --strict-mcp-config, --setting-sources \"\", a one-line system prompt, --no-session-persistence and CLAUDE_CODE_DISABLE_AUTO_MEMORY=1, from an empty cwd (a smoke test showed ~755 input tokens, no CLAUDE.md). Success = exact match of stripped stdout within a 10 s timeout. Tools are one Python mock host invoked per call by every binding, so fixtures, errors and state (retry counters, the concurrency cap, duplicate-fetch detection) are identical across languages. Fairness caveats: Lua has no native concurrency, so the concurrency task degrades to sequential calls there (the prompt allows this; the Python, JavaScript and bash scripts each reached exactly 3 calls in flight, Lua ran 1 at a time); bash gets jq and parses JSON on stdout plus error JSON on stderr, while the others get decoded values and exceptions; bash's no-other-interpreters rule is stated in the prompt, not enforced by PATH (no generated bash script used one). Luau was skipped (no luau CLI installed, and the cut scope excluded it)."
+}

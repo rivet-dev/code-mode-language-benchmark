@@ -1,0 +1,40 @@
+Write a Lua 5.5 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+Fetch invoice `INV-2041` and print it in exactly this layout. Line 1: `Invoice <id> for <customer>`. Then one line per invoice line: the description left-aligned and padded with spaces to 14 characters, the quantity right-aligned in 3 characters, one space, then the line total (quantity × unit price) in dollars with exactly 2 decimals, right-aligned in 9 characters. Then three summary lines, each with the label left-aligned and padded to 18 characters followed by the amount in dollars with exactly 2 decimals right-aligned in 9 characters: `Subtotal` (sum of line totals), `Tax` (subtotal × tax_bp / 10000, rounded to the nearest cent) and `Total` (subtotal + tax).
+
+Example of the layout (made-up values):
+```
+Invoice INV-1 for Example Co
+Pen             2      2.50
+Paper pack     10     45.00
+Subtotal              47.50
+Tax                    2.38
+Total                 49.88
+```
+
+## Tools
+The script runs with Lua 5.5 and the standard libraries only. The tools are synchronous functions in a global table named `tools`, set up by a prelude before the script starts (no `require` needed). Results are Lua values decoded from JSON: objects become tables with string keys, arrays become sequences starting at index 1, and JSON null becomes nil (the field is absent). If a call fails, the function raises an error whose value is a table with string fields `code` and `message`; catch it with `pcall`.
+
+```lua
+---@class InvoiceLine
+---@field description string
+---@field quantity integer
+---@field unit_price_cents integer
+
+---@class Invoice
+---@field id string
+---@field customer string
+---@field tax_bp integer tax rate in basis points: 825 means 8.25%
+---@field lines InvoiceLine[]
+
+---Fetches one invoice. Fails with code NOT_FOUND for an unknown id.
+---@param invoice_id string
+---@return Invoice
+function tools.get_invoice(invoice_id) end
+```
+
+## Output
+Print the final answer to stdout (for example with `print` or `io.write`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

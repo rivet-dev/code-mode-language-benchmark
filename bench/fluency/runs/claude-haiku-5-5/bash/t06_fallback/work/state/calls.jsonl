@@ -1,0 +1,10 @@
+{"t": 1795122406.5665076, "tool": "list_user_ids", "args": []}
+{"t": 1795122406.6056125, "tool": "get_profile", "args": ["u-101"]}
+{"t": 1795122406.6471438, "tool": "get_profile", "args": ["u-102"]}
+{"t": 1795122406.6883538, "tool": "get_legacy_profile", "args": ["u-102"]}
+{"t": 1795122406.728071, "tool": "get_profile", "args": ["u-103"]}
+{"t": 1795122406.7662892, "tool": "get_profile", "args": ["u-104"]}
+{"t": 1795122406.8055952, "tool": "get_legacy_profile", "args": ["u-104"]}
+{"t": 1795122406.8458166, "tool": "get_profile", "args": ["u-105"]}
+{"t": 1795122406.882143, "tool": "get_legacy_profile", "args": ["u-105"]}
+{"t": 1795122406.9243727, "tool": "get_profile", "args": ["u-106"]}

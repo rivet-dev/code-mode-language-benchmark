@@ -1,0 +1,32 @@
+Write a bash 5.2 script for the task below. The script runs non-interactively and calls host-provided tools ("code mode").
+
+## Task
+Fetch invoice `INV-2041` and print it in exactly this layout. Line 1: `Invoice <id> for <customer>`. Then one line per invoice line: the description left-aligned and padded with spaces to 14 characters, the quantity right-aligned in 3 characters, one space, then the line total (quantity × unit price) in dollars with exactly 2 decimals, right-aligned in 9 characters. Then three summary lines, each with the label left-aligned and padded to 18 characters followed by the amount in dollars with exactly 2 decimals right-aligned in 9 characters: `Subtotal` (sum of line totals), `Tax` (subtotal × tax_bp / 10000, rounded to the nearest cent) and `Total` (subtotal + tax).
+
+Example of the layout (made-up values):
+```
+Invoice INV-1 for Example Co
+Pen             2      2.50
+Paper pack     10     45.00
+Subtotal              47.50
+Tax                    2.38
+Total                 49.88
+```
+
+## Tools
+The script runs as `bash script.sh` with GNU bash 5.2. Besides bash builtins you may use standard command-line utilities (coreutils, grep, sed, awk) and jq 1.7; do not run other language interpreters such as python, perl or node. Each tool is a command on PATH that takes its parameters as positional arguments. On success it prints its result as one line of JSON to stdout and exits with status 0. On failure it prints nothing to stdout, prints one line of JSON `{"code": "...", "message": "..."}` to stderr, and exits with status 1.
+
+```text
+InvoiceLine: {"description": string, "quantity": integer, "unit_price_cents": integer}
+
+Invoice: {"id": string, "customer": string, "tax_bp": integer (tax rate in basis points: 825 means 8.25%), "lines": array of InvoiceLine}
+
+get_invoice INVOICE_ID
+    Fetches one invoice. Fails with code NOT_FOUND for an unknown id.
+    Prints: Invoice (JSON)
+```
+
+## Output
+Print the final answer to stdout (for example with `echo` or `printf`), and nothing else. Output written to stderr is ignored. Surrounding whitespace is ignored; everything else must match exactly. The script is killed after 10 seconds.
+
+Reply with only the complete script in a single fenced code block.

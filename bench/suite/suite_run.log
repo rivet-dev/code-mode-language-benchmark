@@ -1,0 +1,8 @@
+node: {"startMs":33.25,"memory":{"ussBytes":7368704,"pssBytes":9111552},"toolCall":{"wallUs":31.82,"batchWallUs":33.97,"cpuUs":42.58,"hostCpuUs":19.38,"sandboxCpuUs":23.2}}
+deno: {"startMs":38.09,"memory":{"ussBytes":13803520,"pssBytes":16385024},"toolCall":{"wallUs":52.82,"batchWallUs":55.26,"cpuUs":80.71,"hostCpuUs":18.11,"sandboxCpuUs":62.6}}
+bun: {"startMs":20.61,"memory":{"ussBytes":7208960,"pssBytes":8586240},"toolCall":{"wallUs":48.68,"batchWallUs":70.52,"cpuUs":139.16,"hostCpuUs":24.16,"sandboxCpuUs":115}}
+python: {"startMs":16.91,"memory":{"ussBytes":3403776,"pssBytes":3641344},"toolCall":{"wallUs":33.19,"batchWallUs":35.31,"cpuUs":41.05,"hostCpuUs":20.85,"sandboxCpuUs":20.2}}
+lua: {"startMs":2.39,"memory":{"ussBytes":159744,"pssBytes":189440},"toolCall":{"wallUs":28.22,"batchWallUs":29.19,"cpuUs":33.92,"hostCpuUs":21.52,"sandboxCpuUs":12.4}}
+luajit: {"startMs":2.6,"memory":{"ussBytes":188416,"pssBytes":235520},"toolCall":{"wallUs":27.75,"batchWallUs":28.58,"cpuUs":31.23,"hostCpuUs":20.23,"sandboxCpuUs":11}}
+bash: {"startMs":3.33,"memory":{"ussBytes":294912,"pssBytes":353280},"toolCall":{"wallUs":75.61,"batchWallUs":77.46,"cpuUs":84.87,"hostCpuUs":22.07,"sandboxCpuUs":62.8}}
+dash: {"startMs":2.28,"memory":{"ussBytes":122880,"pssBytes":140288},"toolCall":{"wallUs":54.85,"batchWallUs":56.23,"cpuUs":61.7,"hostCpuUs":20.5,"sandboxCpuUs":41.2}}

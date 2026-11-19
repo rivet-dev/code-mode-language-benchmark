@@ -1,0 +1,6 @@
+cpu ok 37 attempts=1
+mem ok 512 attempts=3
+disk failed UNAVAILABLE attempts=4
+net failed NOT_FOUND attempts=1
+gpu ok 88 attempts=4
+total=637

@@ -1,0 +1,49 @@
+{
+ "users": [
+  "u-101",
+  "u-102",
+  "u-103",
+  "u-104",
+  "u-105",
+  "u-106"
+ ],
+ "primary": {
+  "u-101": {
+   "id": "u-101",
+   "display_name": "Ada Park",
+   "email": "ada@example.com"
+  },
+  "u-103": "PERMISSION_DENIED",
+  "u-106": {
+   "id": "u-106",
+   "display_name": "Eun Cho",
+   "email": "eun@example.com"
+  }
+ },
+ "legacy": {
+  "u-102": {
+   "uid": "u-102",
+   "name": {
+    "first": "Ben",
+    "last": "Ortiz"
+   },
+   "mail": "bortiz@legacy.example"
+  },
+  "u-103": {
+   "uid": "u-103",
+   "name": {
+    "first": "Cy",
+    "last": "Lam"
+   },
+   "mail": "cy@legacy.example"
+  },
+  "u-105": {
+   "uid": "u-105",
+   "name": {
+    "first": "Dee",
+    "last": "Shah"
+   },
+   "mail": null
+  }
+ }
+}

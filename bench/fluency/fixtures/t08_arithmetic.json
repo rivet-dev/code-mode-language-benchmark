@@ -1,0 +1,70 @@
+{
+ "rates": {
+  "USD": 1.0842,
+  "GBP": 0.8571,
+  "JPY": 162.37,
+  "CHF": 0.9468
+ },
+ "expenses": [
+  {
+   "id": "e1",
+   "category": "travel",
+   "amount": 420.1,
+   "currency": "USD"
+  },
+  {
+   "id": "e2",
+   "category": "meals",
+   "amount": 38.5,
+   "currency": "EUR"
+  },
+  {
+   "id": "e3",
+   "category": "travel",
+   "amount": 15800,
+   "currency": "JPY"
+  },
+  {
+   "id": "e4",
+   "category": "lodging",
+   "amount": 310.4,
+   "currency": "GBP"
+  },
+  {
+   "id": "e5",
+   "category": "meals",
+   "amount": 42.75,
+   "currency": "USD"
+  },
+  {
+   "id": "e6",
+   "category": "lodging",
+   "amount": 189.3,
+   "currency": "CHF"
+  },
+  {
+   "id": "e7",
+   "category": "travel",
+   "amount": 89.9,
+   "currency": "EUR"
+  },
+  {
+   "id": "e8",
+   "category": "software",
+   "amount": 120.2,
+   "currency": "USD"
+  },
+  {
+   "id": "e9",
+   "category": "meals",
+   "amount": 2350,
+   "currency": "JPY"
+  },
+  {
+   "id": "e10",
+   "category": "software",
+   "amount": 49.6,
+   "currency": "GBP"
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "employees": [
+  {
+   "name": "max",
+   "dept": "engineering",
+   "salary": 131000,
+   "active": true,
+   "hired": "2024-10-05"
+  },
+  {
+   "name": "ben",
+   "dept": "engineering",
+   "salary": 98000,
+   "active": true,
+   "hired": "2020-11-30"
+  },
+  {
+   "name": "pat",
+   "dept": "marketing",
+   "salary": 61000,
+   "active": true,
+   "hired": "2022-11-11"
+  },
+  {
+   "name": "ana",
+   "dept": "engineering",
+   "salary": 120000,
+   "active": true,
+   "hired": "2021-03-15"
+  },
+  {
+   "name": "cara",
+   "dept": "engineering",
+   "salary": 105000,
+   "active": false,
+   "hired": "2022-01-10"
+  },
+  {
+   "name": "nia",
+   "dept": "sales",
+   "salary": 69500,
+   "active": true,
+   "hired": "2023-12-12"
+  },
+  {
+   "name": "eli",
+   "dept": "sales",
+   "salary": 64000,
+   "active": true,
+   "hired": "2021-01-01"
+  },
+  {
+   "name": "fay",
+   "dept": "sales",
+   "salary": 71000,
+   "active": true,
+   "hired": "2022-08-19"
+  },
+  {
+   "name": "gus",
+   "dept": "sales",
+   "salary": 59000,
+   "active": true,
+   "hired": "2019-05-05"
+  },
+  {
+   "name": "ivy",
+   "dept": "marketing",
+   "salary": 72000,
+   "active": true,
+   "hired": "2021-07-07"
+  },
+  {
+   "name": "hal",
+   "dept": "marketing",
+   "salary": 66000,
+   "active": true,
+   "hired": "2024-02-29"
+  },
+  {
+   "name": "jon",
+   "dept": "marketing",
+   "salary": 58000,
+   "active": false,
+   "hired": "2023-03-03"
+  },
+  {
+   "name": "kim",
+   "dept": "support",
+   "salary": 51000,
+   "active": true,
+   "hired": "2020-12-31"
+  },
+  {
+   "name": "lee",
+   "dept": "support",
+   "salary": 53000,
+   "active": true,
+   "hired": "2025-01-20"
+  },
+  {
+   "name": "dev",
+   "dept": "engineering",
+   "salary": 87000,
+   "active": true,
+   "hired": "2023-06-01"
+  },
+  {
+   "name": "oli",
+   "dept": "finance",
+   "salary": 90000,
+   "active": false,
+   "hired": "2022-02-02"
+  },
+  {
+   "name": "quinn",
+   "dept": "marketing",
+   "salary": 64500,
+   "active": true,
+   "hired": "2021-09-09"
+  }
+ ]
+}
