@@ -1,0 +1,59 @@
+{
+  "harness": "process-memory",
+  "startedAt": "2026-11-19T21:59:53.936Z",
+  "finishedAt": "2026-11-19T21:59:59.354Z",
+  "loadAverage": {
+    "start": [
+      11.38,
+      11.15,
+      9.54
+    ],
+    "end": [
+      10.71,
+      11.02,
+      9.5
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:59:54.032Z",
+    "cgroup": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/app.slice/run-p2348185-i31678592.scope",
+    "sandboxes": 20,
+    "rounds": 3,
+    "runtimes": {
+      "bash": {
+        "bytesPerSandbox": 429466,
+        "rounds": [
+          517734,
+          429466,
+          409600
+        ],
+        "lastRoundComposition": {
+          "anon": 313139,
+          "file": 0,
+          "kernel": 110797,
+          "kernel_stack": 16384,
+          "pagetables": 54682,
+          "slab": 29952,
+          "sock": 0
+        }
+      },
+      "dash": {
+        "bytesPerSandbox": 248218,
+        "rounds": [
+          248218,
+          317645,
+          218112
+        ],
+        "lastRoundComposition": {
+          "anon": 3277,
+          "file": 0,
+          "kernel": -1024,
+          "kernel_stack": 0,
+          "pagetables": 1024,
+          "slab": 22,
+          "sock": 0
+        }
+      }
+    }
+  }
+}

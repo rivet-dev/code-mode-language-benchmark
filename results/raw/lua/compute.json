@@ -1,0 +1,104 @@
+{
+  "harness": "compute",
+  "startedAt": "2026-11-19T21:58:05.552Z",
+  "finishedAt": "2026-11-19T21:58:07.049Z",
+  "loadAverage": {
+    "start": [
+      10.73,
+      10.88,
+      9.24
+    ],
+    "end": [
+      11.15,
+      10.96,
+      9.28
+    ]
+  },
+  "output": {
+    "dataset": {
+      "records": 20000,
+      "bytes": 3122785,
+      "sha256": "1ea0852b4e5f526fefbd38c731561b844f1552aee7214946ac0c51fc4dccf48e",
+      "seed": 20261119,
+      "generator": "gen_data.mjs (mulberry32)",
+      "expectedResultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158"
+    },
+    "method": {
+      "warmupRuns": 2,
+      "measuredRuns": 7,
+      "median": "middle value (mean of the two middle for even counts)",
+      "p90": "nearest rank",
+      "checksum": "sha256 of a canonical form of the returned JSON (sorted region keys, revenues as integer cents, top-5 order kept), compared against an exact integer-cents reference"
+    },
+    "entries": {
+      "lua": {
+        "medianMs": 117.175,
+        "p90Ms": 163.05,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          117.175,
+          99.255,
+          101.763,
+          144.401,
+          123.365,
+          163.05,
+          64.589
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:05.552Z",
+          "load": [
+            10.73,
+            10.88,
+            9.24
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:06.555Z",
+          "load": [
+            11.15,
+            10.96,
+            9.28
+          ]
+        }
+      },
+      "luajit": {
+        "medianMs": 51.38,
+        "p90Ms": 52.885,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          52.885,
+          46.542,
+          51.38,
+          51.514,
+          45.765,
+          50.557,
+          52.866
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:06.556Z",
+          "load": [
+            11.15,
+            10.96,
+            9.28
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:07.049Z",
+          "load": [
+            11.15,
+            10.96,
+            9.28
+          ]
+        }
+      }
+    }
+  }
+}

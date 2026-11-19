@@ -1,0 +1,74 @@
+{
+  "harness": "process-suite",
+  "startedAt": "2026-11-19T21:58:21.534Z",
+  "finishedAt": "2026-11-19T21:58:41.750Z",
+  "loadAverage": {
+    "start": [
+      11.84,
+      11.13,
+      9.36
+    ],
+    "end": [
+      11.84,
+      11.17,
+      9.41
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:21.572Z",
+    "loadAverageBefore": [
+      11.84,
+      11.13,
+      9.36
+    ],
+    "runtimes": {
+      "node": {
+        "startMs": 32.01,
+        "memory": {
+          "ussBytes": 7360512,
+          "pssBytes": 8892416
+        },
+        "toolCall": {
+          "wallUs": 37.14,
+          "batchWallUs": 39.83,
+          "cpuUs": 48.42,
+          "hostCpuUs": 22.42,
+          "sandboxCpuUs": 26
+        }
+      },
+      "deno": {
+        "startMs": 38.9,
+        "memory": {
+          "ussBytes": 13799424,
+          "pssBytes": 16435200
+        },
+        "toolCall": {
+          "wallUs": 65.82,
+          "batchWallUs": 73.01,
+          "cpuUs": 102.15,
+          "hostCpuUs": 22.15,
+          "sandboxCpuUs": 80
+        }
+      },
+      "bun": {
+        "startMs": 19.19,
+        "memory": {
+          "ussBytes": 7188480,
+          "pssBytes": 8557568
+        },
+        "toolCall": {
+          "wallUs": 59.41,
+          "batchWallUs": 82.47,
+          "cpuUs": 151.63,
+          "hostCpuUs": 25.23,
+          "sandboxCpuUs": 126.4
+        }
+      }
+    },
+    "loadAverageAfter": [
+      11.84,
+      11.17,
+      9.41
+    ]
+  }
+}

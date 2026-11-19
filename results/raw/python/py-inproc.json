@@ -1,0 +1,44 @@
+{
+  "harness": "py-inproc",
+  "startedAt": "2026-11-19T21:58:58.369Z",
+  "finishedAt": "2026-11-19T21:59:21.064Z",
+  "loadAverage": {
+    "start": [
+      11.88,
+      11.21,
+      9.46
+    ],
+    "end": [
+      10.8,
+      11,
+      9.43
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:58.407Z",
+    "loadAverage": [
+      11.88,
+      11.21,
+      9.46
+    ],
+    "node": "v22.23.1",
+    "micropython": {
+      "startMs": 4.14,
+      "memoryBytesPerInstance": 327066,
+      "toolCall": {
+        "wallUs": 43.45,
+        "cpuUs": 70.07
+      }
+    },
+    "pyodide": {
+      "version": "314.0.8",
+      "startMs": 1643.87,
+      "snapshotStartMs": 152,
+      "memoryBytesPerInstance": 25063424,
+      "toolCall": {
+        "wallUs": 64.44,
+        "cpuUs": 88.01
+      }
+    }
+  }
+}

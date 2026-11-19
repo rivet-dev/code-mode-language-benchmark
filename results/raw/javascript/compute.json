@@ -1,0 +1,206 @@
+{
+  "harness": "compute",
+  "startedAt": "2026-11-19T21:58:55.442Z",
+  "finishedAt": "2026-11-19T21:58:58.300Z",
+  "loadAverage": {
+    "start": [
+      11.87,
+      11.2,
+      9.44
+    ],
+    "end": [
+      11.88,
+      11.21,
+      9.46
+    ]
+  },
+  "output": {
+    "dataset": {
+      "records": 20000,
+      "bytes": 3122785,
+      "sha256": "1ea0852b4e5f526fefbd38c731561b844f1552aee7214946ac0c51fc4dccf48e",
+      "seed": 20261119,
+      "generator": "gen_data.mjs (mulberry32)",
+      "expectedResultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158"
+    },
+    "method": {
+      "warmupRuns": 2,
+      "measuredRuns": 7,
+      "median": "middle value (mean of the two middle for even counts)",
+      "p90": "nearest rank",
+      "checksum": "sha256 of a canonical form of the returned JSON (sorted region keys, revenues as integer cents, top-5 order kept), compared against an exact integer-cents reference"
+    },
+    "entries": {
+      "quickjs": {
+        "medianMs": 143.902,
+        "p90Ms": 199.892,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          136.566,
+          143.902,
+          140.58,
+          151.953,
+          150.406,
+          137.645,
+          199.892
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:55.442Z",
+          "load": [
+            11.87,
+            11.2,
+            9.44
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:57.072Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        }
+      },
+      "v8": {
+        "medianMs": 26.086,
+        "p90Ms": 28.088,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          27.727,
+          26.046,
+          28.088,
+          25.249,
+          26.086,
+          27.142,
+          25.763
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:57.074Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:57.412Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        }
+      },
+      "node": {
+        "medianMs": 24.985,
+        "p90Ms": 28.743,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          23.936,
+          24.651,
+          23.723,
+          24.985,
+          26.846,
+          25.719,
+          28.743
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:57.413Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:57.731Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        }
+      },
+      "deno": {
+        "medianMs": 24.904,
+        "p90Ms": 27.568,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          23.719,
+          26.745,
+          24.099,
+          24.592,
+          27.313,
+          24.904,
+          27.568
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:57.732Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:58.054Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        }
+      },
+      "bun": {
+        "medianMs": 20.293,
+        "p90Ms": 28.739,
+        "runs": 7,
+        "warmupRuns": 2,
+        "resultChecksumOk": true,
+        "resultChecksum": "14744fa611e792b9ff58f137124b283e38cf2f209a1e9ae61809c549779fc158",
+        "allRunsIdentical": true,
+        "samplesMs": [
+          21.128,
+          28.739,
+          17.344,
+          16.862,
+          16.78,
+          22.105,
+          20.293
+        ],
+        "started": {
+          "at": "2026-11-19T21:58:58.055Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        },
+        "finished": {
+          "at": "2026-11-19T21:58:58.300Z",
+          "load": [
+            11.88,
+            11.21,
+            9.46
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "harness": "embedded-luajit",
+  "startedAt": "2026-11-19T21:57:54.105Z",
+  "finishedAt": "2026-11-19T21:57:55.164Z",
+  "loadAverage": {
+    "start": [
+      10.51,
+      10.84,
+      9.21
+    ],
+    "end": [
+      10.51,
+      10.84,
+      9.21
+    ]
+  },
+  "output": {
+    "luaVersionNum": 501,
+    "startUs": 28.654,
+    "memoryBytesPerState": 36925,
+    "toolCallWallUs": 0.3121,
+    "toolCallCpuUs": 0.3159,
+    "cgroupBytesPerState": 37119
+  }
+}

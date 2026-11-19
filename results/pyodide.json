@@ -1,0 +1,36 @@
+{
+  "runtime": "pyodide",
+  "label": "Pyodide snapshot",
+  "language": "Python",
+  "group": "embedded",
+  "host": "Node 22.23.1 (pyodide 314.0.8, restored from a memory snapshot)",
+  "version": "Pyodide 314.0.8",
+  "metrics": {
+    "memoryBytes": 46284800,
+    "startMs": 137.19,
+    "toolCallUs": 64.49,
+    "computeMs": 123.53,
+    "instancesPerGiB": 23
+  },
+  "notes": [
+    "Every instance is restored from one 30.00 MiB memory snapshot taken after a fresh load; all instances share one JavaScript realm, so they count as a boundary only with the JavaScript bridge locked down.",
+    "Memory: resident growth of the Node host across 6 live instances, after three forced GCs before and after.",
+    "Start: median of the last 6 of 7 restores, each through runPython(\"1 + 1\").",
+    "Tool call: Python awaits an async host function registered with registerJsModule. Median of per-batch means, 20,000 calls in batches of 500 after 2,000 warm-ups; 74.74 µs of CPU per call.",
+    "Loaded fresh instead of from a snapshot (py_inproc.mjs), start is 1643.87 ms and memory 23.90 MiB per instance.",
+    "Compute: one freshly loaded instance runs the task with the json module's C accelerator; strings cross between JavaScript and Python through Pyodide's automatic conversion."
+  ],
+  "measuredAt": "2026-11-19T21:59:38.690Z",
+  "loadAverage": {
+    "start": [
+      11.88,
+      11.21,
+      9.46
+    ],
+    "end": [
+      12.1,
+      11.27,
+      9.54
+    ]
+  }
+}

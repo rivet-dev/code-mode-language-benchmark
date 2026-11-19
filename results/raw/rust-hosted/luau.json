@@ -1,0 +1,45 @@
+{
+  "harness": "luau",
+  "startedAt": "2026-11-19T21:59:59.969Z",
+  "finishedAt": "2026-11-19T22:00:05.710Z",
+  "loadAverage": {
+    "start": [
+      10.71,
+      11.02,
+      9.5
+    ],
+    "end": [
+      10.65,
+      11,
+      9.5
+    ]
+  },
+  "output": {
+    "key": "luau",
+    "language": "Luau",
+    "crate": "mlua (features luau, vendored)",
+    "version": "0.12.2",
+    "startUs": 89.357,
+    "startRuns": 2000,
+    "memoryBytesPerSession": 194236,
+    "memorySessions": 1000,
+    "memoryStoppedBy": "target",
+    "memoryExtraStackBytes": 0,
+    "toolCallWallUs": 2.0072,
+    "toolCallWallMeanUs": 2.0429,
+    "toolCallSlowestBatchUs": 3.5924,
+    "toolCallCpuUs": 2.0414,
+    "toolCallMeasuredCalls": 1000000,
+    "toolCallWarmupCalls": 100000,
+    "toolCallBatches": 1000,
+    "toolCallBatchSize": 1000,
+    "callKind": "sync",
+    "limitsEnabled": "Lua::new() (ALL_SAFE libs), sandbox(true), set_interrupt (returns Continue), set_memory_limit(64MiB)",
+    "notes": [
+      "Session = Lua::new() + memory limit + interrupt + global call + sandbox(true); call is registered before sandbox(true) so it sits in the read-only globals.",
+      "Host fn is lua.create_function(|lua, Table| -> Table); fields read with Table::get and the reply built with create_table_with_capacity(0, 3), mirroring the C harness's lua_getfield/lua_setfield.",
+      "Bundled Luau from luau0-src 0.22.0+luau740.",
+      "Secondary measurements in the same session (sandbox kept): after remove_interrupt() toolCallWallUs=1.9697, toolCallCpuUs=2.0029; after also set_memory_limit(0) toolCallWallUs=0.6374, toolCallCpuUs=0.6426 (1,000,000 calls each). With a memory limit set, mlua runs each allocating table operation (create_table, set) as a protected call so an allocation failure cannot unwind through Rust."
+    ]
+  }
+}

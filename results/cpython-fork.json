@@ -1,0 +1,34 @@
+{
+  "runtime": "cpython-fork",
+  "label": "CPython fork",
+  "language": "Python",
+  "group": "process",
+  "host": "CPython 3.15.2 (fork_bench.py forks from a warm parent)",
+  "version": "CPython 3.15.2",
+  "metrics": {
+    "memoryBytes": 413696,
+    "startMs": 0.8,
+    "toolCallUs": null,
+    "computeMs": null,
+    "instancesPerGiB": 2595
+  },
+  "notes": [
+    "The parent runs gc.collect() and gc.freeze(), as a zygote would, then forks children that write 1 + 1 to a pipe.",
+    "Memory: cgroup charge per child across 20 live children; USS 268.0 KiB, PSS 610.0 KiB. A child shares its parent's pages until it writes to them, so it grows as a script runs.",
+    "Start: median of 40 forks until the parent reads the answer.",
+    "Tool call and compute are not measured separately: a forked child runs the same interpreter as the CPython row."
+  ],
+  "measuredAt": "2026-11-19T21:59:27.788Z",
+  "loadAverage": {
+    "start": [
+      10.89,
+      11.02,
+      9.45
+    ],
+    "end": [
+      10.89,
+      11.02,
+      9.45
+    ]
+  }
+}

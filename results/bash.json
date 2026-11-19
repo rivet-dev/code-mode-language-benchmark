@@ -1,0 +1,36 @@
+{
+  "runtime": "bash",
+  "label": "bash",
+  "language": "Shell",
+  "group": "process",
+  "host": "Node 22.23.1 (spawns the process and talks to it over stdio)",
+  "version": "bash 5.2.37",
+  "metrics": {
+    "memoryBytes": 429466,
+    "startMs": 3.02,
+    "toolCallUs": 76.54,
+    "computeMs": null,
+    "instancesPerGiB": 2500
+  },
+  "notes": [
+    "Started as bash -c, which echoes $((1 + 1)) and then waits on read.",
+    "Memory: cgroup charge per added process, median of 3 rounds of 20; USS 304.0 KiB, PSS 341.0 KiB.",
+    "Start: median of 40 spawns until the host reads the first line.",
+    "Tool call: guest.sh formats each call with printf and matches the reply's id with a regex. Per-call median over 50,000 calls after 5,000 warm-ups; median of 500-call batches 80.11 µs; 88.93 µs of CPU per call across host and process.",
+    "A shell that calls a tool by running one external command per call (/bin/true) pays 1289.13 µs per call and 1365 µs of CPU, the floor for calling a CLI tool.",
+    "Compute: not applicable, the shell has no JSON parser."
+  ],
+  "measuredAt": "2026-11-19T21:59:59.354Z",
+  "loadAverage": {
+    "start": [
+      12.01,
+      11.26,
+      9.55
+    ],
+    "end": [
+      10.71,
+      11.02,
+      9.5
+    ]
+  }
+}

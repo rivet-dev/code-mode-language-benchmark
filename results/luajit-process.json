@@ -1,0 +1,35 @@
+{
+  "runtime": "luajit-process",
+  "label": "LuaJIT (process)",
+  "language": "Lua",
+  "group": "process",
+  "host": "Node 22.23.1 (spawns the process and talks to it over stdio)",
+  "version": "LuaJIT 2.1.1794214635",
+  "metrics": {
+    "memoryBytes": 327680,
+    "startMs": 3.45,
+    "toolCallUs": 28.52,
+    "computeMs": 51.38,
+    "instancesPerGiB": 3277
+  },
+  "notes": [
+    "Started as luajit -e, which prints 1 + 1 and then waits for stdin to close. Not charted: the C host is how Lua is embedded.",
+    "Memory: cgroup charge per added process, median of 3 rounds of 20; USS 188.0 KiB, PSS 226.0 KiB.",
+    "Start: median of 40 spawns until the host reads the first line.",
+    "Tool call: guest.lua formats each call and pattern-matches the reply's id. Per-call median over 50,000 calls after 5,000 warm-ups; median of 500-call batches 29.76 µs; 33.1 µs of CPU per call across host and process.",
+    "Compute: the luajit CLI running the same task an embedded state would, with lua-cjson 2.1.0.20 built from source; timed with os.clock(), which is process CPU time, because standard Lua has no finer wall clock. The embedded and process rows share this measurement."
+  ],
+  "measuredAt": "2026-11-19T21:58:07.049Z",
+  "loadAverage": {
+    "start": [
+      10.51,
+      10.84,
+      9.21
+    ],
+    "end": [
+      11.15,
+      10.96,
+      9.28
+    ]
+  }
+}

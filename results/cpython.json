@@ -1,0 +1,35 @@
+{
+  "runtime": "cpython",
+  "label": "CPython",
+  "language": "Python",
+  "group": "process",
+  "host": "Node 22.23.1 (spawns the process and talks to it over stdio)",
+  "version": "CPython 3.15.2",
+  "metrics": {
+    "memoryBytes": 3552666,
+    "startMs": 16.09,
+    "toolCallUs": 37.88,
+    "computeMs": 67.64,
+    "instancesPerGiB": 302
+  },
+  "notes": [
+    "Started as python3 -c, which prints 1 + 1 and then reads stdin until it closes.",
+    "Memory: cgroup charge per added process, median of 3 rounds of 20; USS 3.26 MiB, PSS 3.46 MiB.",
+    "Start: median of 40 spawns until the host reads the first line.",
+    "Tool call: guest.py writes each call with json.dumps and reads the reply with readline. Per-call median over 50,000 calls after 5,000 warm-ups; median of 500-call batches 39.85 µs; 44.48 µs of CPU per call across host and process.",
+    "Compute: the loop runs inside python3 -I and is timed with time.perf_counter_ns(); default interpreter settings with the json module's C accelerator."
+  ],
+  "measuredAt": "2026-11-19T21:59:41.802Z",
+  "loadAverage": {
+    "start": [
+      10.89,
+      11.02,
+      9.45
+    ],
+    "end": [
+      12.01,
+      11.26,
+      9.55
+    ]
+  }
+}

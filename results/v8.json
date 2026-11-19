@@ -1,0 +1,36 @@
+{
+  "runtime": "v8",
+  "label": "V8 (isolated-vm)",
+  "language": "JavaScript",
+  "group": "embedded",
+  "host": "Node 22.23.1 (isolated-vm 6.2.0)",
+  "version": "V8 12.4.254.21-node.56",
+  "metrics": {
+    "memoryBytes": 1161953,
+    "startMs": 1.43,
+    "toolCallUs": 7.53,
+    "computeMs": 26.086,
+    "instancesPerGiB": 924
+  },
+  "notes": [
+    "An instance is one isolated-vm Isolate (memoryLimit 128 MB) plus one context, created and evaluating 1 + 1 synchronously.",
+    "Memory: resident growth of the Node host across 200 live instances, after two forced GCs before and after.",
+    "Start: median of 40 creates after 3 warm-ups.",
+    "Tool call: v8_op.mjs. The guest starts each call with a synchronous host call and awaits a promise that the host resolves from the same thread, as deno_core ops do. Median of per-batch means, 20,000 calls in batches of 100 after 2,000 warm-ups; 9.21 µs of CPU per call.",
+    "The same call through isolated-vm's async API costs 40.65 µs (cpu_bench.mjs), and 49.86 µs when the host answers on a later event-loop turn (inproc.mjs); a fully synchronous applySync call costs 4.79 µs.",
+    "Compute: one isolate (memoryLimit 1024 MB) runs the task through applySync; the host times each call, which copies the JSON text in and the result text out."
+  ],
+  "measuredAt": "2026-11-19T21:58:57.412Z",
+  "loadAverage": {
+    "start": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "end": [
+      11.88,
+      11.21,
+      9.46
+    ]
+  }
+}

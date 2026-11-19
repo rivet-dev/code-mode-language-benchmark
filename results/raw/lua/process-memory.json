@@ -1,0 +1,59 @@
+{
+  "harness": "process-memory",
+  "startedAt": "2026-11-19T21:58:00.180Z",
+  "finishedAt": "2026-11-19T21:58:05.544Z",
+  "loadAverage": {
+    "start": [
+      10.79,
+      10.89,
+      9.24
+    ],
+    "end": [
+      10.73,
+      10.88,
+      9.24
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:00.257Z",
+    "cgroup": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/app.slice/run-p2331094-i31661504.scope",
+    "sandboxes": 20,
+    "rounds": 3,
+    "runtimes": {
+      "lua-process": {
+        "bytesPerSandbox": 273818,
+        "rounds": [
+          341811,
+          269722,
+          273818
+        ],
+        "lastRoundComposition": {
+          "anon": 167322,
+          "file": 0,
+          "kernel": 106086,
+          "kernel_stack": 16384,
+          "pagetables": 48128,
+          "slab": 31607,
+          "sock": 0
+        }
+      },
+      "luajit-process": {
+        "bytesPerSandbox": 327680,
+        "rounds": [
+          327680,
+          361062,
+          326451
+        ],
+        "lastRoundComposition": {
+          "anon": 3072,
+          "file": 0,
+          "kernel": -42803,
+          "kernel_stack": 0,
+          "pagetables": -1843,
+          "slab": -1972,
+          "sock": 0
+        }
+      }
+    }
+  }
+}

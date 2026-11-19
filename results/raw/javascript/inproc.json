@@ -1,0 +1,38 @@
+{
+  "harness": "inproc",
+  "startedAt": "2026-11-19T21:58:07.143Z",
+  "finishedAt": "2026-11-19T21:58:10.159Z",
+  "loadAverage": {
+    "start": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "end": [
+      11.15,
+      10.96,
+      9.28
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:07.212Z",
+    "loadAverage": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "node": "v22.23.1",
+    "v8Isolate": {
+      "createMs": 1.43,
+      "memoryBytesPerSession": 1161953,
+      "toolCallUs": 49.86
+    },
+    "quickjsOwnModule": {
+      "compileOnceMs": 1.83,
+      "createMs": 1.13,
+      "memoryBytesPerSession": 276726,
+      "toolCallUs": 34.6,
+      "calls": 19999
+    }
+  }
+}

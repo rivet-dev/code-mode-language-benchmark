@@ -1,0 +1,39 @@
+{
+  "runtime": "steel",
+  "label": "Steel",
+  "language": "Scheme",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (steel-core 0.8.3, release, fat LTO)",
+  "version": "steel-core 0.8.3",
+  "metrics": {
+    "memoryBytes": 12792978,
+    "startMs": 195.77,
+    "toolCallUs": 1.5657,
+    "computeMs": null,
+    "instancesPerGiB": 84
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: Engine::new_sandboxed() (no I/O primitives, dylib loading blocked) with the crate's `sandbox` feature (bounded equality recursion); no instruction or memory limit exists: Engine::with_interrupted stores a flag that the 0.8.3 VM never reads.",
+    "Memory: resident growth across 252 live sessions (stopped by memory budget), measured first in a fresh process.",
+    "Start: median of 49 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 1.5952 µs, slowest batch 2.3872 µs per call; 1.5948 µs of CPU per call.",
+    "Session = Engine::new_sandboxed(): deep-clones a per-thread bootstrap kernel image, builds a macro Kernel, then compiles and runs the prelude; plus register_fn(call). The kernel image itself is built once per thread and is excluded by the warm-up session and warm-up runs.",
+    "Host fn is register_fn(\"call\", fn(SteelVal) -> Result<SteelVal, String>); call and reply are immutable im-rc hash maps keyed by symbols (preallocated on the host side).",
+    "Guest loop is a tail-recursive local function; call_function_by_name_with_args runs it.",
+    "A Steel session deep-clones its bootstrap kernel and compiles its prelude, so sessions are large and slow to create: the memory phase stops at its growth budget well before 1,000 sessions, and the start phase runs only as many creates as fit its time budget.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:01:09.604Z",
+  "loadAverage": {
+    "start": [
+      8.84,
+      10.56,
+      9.39
+    ],
+    "end": [
+      7.14,
+      9.86,
+      9.21
+    ]
+  }
+}

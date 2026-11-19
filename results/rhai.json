@@ -1,0 +1,39 @@
+{
+  "runtime": "rhai",
+  "label": "Rhai",
+  "language": "Rhai",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (rhai 1.27.0, release, fat LTO)",
+  "version": "rhai 1.27.0",
+  "metrics": {
+    "memoryBytes": 226955,
+    "startMs": 0.11362,
+    "toolCallUs": 0.9245,
+    "computeMs": null,
+    "instancesPerGiB": 4731
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: max_operations=1000000000, max_call_levels=64, max_expr_depths=64/32, max_string_size=1MiB, max_array_size=100000, max_map_size=10000, max_variables=1000, max_functions=1000, max_modules=0, DummyModuleResolver (Engine::new installs a FileModuleResolver), print/debug discarded.",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 0.9477 µs, slowest batch 1.8035 µs per call; 0.9462 µs of CPU per call.",
+    "Session = Engine::new() (standard package rebuilt per engine) + limits + registered call + Scope; the engine is not shared across sessions.",
+    "Host fn is register_fn(\"call_tool\", fn(Map) -> Result<Map>); the map argument is moved in, reply map keys are inline SmartStrings.",
+    "Guest is a script function called once with call_fn(run, start, count).",
+    "The host function is named call_tool: `call` is reserved in Rhai for calling function pointers.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:00:08.874Z",
+  "loadAverage": {
+    "start": [
+      10.2,
+      10.9,
+      9.48
+    ],
+    "end": [
+      10.2,
+      10.9,
+      9.48
+    ]
+  }
+}

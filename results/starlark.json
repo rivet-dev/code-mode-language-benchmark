@@ -1,0 +1,39 @@
+{
+  "runtime": "starlark",
+  "label": "Starlark",
+  "language": "Starlark",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (starlark 0.14.2, release, fat LTO)",
+  "version": "starlark 0.14.2",
+  "metrics": {
+    "memoryBytes": 6984,
+    "startMs": 0.00559,
+    "toolCallUs": 0.1869,
+    "computeMs": null,
+    "instancesPerGiB": 153743
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: Evaluator::set_max_callstack_size(100), set_max_heap_size(64MiB, best-effort), set_max_tick_count(1000000000) on every evaluator; Dialect::Standard (no while loops, no recursion); hermetic by design (no I/O builtins).",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 0.1925 µs, slowest batch 0.3004 µs per call; 0.1925 µs of CPU per call.",
+    "Session = Globals (standard + our call module) + Module; an Evaluator is created per evaluation and is not kept. Modules only exist inside Module::with_temp_heap, so the memory phase nests sessions by recursion after pre-touching the stack it uses (memoryExtraStackBytes <= 0 means no stack was counted).",
+    "Host fn is a #[starlark_module] native fn(Value, Heap) -> Value; reply dict keys are static frozen strings.",
+    "starlark-rust only collects garbage between top-level module statements, never inside a function, so the tool-call module is one top-level `run(start, 1000)` statement per batch of 1,000 calls (same session, guest loop in the function body).",
+    "Secondary measurement, the whole loop as a single top-level statement (no GC until it returns; heap limit raised to 4GiB because garbage accumulates): toolCallWallUs=0.4107, toolCallCpuUs=0.4655 over 1000000 calls.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:01:10.601Z",
+  "loadAverage": {
+    "start": [
+      7.14,
+      9.86,
+      9.21
+    ],
+    "end": [
+      7.14,
+      9.86,
+      9.21
+    ]
+  }
+}

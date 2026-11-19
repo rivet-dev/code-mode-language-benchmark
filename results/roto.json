@@ -1,0 +1,39 @@
+{
+  "runtime": "roto",
+  "label": "Roto",
+  "language": "Roto",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (roto 0.13.0, release, fat LTO)",
+  "version": "roto 0.13.0",
+  "metrics": {
+    "memoryBytes": 257122,
+    "startMs": 0.33801,
+    "toolCallUs": 0.0518,
+    "computeMs": null,
+    "instancesPerGiB": 4176
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: none available: Roto has no instruction, time, or memory limit API; it is sandboxed by construction (only registered Rust functions and types are reachable, no I/O in the standard library).",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 0.0523 µs, slowest batch 0.1162 µs per call; 0.0522 µs of CPU per call.",
+    "Roto is statically typed and JIT-compiled with Cranelift, so `1 + 1` means compiling `fn main() -> i64 { 1 + 1 }` to machine code: session = Runtime::from_lib(our library) + compile + call.",
+    "Roto has no maps, and its records cannot be passed to Rust functions, so the call argument is the closest structure: registered Rust types built by host constructors, call(Call.new(id, \"lookup\", Args.new(\"hello from the sandbox\"))). That is three native calls per tool call (two constructors plus call); the reply is a registered Reply type read through native accessor methods (reply.id()).",
+    "Roto has no exceptions, so the guest counts id mismatches and the host asserts zero.",
+    "The tool-call loop is compiled machine code making three direct native calls per iteration, so it measures Roto's FFI and native-call cost rather than an interpreter.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:00:22.201Z",
+  "loadAverage": {
+    "start": [
+      9.18,
+      10.66,
+      9.41
+    ],
+    "end": [
+      8.84,
+      10.56,
+      9.39
+    ]
+  }
+}

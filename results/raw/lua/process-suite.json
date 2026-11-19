@@ -1,0 +1,60 @@
+{
+  "harness": "process-suite",
+  "startedAt": "2026-11-19T21:57:55.165Z",
+  "finishedAt": "2026-11-19T21:58:00.179Z",
+  "loadAverage": {
+    "start": [
+      10.51,
+      10.84,
+      9.21
+    ],
+    "end": [
+      10.79,
+      10.89,
+      9.24
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:57:55.206Z",
+    "loadAverageBefore": [
+      10.51,
+      10.84,
+      9.21
+    ],
+    "runtimes": {
+      "lua-process": {
+        "startMs": 2.45,
+        "memory": {
+          "ussBytes": 163840,
+          "pssBytes": 188416
+        },
+        "toolCall": {
+          "wallUs": 29.73,
+          "batchWallUs": 31.39,
+          "cpuUs": 34.57,
+          "hostCpuUs": 22.57,
+          "sandboxCpuUs": 12
+        }
+      },
+      "luajit-process": {
+        "startMs": 3.45,
+        "memory": {
+          "ussBytes": 192512,
+          "pssBytes": 231424
+        },
+        "toolCall": {
+          "wallUs": 28.52,
+          "batchWallUs": 29.76,
+          "cpuUs": 33.1,
+          "hostCpuUs": 21.9,
+          "sandboxCpuUs": 11.2
+        }
+      }
+    },
+    "loadAverageAfter": [
+      10.79,
+      10.89,
+      9.24
+    ]
+  }
+}

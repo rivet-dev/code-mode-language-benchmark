@@ -1,0 +1,35 @@
+{
+  "runtime": "dash",
+  "label": "dash",
+  "language": "Shell",
+  "group": "process",
+  "host": "Node 22.23.1 (spawns the process and talks to it over stdio)",
+  "version": "dash 0.5.12",
+  "metrics": {
+    "memoryBytes": 248218,
+    "startMs": 2.39,
+    "toolCallUs": 55.17,
+    "computeMs": null,
+    "instancesPerGiB": 4326
+  },
+  "notes": [
+    "Started as dash -c, which echoes $((1 + 1)) and then waits on read.",
+    "Memory: cgroup charge per added process, median of 3 rounds of 20; USS 124.0 KiB, PSS 136.0 KiB.",
+    "Start: median of 40 spawns until the host reads the first line.",
+    "Tool call: guest_dash.sh formats each call with printf and cuts the reply's id out with parameter expansion. Per-call median over 50,000 calls after 5,000 warm-ups; median of 500-call batches 57.91 µs; 66.06 µs of CPU per call across host and process.",
+    "Compute: not applicable, the shell has no JSON parser."
+  ],
+  "measuredAt": "2026-11-19T21:59:59.354Z",
+  "loadAverage": {
+    "start": [
+      12.01,
+      11.26,
+      9.55
+    ],
+    "end": [
+      10.71,
+      11.02,
+      9.5
+    ]
+  }
+}

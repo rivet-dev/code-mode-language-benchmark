@@ -1,0 +1,46 @@
+{
+  "harness": "process-suite",
+  "startedAt": "2026-11-19T21:59:27.789Z",
+  "finishedAt": "2026-11-19T21:59:31.849Z",
+  "loadAverage": {
+    "start": [
+      10.89,
+      11.02,
+      9.45
+    ],
+    "end": [
+      10.98,
+      11.04,
+      9.46
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:59:27.826Z",
+    "loadAverageBefore": [
+      10.89,
+      11.02,
+      9.45
+    ],
+    "runtimes": {
+      "cpython": {
+        "startMs": 16.09,
+        "memory": {
+          "ussBytes": 3416064,
+          "pssBytes": 3632128
+        },
+        "toolCall": {
+          "wallUs": 37.88,
+          "batchWallUs": 39.85,
+          "cpuUs": 44.48,
+          "hostCpuUs": 21.68,
+          "sandboxCpuUs": 22.8
+        }
+      }
+    },
+    "loadAverageAfter": [
+      10.98,
+      11.04,
+      9.46
+    ]
+  }
+}

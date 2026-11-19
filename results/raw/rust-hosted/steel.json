@@ -1,0 +1,44 @@
+{
+  "harness": "steel",
+  "startedAt": "2026-11-19T22:00:22.201Z",
+  "finishedAt": "2026-11-19T22:01:09.604Z",
+  "loadAverage": {
+    "start": [
+      8.84,
+      10.56,
+      9.39
+    ],
+    "end": [
+      7.14,
+      9.86,
+      9.21
+    ]
+  },
+  "output": {
+    "key": "steel",
+    "language": "Scheme (Steel)",
+    "crate": "steel-core",
+    "version": "0.8.3",
+    "startUs": 195770.826,
+    "startRuns": 49,
+    "memoryBytesPerSession": 12792978,
+    "memorySessions": 252,
+    "memoryStoppedBy": "memory budget",
+    "memoryExtraStackBytes": 0,
+    "toolCallWallUs": 1.5657,
+    "toolCallWallMeanUs": 1.5952,
+    "toolCallSlowestBatchUs": 2.3872,
+    "toolCallCpuUs": 1.5948,
+    "toolCallMeasuredCalls": 1000000,
+    "toolCallWarmupCalls": 100000,
+    "toolCallBatches": 1000,
+    "toolCallBatchSize": 1000,
+    "callKind": "sync",
+    "limitsEnabled": "Engine::new_sandboxed() (no I/O primitives, dylib loading blocked) with the crate's `sandbox` feature (bounded equality recursion); no instruction or memory limit exists: Engine::with_interrupted stores a flag that the 0.8.3 VM never reads",
+    "notes": [
+      "Session = Engine::new_sandboxed(): deep-clones a per-thread bootstrap kernel image, builds a macro Kernel, then compiles and runs the prelude; plus register_fn(call). The kernel image itself is built once per thread and is excluded by the warm-up session and warm-up runs.",
+      "Host fn is register_fn(\"call\", fn(SteelVal) -> Result<SteelVal, String>); call and reply are immutable im-rc hash maps keyed by symbols (preallocated on the host side).",
+      "Guest loop is a tail-recursive local function; call_function_by_name_with_args runs it."
+    ]
+  }
+}

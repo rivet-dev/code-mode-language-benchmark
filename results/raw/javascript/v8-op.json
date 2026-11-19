@@ -1,0 +1,29 @@
+{
+  "harness": "v8-op",
+  "startedAt": "2026-11-19T21:58:10.159Z",
+  "finishedAt": "2026-11-19T21:58:10.409Z",
+  "loadAverage": {
+    "start": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "end": [
+      11.15,
+      10.96,
+      9.28
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:10.398Z",
+    "loadAverage": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "v8IsolateOpStyle": {
+      "wallUs": 7.53,
+      "cpuUs": 9.21
+    }
+  }
+}

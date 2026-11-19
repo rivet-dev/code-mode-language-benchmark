@@ -1,0 +1,45 @@
+{
+  "harness": "monty",
+  "startedAt": "2026-11-19T22:01:15.423Z",
+  "finishedAt": "2026-11-19T22:01:18.708Z",
+  "loadAverage": {
+    "start": [
+      7.45,
+      9.88,
+      9.22
+    ],
+    "end": [
+      7.41,
+      9.83,
+      9.21
+    ]
+  },
+  "output": {
+    "key": "monty",
+    "language": "Python (Monty subset)",
+    "crate": "monty",
+    "version": "1.6.0",
+    "startUs": 2.685,
+    "startRuns": 2000,
+    "memoryBytesPerSession": 12685,
+    "memorySessions": 1000,
+    "memoryStoppedBy": "target",
+    "memoryExtraStackBytes": 0,
+    "toolCallWallUs": 2.9018,
+    "toolCallWallMeanUs": 2.94,
+    "toolCallSlowestBatchUs": 5.6005,
+    "toolCallCpuUs": 2.9381,
+    "toolCallMeasuredCalls": 1000000,
+    "toolCallWarmupCalls": 100000,
+    "toolCallBatches": 1000,
+    "toolCallBatchSize": 1000,
+    "callKind": "async",
+    "limitsEnabled": "ResourceLimits: max_feed_duration=600s, max_turn_duration=10s, max_recursion_depth=1000 (default), max_memory=1GiB with monty-alloc as the global allocator (process-wide accounting), max_suspensions=10000000 enforced by the host loop; no ambient filesystem, env or network",
+    "notes": [
+      "Session = MontyRepl::new with a limited ResourceTracker, then feed_run(\"1 + 1\").",
+      "Host calls are suspensions, not callbacks: `call` is an undefined global, so each call pauses the VM with ReplProgress::FunctionCall and the host resumes it with the reply (like the Lua coroutine yield harness); callKind async means suspend/resume.",
+      "The argument crosses as a MontyObject graph read through ObjectRef::pairs (allocates a Vec per dict), and the reply is an owned MontyObject dict with three String keys, so every call copies in both directions.",
+      "monty's memory limit counts every allocation in the process (monty-alloc is a global counting allocator built for one session per worker process via monty-pool), so in-process it bounds all sessions together; the 1GiB value leaves room for the 1,000-session memory phase."
+    ]
+  }
+}

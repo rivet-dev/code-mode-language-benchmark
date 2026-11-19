@@ -1,0 +1,25 @@
+{
+  "harness": "embedded-lua",
+  "startedAt": "2026-11-19T21:57:53.128Z",
+  "finishedAt": "2026-11-19T21:57:54.104Z",
+  "loadAverage": {
+    "start": [
+      10.51,
+      10.84,
+      9.21
+    ],
+    "end": [
+      10.51,
+      10.84,
+      9.21
+    ]
+  },
+  "output": {
+    "luaVersionNum": 505,
+    "startUs": 13.165,
+    "memoryBytesPerState": 16585,
+    "toolCallWallUs": 0.4217,
+    "toolCallCpuUs": 0.4297,
+    "cgroupBytesPerState": 16590
+  }
+}

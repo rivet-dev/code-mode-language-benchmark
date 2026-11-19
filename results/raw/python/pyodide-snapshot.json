@@ -1,0 +1,32 @@
+{
+  "harness": "pyodide-snapshot",
+  "startedAt": "2026-11-19T21:59:21.065Z",
+  "finishedAt": "2026-11-19T21:59:26.815Z",
+  "loadAverage": {
+    "start": [
+      10.8,
+      11,
+      9.43
+    ],
+    "end": [
+      10.89,
+      11.02,
+      9.45
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:59:26.747Z",
+    "loadAverage": [
+      10.89,
+      11.02,
+      9.45
+    ],
+    "snapshotBytes": 31457408,
+    "startMs": 137.19,
+    "memoryBytesPerInstance": 46284800,
+    "toolCall": {
+      "wallUs": 64.49,
+      "cpuUs": 74.74
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "harness": "cpu-bench",
+  "startedAt": "2026-11-19T21:58:10.410Z",
+  "finishedAt": "2026-11-19T21:58:21.533Z",
+  "loadAverage": {
+    "start": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "end": [
+      11.84,
+      11.13,
+      9.36
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:10.479Z",
+    "loadAverage": [
+      11.15,
+      10.96,
+      9.28
+    ],
+    "node": "v22.23.1",
+    "v8IsolateSync": {
+      "wallUs": 4.79,
+      "cpuUs": 5.38,
+      "hostCpuUs": 5.38,
+      "otherCpuUs": 0
+    },
+    "v8IsolateAsync": {
+      "wallUs": 40.65,
+      "cpuUs": 46.61,
+      "hostCpuUs": 46.61,
+      "otherCpuUs": 0
+    },
+    "quickjsOwnModuleAsync": {
+      "wallUs": 26.73,
+      "cpuUs": 40.78,
+      "hostCpuUs": 40.78,
+      "otherCpuUs": 0
+    },
+    "nodePipe": {
+      "wallUs": 40.03,
+      "cpuUs": 55.35,
+      "hostCpuUs": 27.07,
+      "otherCpuUs": 28.28
+    },
+    "denoPipe": {
+      "wallUs": 78.77,
+      "cpuUs": 108.79,
+      "hostCpuUs": 23.21,
+      "otherCpuUs": 85.58
+    },
+    "bunPipe": {
+      "wallUs": 74.74,
+      "cpuUs": 179.5,
+      "hostCpuUs": 23.91,
+      "otherCpuUs": 155.59
+    },
+    "loopbackHttp": {
+      "wallUs": 174.68,
+      "cpuUs": 226.52,
+      "hostCpuUs": 137.97,
+      "otherCpuUs": 88.55
+    }
+  }
+}

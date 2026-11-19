@@ -1,0 +1,38 @@
+{
+  "runtime": "rune",
+  "label": "Rune",
+  "language": "Rune",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (rune 0.14.2, release, fat LTO)",
+  "version": "rune 0.14.2",
+  "metrics": {
+    "memoryBytes": 2308198,
+    "startMs": 2.1337,
+    "toolCallUs": 0.6491,
+    "computeMs": null,
+    "instancesPerGiB": 465
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: runtime::budget::with(1000000000 instructions) and alloc::limit::with(64MiB) around every Vm call; Context::with_default_modules (no fs/process/net modules).",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 0.6649 µs, slowest batch 0.9534 µs per call; 0.6649 µs of CPU per call.",
+    "Session = Context::with_default_modules() + module with call + RuntimeContext + compiled Unit + Vm; nothing shared across sessions, so start includes building the default-module context and compiling `pub fn main() { 1 + 1 }`.",
+    "Host fn is Module::function(\"call\", fn(&Object) -> VmResult<Object>); Rune objects key on heap-allocated rune::alloc::String, so each reply allocates three key strings (the guest's object literals do the same).",
+    "Tool-call guest is compiled into a second Unit in the same Context/RuntimeContext and run by its own Vm.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:00:19.482Z",
+  "loadAverage": {
+    "start": [
+      10.2,
+      10.9,
+      9.48
+    ],
+    "end": [
+      9.18,
+      10.66,
+      9.41
+    ]
+  }
+}

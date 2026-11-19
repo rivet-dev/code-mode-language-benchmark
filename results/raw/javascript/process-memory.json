@@ -1,0 +1,76 @@
+{
+  "harness": "process-memory",
+  "startedAt": "2026-11-19T21:58:41.751Z",
+  "finishedAt": "2026-11-19T21:58:55.432Z",
+  "loadAverage": {
+    "start": [
+      11.84,
+      11.17,
+      9.41
+    ],
+    "end": [
+      11.87,
+      11.2,
+      9.44
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:58:41.836Z",
+    "cgroup": "/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/app.slice/run-p2336260-i31666670.scope",
+    "sandboxes": 20,
+    "rounds": 3,
+    "runtimes": {
+      "node": {
+        "bytesPerSandbox": 8131379,
+        "rounds": [
+          8217395,
+          8123802,
+          8131379
+        ],
+        "lastRoundComposition": {
+          "anon": 7278387,
+          "file": 0,
+          "kernel": 846234,
+          "kernel_stack": 114688,
+          "pagetables": 497664,
+          "slab": 122398,
+          "sock": 0
+        }
+      },
+      "deno": {
+        "bytesPerSandbox": 15106458,
+        "rounds": [
+          15106458,
+          15128576,
+          15072051
+        ],
+        "lastRoundComposition": {
+          "anon": 13800858,
+          "file": 1638,
+          "kernel": 1269555,
+          "kernel_stack": 327680,
+          "pagetables": 717619,
+          "slab": 215374,
+          "sock": 0
+        }
+      },
+      "bun": {
+        "bytesPerSandbox": 7870874,
+        "rounds": [
+          7855104,
+          7947878,
+          7870874
+        ],
+        "lastRoundComposition": {
+          "anon": 7188890,
+          "file": 0,
+          "kernel": 630989,
+          "kernel_stack": 147456,
+          "pagetables": 358195,
+          "slab": 116436,
+          "sock": 0
+        }
+      }
+    }
+  }
+}

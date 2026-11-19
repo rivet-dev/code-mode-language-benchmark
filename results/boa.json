@@ -1,0 +1,38 @@
+{
+  "runtime": "boa",
+  "label": "Boa",
+  "language": "JavaScript",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (boa_engine 0.22.0, release, fat LTO)",
+  "version": "boa_engine 0.22.0",
+  "metrics": {
+    "memoryBytes": 318935,
+    "startMs": 0.15322,
+    "toolCallUs": 1.3712,
+    "computeMs": null,
+    "instancesPerGiB": 3367
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: RuntimeLimits: loop_iteration_limit=1000000000, recursion_limit=512, stack_size_limit=10240; no memory limit API; Context::default has no I/O (no boa_runtime).",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest calls a registered Rust function on its own stack. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 2.5382 µs, slowest batch 424.5474 µs per call; 2.538 µs of CPU per call.",
+    "Session = Context::default() (full realm with intrinsics, default features float16/xsum/temporal) + runtime limits + global call.",
+    "Host fn is NativeFunction::from_fn_ptr registered with register_global_callable; reply built with ObjectInitializer and static js_string! keys.",
+    "boa_gc collects with stop-the-world mark and sweep: the median batch hides the pauses, so the mean and the CPU per call run well above the median, and the slowest batch includes a pause.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:01:15.422Z",
+  "loadAverage": {
+    "start": [
+      7.14,
+      9.86,
+      9.21
+    ],
+    "end": [
+      7.45,
+      9.88,
+      9.22
+    ]
+  }
+}

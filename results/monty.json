@@ -1,0 +1,39 @@
+{
+  "runtime": "monty",
+  "label": "Monty",
+  "language": "Python (subset)",
+  "group": "embedded",
+  "host": "Rust 1.99.1 (monty 1.6.0, release, fat LTO)",
+  "version": "monty 1.6.0",
+  "metrics": {
+    "memoryBytes": 12685,
+    "startMs": 0.002685,
+    "toolCallUs": 2.9018,
+    "computeMs": null,
+    "instancesPerGiB": 84647
+  },
+  "notes": [
+    "A session builds the whole engine (nothing shared between sessions), applies its limits, registers the host call function, then evaluates 1 + 1 and reads 2 back in Rust. Limits: ResourceLimits: max_feed_duration=600s, max_turn_duration=10s, max_recursion_depth=1000 (default), max_memory=1GiB with monty-alloc as the global allocator (process-wide accounting), max_suspensions=10000000 enforced by the host loop; no ambient filesystem, env or network.",
+    "Memory: resident growth across 1,000 live sessions (stopped by target), measured first in a fresh process.",
+    "Start: median of 2,000 creates.",
+    "Tool call: the guest suspends at each call and the host resumes it with the reply. Median of per-batch means, 1,000,000 calls in batches of 1,000 after 100,000 warm-ups; mean 2.94 µs, slowest batch 5.6005 µs per call; 2.9381 µs of CPU per call.",
+    "Session = MontyRepl::new with a limited ResourceTracker, then feed_run(\"1 + 1\").",
+    "Host calls are suspensions, not callbacks: `call` is an undefined global, so each call pauses the VM with ReplProgress::FunctionCall and the host resumes it with the reply (like the Lua coroutine yield harness); callKind async means suspend/resume.",
+    "The argument crosses as a MontyObject graph read through ObjectRef::pairs (allocates a Vec per dict), and the reply is an owned MontyObject dict with three String keys, so every call copies in both directions.",
+    "monty's memory limit counts every allocation in the process (monty-alloc is a global counting allocator built for one session per worker process via monty-pool), so in-process it bounds all sessions together; the 1GiB value leaves room for the 1,000-session memory phase.",
+    "Compute: not measured in the Rust host."
+  ],
+  "measuredAt": "2026-11-19T22:01:18.708Z",
+  "loadAverage": {
+    "start": [
+      7.45,
+      9.88,
+      9.22
+    ],
+    "end": [
+      7.41,
+      9.83,
+      9.21
+    ]
+  }
+}

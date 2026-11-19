@@ -1,0 +1,66 @@
+{
+  "harness": "process-suite",
+  "startedAt": "2026-11-19T21:59:41.865Z",
+  "finishedAt": "2026-11-19T21:59:53.935Z",
+  "loadAverage": {
+    "start": [
+      12.01,
+      11.26,
+      9.55
+    ],
+    "end": [
+      11.38,
+      11.15,
+      9.54
+    ]
+  },
+  "output": {
+    "measuredAt": "2026-11-19T21:59:41.908Z",
+    "loadAverageBefore": [
+      12.01,
+      11.26,
+      9.55
+    ],
+    "runtimes": {
+      "bash": {
+        "startMs": 3.02,
+        "memory": {
+          "ussBytes": 311296,
+          "pssBytes": 349184
+        },
+        "toolCall": {
+          "wallUs": 76.54,
+          "batchWallUs": 80.11,
+          "cpuUs": 88.93,
+          "hostCpuUs": 23.53,
+          "sandboxCpuUs": 65.4
+        }
+      },
+      "dash": {
+        "startMs": 2.39,
+        "memory": {
+          "ussBytes": 126976,
+          "pssBytes": 139264
+        },
+        "toolCall": {
+          "wallUs": 55.17,
+          "batchWallUs": 57.91,
+          "cpuUs": 66.06,
+          "hostCpuUs": 23.66,
+          "sandboxCpuUs": 42.4
+        }
+      }
+    },
+    "bashCommandPerCall": {
+      "trueBinary": {
+        "wallUs": 1289.13,
+        "cpuUs": 1365
+      }
+    },
+    "loadAverageAfter": [
+      11.38,
+      11.15,
+      9.54
+    ]
+  }
+}
